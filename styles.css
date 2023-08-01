@@ -1,0 +1,275 @@
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@500&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Courgette&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Open Sans", sans-serif;
+}
+
+body {
+    background-color: #f4f4f4;
+    transition: all .3s ease;
+}
+
+.navbar {
+    background-color: #fff;
+}
+
+.navbar .container-sm {
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+.navbar .container-sm .navbar-brand .h5 {
+    color: rgb(107, 223, 184);
+}
+
+.navbar .container-sm .navbar-brand .fa-leaf {
+    color: mediumaquamarine;
+    font-size: 12px;
+    transform: translateY(-2px);
+}
+
+.navbar .container-sm .navbar-toggler {
+    background-color: rgb(82, 190, 131);
+    transition: all 0.3s ease-in;
+}
+
+.navbar .container-sm .navbar-toggler .fa-chevron-down {
+    font-size: 15px;
+    color: #eee;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.navbar .container-sm .navbar-toggler .fa-chevron-down:hover {
+    color: white;
+}
+
+.navbar .container-sm .navbar-toggler:hover {
+    background-color: rgb(77, 184, 148);
+}
+
+.navbar .container-sm .navbar-toggler:focus {
+    box-shadow: unset;
+    background-color: rgb(73, 165, 114);
+}
+
+.navbar .container-sm .navbar-toggler:focus .fa-chevron-down {
+    color: white;
+}
+
+.navbar .container-sm .navbar-collapse .navbar-nav .nav-item .nav-link {
+    color: mediumaquamarine;
+    font-size: 14.5px;
+}
+
+.navbar .container-sm .navbar-collapse .navbar-nav .nav-item .nav-link:hover {
+    color: rgb(44, 175, 131);
+}
+
+.header-container {
+    height: 580px;
+}
+
+.header-container .header-left .header-title {
+    width: 600px;
+    transform: translateY(-15px);
+    display: flex;
+    justify-content: center;
+    font-family: 'Courgette', cursive;
+}
+
+.header-container .header-left .w-100 .btn-explore {
+    border: 2px solid rgb(120, 224, 167);
+    font-size: 13px;
+    padding: 7px 40px;
+    position: relative;
+    text-transform: capitalize;
+    border-radius: 6px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    overflow: hidden;
+    outline: none;
+    color: #555;
+    /* transition: background-color .4s ease-in-out; */
+}
+
+.header-container .header-left .w-100 .btn-explore span {
+    display: block;
+    width: 0;
+    height: 0;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: -1;
+    border-radius: 50%;
+    background-color: rgb(21, 226, 148);
+    transition: width .8s ease 0s,
+    height .8s ease 0s;
+}
+
+.header-container .header-left .w-100 .btn-explore:hover span {
+    width: 500px;
+    height: 500px;
+}
+
+.header-container .header-left .w-100 .btn-explore:hover {
+    color: #eee;
+    /* background-color: transparent; */
+}
+
+.header-container .header-left .w-100 .btn-explore:focus {
+    box-shadow: unset;
+}
+
+.header-container .header-right {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.header-container .header-right .card {
+    height: 380px;
+    width: 270px;
+    background-color: white;
+}
+
+.section {
+    height: max-content;
+    width: 100%;
+}
+
+.section .section-container {
+    height: 100%;
+}
+
+/* .section .section-container .todoList-container {} */
+
+/* .section .section-container .todoList-container .form-text {} */
+
+.section .section-container .todoList-container .form-text .input-text {
+    padding: 7px 5px 7px 38px;
+    color: #555;
+    background-color: transparent;
+}
+
+.section .section-container .todoList-container .form-text .input-text:focus {
+    border-color: red;
+}
+
+.section .section-container .todoList-container .form-text .fa-magnifying-glass {
+    position: absolute;
+    transform: translate(15px, 12px);
+    z-index: 1;
+    font-size: 15px;
+}
+
+.list {
+    list-style: none;
+    background-color: transparent;
+    border: none;
+    outline: none;
+    color: #444;
+    font-weight: 300;
+}
+
+.list:focus {
+    border: unset;
+    border: none;
+}
+
+#fa-save {
+    display: none;
+    padding: 4px 10px;
+}
+
+#fa-pen .fa-solid {
+    font-size: 13px;
+}
+
+#fa-pen {
+    padding: 4px 10px;
+}
+
+#fa-pen .fa-solid {
+    font-size: 13px;
+}
+
+#fa-trash {
+    margin-left: 3px;
+    padding: 4px 10px;
+}
+
+#fa-trash .fa-solid {
+    font-size: 13px;
+}
+
+.article {
+    height: 580px;
+    width: 100%;
+}
+
+@media screen and (max-width: 1000px) {
+    .navbar .container-sm .navbar-collapse .navbar-nav .nav-item .nav-link {
+        font-size: 14px;
+    }
+}
+
+@media screen and (max-width: 620px) {
+    .header-container .header-left .header-title {
+        width: 100%;
+    }
+    .navbar .container-sm .navbar-collapse .navbar-nav .nav-item .nav-link {
+        font-size: 13.5px;
+    }
+}
+
+.darkMode, .lightMode {
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    transform: translate(-20px, -30px);
+    height: 58px;
+    width: 58px;
+    cursor: pointer;
+    display: grid;
+    place-items: center;
+}
+
+.darkMode .fa-solid,
+.lightMode .fa-solid {
+    font-size: 23px;
+    color: #ddd;
+}
+
+body.mode-color {
+    color: #f5f5f5;
+    background-color: #212121;
+    transition: all .3s ease;
+}
+
+body.mode-color .header-container .header-left .w-100 .btn-explore {
+    color: #ccc;
+}
+
+body.mode-color .header-container .header-left .w-100 .btn-explore:hover {
+    color: #444;
+}
+
+body.mode-color .section .section-container .todoList-container .form-text .input-text {
+    color: #ccc;
+}
+
+body.mode-color .navbar {
+    background-color: #292b2c;
+}
+
+body.mode-color .list {
+    color: #ddd;
+}
