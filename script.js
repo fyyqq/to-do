@@ -130,3 +130,39 @@ $(document).ready(() => {
         }
     });
 });
+
+
+$(document).ready(function() {
+    $(document).on('click', '.nav-link', function(e) {
+        $('.nav-link').removeClass('active');
+        $(this).addClass('active');
+    });
+
+    $('.navbar-toggler').on('click', function(e) {
+        e.preventDefault();
+
+        if (!$(this).hasClass('collapsed')) {
+            $('.navbar-collapse').css({
+                'top': '50%',
+                'height': '100%'
+            });
+        } else {
+            $('.navbar-collapse').css({
+                'top': '-50%'
+            });
+        }
+    });
+});
+
+
+
+
+
+
+
+
+
+
+
+
+
