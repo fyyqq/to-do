@@ -152,6 +152,27 @@ $(document).ready(function() {
             });
         }
     });
+
+    $(window).scroll(function() {
+        const scrollY = $(this).scrollTop();
+        const navbar = $('.navbar');
+        
+        if (scrollY > 60) {
+            $(navbar).addClass('fixed-top');
+            $(navbar).addClass('shadow-sm');
+            $(navbar).css({
+                "background-color" : "#fff"
+            });
+            $(navbar).children().addClass('py-1');
+        } else {
+            $(navbar).removeClass('fixed-top');
+            $(navbar).removeClass('shadow-sm');
+            $(navbar).children().removeClass('py-1');
+            $(navbar).css({
+                "background-color" : "transparent"
+            });
+        }
+    });
 });
 
 

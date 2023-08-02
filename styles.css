@@ -19,9 +19,10 @@ body {
     transition: all .3s ease;
 }
 
+/* Navbar */
 .navbar {
-    background-color: #fff;
     z-index: 999;
+    transition: all .5s ease;
 }
 
 .navbar .container-md {
@@ -29,11 +30,11 @@ body {
     padding-bottom: 10px;
 }
 
-.navbar .container-md .navbar-brand .h5 {
+.navbar-brand .h5 {
     color: var(--main);
 }
 
-.navbar .container-md .navbar-brand .fa-leaf {
+.navbar-brand .fa-leaf {
     color: var(--main);
     font-size: 12px;
     transform: translateY(-2px);
@@ -240,6 +241,102 @@ body {
 .article {
     height: 580px;
     width: 100%;
+}
+
+/* sidebar */
+#project_section #sidebar {
+    height: 100%;
+    background-color: #fff;
+    width: 20%;
+}
+
+#project_section #sidebar #search span input:focus {
+    border: 1px solid var(--main);
+}
+
+#project_section #sidebar #search span input {
+    padding-left: 35px;
+    font-size: 14px;
+    height: 40px;
+    font-weight: normal;
+    caret-color: var(--hover);
+}
+
+#project_section #sidebar #search span i {
+    font-size: 12.5px;
+    top: 50%;
+    transform: translate(13px, -50%);
+    color: gray;
+}
+
+#project_section #sidebar #lists {
+    height: 535px;
+}
+
+#project_section #sidebar #lists div .fa-plus {
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+#project_section #sidebar #lists #list1 {
+    height: 100%;
+    /* overflow-y: scroll; */
+    cursor: pointer;
+}
+
+#project_section #sidebar #backtohome a .fa-home {
+    font-size: 15px;
+}
+
+#project_section #sidebar #backtohome a .fa-home, 
+#project_section #sidebar #backtohome a small {
+    color: var(--main);
+}
+
+#project_section #main #top .modal .modal-dialog .modal-body form .col-form-label {
+    font-size: 13.5px;
+    letter-spacing: .3px;
+}
+
+#project_section #main #top .modal .modal-dialog .modal-content .modal-body form .form-control {
+    font-size: 14px;
+    color: #333;
+    padding: 10px;
+    caret-color: var(--main);
+}
+
+#project_section #main #top .modal .modal-dialog .modal-content .modal-body form .form-control:focus {
+    border: 1px solid var(--main);
+}
+
+#project_section #main #top .modal .modal-dialog .modal-content .modal-header h1 {
+    font-size: 18px;
+    color: #333;
+}
+
+#project_section #main #top .modal .modal-dialog .modal-content .modal-footer button {
+    font-size: 14px;
+    letter-spacing: .5px;
+}
+
+#project_section #main #top .modal .modal-dialog .modal-content .modal-footer button:focus {
+    box-shadow: unset;
+}
+
+#project_section #main #top #labels {
+    background-color: #fff;
+    width: 230px;
+}
+
+
+#project_section #main #lists {
+    height: 550px;
+}
+
+#project_section #main #lists .list {
+    padding: 30px 10px;
+    background-color: #fff;
 }
 
 @media screen and (max-width: 1000px) {
