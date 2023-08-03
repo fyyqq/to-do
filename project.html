@@ -37,7 +37,7 @@
                     </a>
                 </div>
             </nav>
-            <div class="px-4 ms-auto" id="main" style="width: 80%;">
+            <div class="px-4 ms-auto position-relative" id="main">
                 <!-- Top -->
                 <div class="pt-4 pb-3 w-100 d-flex align-items-center justify-content-between" id="top">
                     <div class="d-flex align-items-center justify-content-start gap-2">
@@ -46,9 +46,9 @@
                     </div>
                     <div class="">
                         <div class="btn-group">
-                            <input type="text" name="" id="" class="py-2 form-control shadow-none rounded-0 px-3 py-2">
-                            <button class="btn btn-success shadow-none px-3 py-2"><i class="fa-solid fa-magnifying-glass" style="font-size: 14px;"></i></button>
-                        </div>
+                        <input type="text" name="" id="" class="py-2 form-control shadow-none rounded-0 px-3 py-2">
+                        <button class="btn btn-success shadow-none px-3 py-2"><i class="fa-solid fa-magnifying-glass" style="font-size: 14px;"></i></button>
+                    </div>
                         <button class="btn btn-success shadow-none py-2 px-3"><i class="fa-solid fa-plus" data-bs-toggle="modal" data-bs-target="#createListModal"></i></button>
                         <div class="modal fade" id="createListModal">
                             <div class="modal-dialog modal-dialog-centered">
@@ -80,17 +80,20 @@
                 <!-- Middle -->
                 <div class="rounded-0 py-3 border-top d-flex flex-column gap-2 w-100" id="lists">
                     <div class="d-flex align-items-center justify-content-center mb-3">
-                        <div class="btn-group w-50">
-                            <input type="text" name="" id="" class="form-control shadow-none rounded-0 py-3 px-4">
-                            <button class="btn btn-success shadow-none py-3 px-4">
-                                <i class="mdi mdi-arrow-collapse-down" style="font-size: 15px;"></i>
-                            </button>
-                        </div>
+                        <!--  -->
                     </div>
                     <div class="border rounded-3 list"></div>
                     <div class="border rounded-3 list"></div>
                     <div class="border rounded-3 list"></div>
                     <div class="border rounded-3 list"></div>
+                </div>
+                <div class="" id="insert">
+                    <div class="btn-group w-100 rounded-pill">
+                        <input type="text" name="" id="" class="form-control shadow-none ps-4 pe-3" autocomplete="off">
+                        <button class="btn btn-success shadow-none px-4">
+                            <i class="mdi mdi-arrow-up-bold-circle-outline fs-3"></i>
+                        </button>
+                    </div>
                 </div>
             </div>
         </div>

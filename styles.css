@@ -294,6 +294,43 @@ body {
     color: var(--main);
 }
 
+#project_section #main {
+    width: calc(100% - 21%);
+    transition: width .3s ease;
+}
+
+#project_section #main #insert {
+    width: 50%;
+    position: fixed;
+    bottom: 25px;
+    right: 50%;
+    transform: translateX(65%);
+}
+
+#project_section #main #insert .btn-group {
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+}
+
+#project_section #main #insert .btn-group input {
+    border-top-left-radius: 30px;
+    border-bottom-left-radius: 30px;
+    caret-color: var(--hover);
+    color: #444;
+}
+
+#project_section #main #insert .btn-group input:focus {
+    border: 1px solid var(--hover);
+}
+
+#project_section #main #insert .btn-group button {
+    border-top-right-radius: 30px;
+    border-bottom-right-radius: 30px;
+}
+
+#project_section #main #insert .btn-group button i {
+    transform: rotate(90deg);
+}
+
 #project_section #main #top .modal .modal-dialog .modal-body form .col-form-label {
     font-size: 13.5px;
     letter-spacing: .3px;
@@ -328,7 +365,6 @@ body {
     background-color: #fff;
     width: 230px;
 }
-
 
 #project_section #main #lists {
     height: 550px;
