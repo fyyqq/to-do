@@ -24,7 +24,6 @@ body {
     height: 22px;
     display: grid;
     animation: s4 4s infinite;
-    /* display: none; */
 }
 
 .custom-loader::before,
@@ -357,6 +356,7 @@ body {
 
 #project_section #main #insert .btn-group button i {
     display: block;
+    font-size: 25px;
     transform: translateX(-1px);
 }
 

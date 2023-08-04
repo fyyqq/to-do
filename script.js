@@ -209,18 +209,37 @@ const listContainer = document.getElementById('list_container');
 const listElement = document.querySelector('.list');
 
 const createList = forms[1];
+const postIcon = createList.childNodes[1].querySelector('i');
+const loader = createList.childNodes[1].querySelector('.custom-loader');
+
 const input = document.getElementById('create_list_bar');
 createList.addEventListener('submit', event => {
     event.preventDefault();
     
-    const inputFilled = createList['create'].value;
+    const inputFilled = createList['create'];
     
-    if (inputFilled.trim() != '') {
-        const cloneList = listElement.cloneNode(true);
-        cloneList.querySelector('small').textContent = inputFilled;
-        listContainer.append(cloneList);
-        input.value = '';
+    if (inputFilled.value.trim() != '') {
+        $(postIcon).hide();
+        $(loader).removeClass('d-none');
+        setTimeout(() => {
+            $(loader).addClass('d-none');
+            const cloneList = listElement.cloneNode(true);
+            cloneList.querySelector('small').textContent = inputFilled.value;
+            listContainer.append(cloneList);
+            input.value = '';
+            $(postIcon).show();
+            $(inputFilled).siblings().attr('disabled', true);
+        }, 1000);
     } else {
         return false;
     }
 });
+
+
+function createListInput(event) {
+    if (event.value.trim() != '') {
+        $(event).siblings().removeAttr('disabled');
+    } else {
+        $(event).siblings().attr('disabled', true);
+    }
+}

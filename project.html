@@ -110,10 +110,10 @@
                 <div class="" id="insert">
                     <form action="/postList" method="post">
                         <div class="btn-group w-100 rounded-pill">
-                            <input type="text" name="create" id="create_list_bar" class="form-control shadow-none ps-4 pe-3" placeholder="Take a shower" autocomplete="off">
-                            <button type="submit" class="btn btn-success shadow-none px-4">
-                                <i class="mdi mdi-arrow-up-circle fs-4 d-none"></i>
-                                <div class="custom-loader"></div>
+                            <input type="text" name="create" id="create_list_bar" class="form-control shadow-none ps-4 pe-3" placeholder="Take a shower" autocomplete="off" onkeyup="createListInput(this)">
+                            <button type="submit" class="btn btn-success shadow-none px-4" disabled>
+                                <i class="mdi mdi-arrow-up-circle"></i>
+                                <div class="custom-loader d-none"></div>
                             </button>
                         </div>
                     </form>
