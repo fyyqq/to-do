@@ -328,7 +328,7 @@ body {
 #project_section #main #insert {
     width: 50%;
     position: fixed;
-    bottom: 25px;
+    bottom: 40px;
     right: 50%;
     transform: translateX(65%);
 }
@@ -405,22 +405,26 @@ body {
 }
 
 #project_section #main #lists #list_container .list .col-1 input {
-    height: 18px;
-    width: 18px;
+    height: 17px;
+    width: 17px;
     cursor: pointer;
 }
 
-#project_section #main #lists #list_container .list .col-10 small {
+#project_section #main #lists #list_container .list .col-10 input {
     color: #333;
     font-size: 15px;
 }
 
+#project_section #main #lists #list_container .list .col-10 input:read-only {
+    background-color: transparent;
+}
+
 #project_section #main #lists #list_container .list .col-1 i.mdi {
     cursor: pointer;
 }
 
 #project_section #main #lists #list_container .list .col-1 i.mdi {
-    font-size: 19px;
+    font-size: 19.5px;
 }
 
 @media screen and (max-width: 1000px) {

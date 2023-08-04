@@ -224,7 +224,7 @@ createList.addEventListener('submit', event => {
         setTimeout(() => {
             $(loader).addClass('d-none');
             const cloneList = listElement.cloneNode(true);
-            cloneList.querySelector('small').textContent = inputFilled.value;
+            cloneList.querySelector('input').value = 'ok';
             listContainer.append(cloneList);
             input.value = '';
             $(postIcon).show();
@@ -242,4 +242,26 @@ function createListInput(event) {
     } else {
         $(event).siblings().attr('disabled', true);
     }
+}
+
+function editList(event) {
+    const input = $(event).parent().prev().children('input');
+    $(input).removeAttr('readonly', true);
+    $(input).focus();
+
+    $(event).addClass('d-none');
+    $(event).next().removeClass('d-none');
+}
+
+function saveList(event) {
+    const input = $(event).parent().prev().children('input');
+    $(input).attr('readonly', true);
+    
+    $(event).addClass('d-none');
+    $(event).prev().removeClass('d-none');
+}
+
+function delList(event) {
+    const container = $(event).closest('.list');
+    $(container).remove();
 }
