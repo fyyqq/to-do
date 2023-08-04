@@ -176,14 +176,33 @@ $(document).ready(function() {
 });
 
 const forms = document.forms;
+const tags_container = document.getElementById('tags');
+const tag = document.getElementById('tag');
 
 const createListsForm = forms[0];
 createListsForm.addEventListener('submit', event => {
     event.preventDefault();
-
+    
     const title = createListsForm['title'];
     const category = createListsForm['category'];
     const desc = createListsForm['description'];
+    
+    if (title.value.trim() != '') {
+        const clone_tag = tag.cloneNode(true);
+        $(createListsForm).parent().closest('.modal').modal('hide');
+        $(clone_tag).removeClass('d-none');
+        clone_tag.querySelector('#title').textContent = title.value;
+        clone_tag.querySelector('#category').textContent = category.value;
+        tags_container.children[1].style.display = 'none';
+        tags_container.append(clone_tag);
+
+        title.value = '';
+        category.value = '';
+        desc.value = '';
+
+    } else {
+        return false;
+    }
 });
 
 const listContainer = document.getElementById('list_container');
