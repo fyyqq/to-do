@@ -1,5 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@500&display=swap");
-@import url('https://fonts.googleapis.com/css2?family=Courgette&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Lato&display=swap');
 
 :root {
     --main: mediumaquamarine;
@@ -10,8 +9,8 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: "Open Sans", sans-serif;
     scroll-behavior: smooth;
+    font-family: 'Lato', sans-serif;
 }
 
 body {
@@ -115,7 +114,6 @@ body {
     transform: translateY(-15px);
     display: flex;
     justify-content: center;
-    font-family: 'Courgette', cursive;
 }
 
 .header-container .header-left .w-100 .btn-explore {
@@ -328,7 +326,8 @@ body {
 }
 
 #project_section #main #insert .btn-group button i {
-    transform: rotate(90deg);
+    display: block;
+    transform: translateX(-1px);
 }
 
 #project_section #main #top .modal .modal-dialog .modal-body form .col-form-label {
@@ -366,13 +365,32 @@ body {
     width: 230px;
 }
 
-#project_section #main #lists {
+#project_section #main #lists #list_container {
     height: 550px;
 }
 
-#project_section #main #lists .list {
-    padding: 30px 10px;
+#project_section #main #lists #list_container .list {
+    padding: 23px 10px;
     background-color: #fff;
+}
+
+#project_section #main #lists #list_container .list .col-1 input {
+    height: 18px;
+    width: 18px;
+    cursor: pointer;
+}
+
+#project_section #main #lists #list_container .list .col-10 small {
+    color: #333;
+    font-size: 15px;
+}
+
+#project_section #main #lists #list_container .list .col-1 i.mdi {
+    cursor: pointer;
+}
+
+#project_section #main #lists #list_container .list .col-1 i.mdi {
+    font-size: 19px;
 }
 
 @media screen and (max-width: 1000px) {

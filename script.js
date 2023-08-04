@@ -175,15 +175,33 @@ $(document).ready(function() {
     });
 });
 
+const forms = document.forms;
 
+const createListsForm = forms[0];
+createListsForm.addEventListener('submit', event => {
+    event.preventDefault();
 
+    const title = createListsForm['title'];
+    const category = createListsForm['category'];
+    const desc = createListsForm['description'];
+});
 
+const listContainer = document.getElementById('list_container');
+const listElement = document.querySelector('.list');
 
-
-
-
-
-
-
-
-
+const createList = forms[1];
+const input = document.getElementById('create_list_bar');
+createList.addEventListener('submit', event => {
+    event.preventDefault();
+    
+    const inputFilled = createList['create'].value;
+    
+    if (inputFilled.trim() != '') {
+        const cloneList = listElement.cloneNode(true);
+        cloneList.querySelector('small').textContent = inputFilled;
+        listContainer.append(cloneList);
+        input.value = '';
+    } else {
+        return false;
+    }
+});
