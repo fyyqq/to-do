@@ -154,7 +154,7 @@ function createRecentTag(title, category, rand) {
 }
 
 const listContainer = document.getElementById('list_container');
-const listElement = document.querySelector('.list');
+const listElement = listContainer.querySelector('.list');
 
 const createList = forms[1];
 const postIcon = createList.childNodes[1].querySelector('i');
@@ -169,7 +169,6 @@ createList.addEventListener('submit', event => {
 
     const inputFilled = createList['create'];
     $(inputFilled).attr('disabled', true);
-
     
     if (inputFilled.value.trim() != '') {
         lists.push(inputFilled.value);
@@ -182,11 +181,15 @@ createList.addEventListener('submit', event => {
             const cloneList = listElement.cloneNode(true);
             cloneList.classList.remove('d-none');
             cloneList.querySelector('.col-10').children[0].value = inputFilled.value;
+
             checkList(cloneList)
+
             listContainer.append(cloneList);
             input.value = '';
+
             $(postIcon).show();
             $(inputFilled).focus();
+
             const recent = document.getElementById('recent_tag');
             const rand = recent.getAttribute('data-tag');
             
@@ -202,11 +205,11 @@ function checkList(element) {
     checkbox.addEventListener('click', event => {
         if (event.target.checked) {
             document.getElementById('complete_container').classList.remove('d-none');
-            const element = event.currentTarget.parentElement.parentElement;
-            const cloneElement = element.cloneNode(true);
-            cloneElement.children[0].querySelector('input').setAttribute('disabled', true);
-            const completeContainer = document.getElementById("complete_list_container");
-            completeContainer.append(cloneElement);
+            
+            const element = $(event.target).closest('.list')[0];
+            
+            createCompleteList(element)
+
             element.remove();
         } else {
             console.log('unchecked');
@@ -214,6 +217,28 @@ function checkList(element) {
     });
 }
 
+
+function createCompleteList(element) {
+    const completeContainer = document.getElementById("complete_list_container");
+
+    const cloneElement = element.cloneNode(true);
+    cloneElement.children[0].querySelector('input').setAttribute('disabled', true);
+    cloneElement.style.backgroundColor = 'gainsboro';
+    cloneElement.children[0].querySelector('.checkmark').style.cursor = 'unset';
+    
+    const parentChild = cloneElement.children[2];
+    parentChild.className += ' flex-row-reverse';
+    parentChild.removeChild(parentChild.children[0]);
+    
+    const time = moment().format('MMMM Do YYYY, h:mm:ss a');
+    const infoIcon = document.createElement('i');
+    infoIcon.className = 'mdi mdi-information-outline fs-5';
+    infoIcon.setAttribute('data-bs-target', 'tooltip');
+    infoIcon.setAttribute('title', time);
+
+    parentChild.append(infoIcon);
+    completeContainer.append(cloneElement);
+}
 
 function createListInput(event) {
     if (event.value.trim() != '') {
