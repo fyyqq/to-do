@@ -15,122 +15,6 @@ $(document).ready(() => {
     });
 });
 
-$(document).ready(() => {
-    $('.btn-explore').on("mousemove", function(e) {
-        e.preventDefault();
-        const parentOffset = $(this).offset(),
-        relX = e.pageX - parentOffset.left,
-        relY = e.pageY - parentOffset.top;
-        $(this).find("span").css({
-            top : relY,
-            left : relX,
-        });
-    });
-});
-
-function myForm() {
-    var x = $('.input-text').val();
-    if (x === "") {
-        alert(`Please fill text first`);
-    } else {
-        $('tr').append(`
-            <td class="d-flex justify-content-between align-items-center list-parent">
-                <input type="text" name="text" id="text" class="list" value="${x}" readonly>
-                <div class="btn-list">
-                    <button class="btn btn-success" data-bs-target="tooltip" title="Save List" id="fa-save">
-                        <i class="fa-solid fa-arrow-down"></i>
-                    </button>
-                    <button class="btn btn-primary" data-bs-target="tooltip" title="Edit List" id="fa-pen">
-                        <i class="fa-solid fa-pen"></i>
-                    </button>
-                    <button class="btn btn-danger" data-bs-target="tooltip" title="Delete List" id="fa-trash">
-                        <i class="fa-solid fa-trash"></i>
-                    </button>
-                </div>
-            </td>`);
-    }
-    return $('.input-text').val('');
-}
-
-function myButton() {
-    const editBtn = document.querySelectorAll('#fa-pen');
-    const saveBtn = document.querySelectorAll('#fa-save');
-    const delBtn = document.querySelectorAll('#fa-trash');
-    editBtn.forEach(btn => {
-        btn.addEventListener('click', e => {
-            const each = e.currentTarget;
-            each.style.display = 'none';
-            const inputAttr = each.parentElement.parentElement.childNodes[1];
-            inputAttr.removeAttribute("readonly");
-            $(inputAttr).focus();
-            if (each) {
-                const save = each.parentElement.childNodes[1];
-                $(save).css('display', 'inline-block');
-            }
-        });
-    });
-    saveBtn.forEach(btn => {
-        btn.addEventListener('click', e => {
-            const each = e.currentTarget;
-            each.style.display = 'none';
-            const inputAttr = each.parentElement.parentElement.childNodes[1];
-            inputAttr.setAttribute("readonly", "");
-            if (each) {
-                const edit = each.parentElement.childNodes[3];
-                $(edit).css('display', 'inline-block');
-            }
-        });
-    });
-    delBtn.forEach(btn => {
-        btn.addEventListener('click', e => {
-            const each = e.currentTarget;
-            const parent = each.parentElement.parentElement;
-            $(parent).remove();
-        });
-    });
-}
-
-function deleteAll() {
-    $('#delAll').click(() => {
-        const allList = document.querySelectorAll('.list-parent');
-        console.log(allList);
-    });
-}
-
-$(document).ready(() => {
-    $('.form-text').submit(() => {
-        myForm();
-        myButton();
-        deleteAll();
-    });
-});
-
-$(document).ready(() => {
-    $('.save-btn').click(() => {
-        myForm();
-        myButton();
-        deleteAll();
-    });
-});
-
-$(document).ready(() => {
-    $('.input-text').on({
-        'focus' : function() {
-            $(this).css({
-                'width': '400px',
-                'transition': '.4s ease-out',
-                'border': '2px solid red'
-            });
-        },
-        'blur' : function() {
-            $(this).css({
-                'width': '250px',
-                'transition': '.4s ease-out'
-            });
-        }
-    });
-});
-
 
 $(document).ready(function() {
     $(document).on('click', '.nav-link', function(e) {
@@ -175,35 +59,95 @@ $(document).ready(function() {
     });
 });
 
-const forms = document.forms;
-const tags_container = document.getElementById('tags');
-const tag = document.getElementById('tag');
+const characters ='ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
 
-const createListsForm = forms[0];
-createListsForm.addEventListener('submit', event => {
+function generateString(length) {
+    let result = ' ';
+    const charactersLength = characters.length;
+    for ( let i = 0; i < length; i++ ) {
+        result += characters.charAt(Math.floor(Math.random() * charactersLength));
+    }
+
+    return result;
+}
+
+const rand = generateString(5);
+
+const tagsAndList = {}
+
+const forms = document.forms;
+
+const createTag = forms[0];
+createTag.addEventListener('submit', event => {
     event.preventDefault();
     
-    const title = createListsForm['title'];
-    const category = createListsForm['category'];
-    const desc = createListsForm['description'];
+    const title = createTag['title'];
+    const category = createTag['category'];
+    const desc = createTag['description'];
     
     if (title.value.trim() != '') {
-        const clone_tag = tag.cloneNode(true);
-        $(createListsForm).parent().closest('.modal').modal('hide');
-        $(clone_tag).removeClass('d-none');
-        clone_tag.querySelector('#title').textContent = title.value;
-        clone_tag.querySelector('#category').textContent = category.value;
-        tags_container.children[1].style.display = 'none';
-        tags_container.append(clone_tag);
+        
+        createTagSidebar(title, category)
+        showTag(title, category)
 
         title.value = '';
         category.value = '';
         desc.value = '';
-
+        
+        $('#insert').show();
+        
     } else {
         return false;
     }
 });
+
+function createTagSidebar(title, category, description) {
+    const tags_container = document.getElementById('tags');
+    const tag = document.getElementById('tag');
+    const clone_tag = tag.cloneNode(true);
+    $(createTag).parent().closest('.modal').modal('hide');
+    $(clone_tag).removeClass('d-none');
+    clone_tag.querySelector('#title').textContent = title.value;
+    clone_tag.querySelector('#category').textContent = category.value;
+    clone_tag.setAttribute('data-tag', rand);
+    tags_container.children[1].style.display = 'none';
+    tags_container.append(clone_tag);
+
+    chooseTag()
+}
+
+function chooseTag() {
+    const tags = document.querySelectorAll('#tag');
+    tags.forEach(element => {
+        element.addEventListener('click', event => {
+            event.preventDefault();
+            
+            const choose = event.currentTarget;            
+            
+            const recent = document.getElementById('recent_tag');
+            recent.classList.remove('d-none');
+
+            const title = choose.children[0].children[1].querySelector('#title');
+            const category = choose.children[0].children[1].querySelector('#category');
+
+            const recent_title = recent.children[1].querySelector('#title');
+            const recent_category = recent.children[1].querySelector('#category');
+            recent_title.innerHTML = title.textContent;
+            recent_category.innerHTML = category.textContent;
+        });
+    });
+}
+
+function showTag(title, category) {
+    const recent = document.getElementById('recent_tag');
+    recent.classList.remove('d-none');
+
+    const recent_title = recent.children[1].querySelector('#title');
+    const recent_category = recent.children[1].querySelector('#category');
+    
+    recent_title.innerHTML = title.value;
+    recent_category.innerHTML = category.value;
+}
 
 const listContainer = document.getElementById('list_container');
 const listElement = document.querySelector('.list');
@@ -215,26 +159,26 @@ const loader = createList.childNodes[1].querySelector('.custom-loader');
 const input = document.getElementById('create_list_bar');
 createList.addEventListener('submit', event => {
     event.preventDefault();
-    
+
     const inputFilled = createList['create'];
-    
+
     if (inputFilled.value.trim() != '') {
+        $(inputFilled).siblings().attr('disabled', true);
         $(postIcon).hide();
         $(loader).removeClass('d-none');
         setTimeout(() => {
             $(loader).addClass('d-none');
             const cloneList = listElement.cloneNode(true);
-            cloneList.querySelector('input').value = 'ok';
+            cloneList.classList.remove('d-none');
+            cloneList.querySelector('.col-10').children[0].value = inputFilled.value;
             listContainer.append(cloneList);
             input.value = '';
             $(postIcon).show();
-            $(inputFilled).siblings().attr('disabled', true);
         }, 1000);
     } else {
         return false;
     }
 });
-
 
 function createListInput(event) {
     if (event.value.trim() != '') {

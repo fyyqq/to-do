@@ -61,7 +61,7 @@ body {
     color: var(--main);
 }
 
-.navbar-brand .fa-leaf {
+.navbar-brand .mdi-leaf {
     color: var(--main);
     font-size: 12px;
     transform: translateY(-2px);
@@ -217,13 +217,6 @@ body {
     border-color: red;
 }
 
-.section .section-container .todoList-container .form-text .fa-magnifying-glass {
-    position: absolute;
-    transform: translate(15px, 12px);
-    z-index: 1;
-    font-size: 15px;
-}
-
 .list {
     list-style: none;
     background-color: transparent;
@@ -299,6 +292,10 @@ body {
     height: 535px;
 }
 
+#project_section #sidebar #tags #tag {
+    cursor: pointer;
+}
+
 #project_section #sidebar #tags div .fa-plus {
     top: 50%;
     left: 50%;
@@ -331,6 +328,7 @@ body {
     bottom: 40px;
     right: 50%;
     transform: translateX(65%);
+    display: none;
 }
 
 #project_section #main #insert .btn-group {
@@ -395,6 +393,11 @@ body {
     width: 230px;
 }
 
+#project_section #main #top #recent_tag {
+    background-color: #fff;
+    width: 270px;
+}
+
 #project_section #main #lists #list_container {
     height: 550px;
 }
@@ -402,6 +405,7 @@ body {
 #project_section #main #lists #list_container .list {
     padding: 23px 10px;
     background-color: #fff;
+    /* display: none; */
 }
 
 #project_section #main #lists #list_container .list .col-1 input {
