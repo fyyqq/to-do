@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Lato&display=swap');
 
 :root {
-    --main: mediumaquamarine;
+    --main: mediumseagreen;
     --hover: rgb(77, 184, 148);;
 }
 
@@ -102,16 +102,6 @@ body {
 .navbar .container-md {
     padding-top: 10px;
     padding-bottom: 10px;
-}
-
-.navbar-brand .h5 {
-    color: var(--main);
-}
-
-.navbar-brand .mdi-leaf {
-    color: var(--main);
-    font-size: 12px;
-    transform: translateY(-2px);
 }
 
 .navbar .container-md .navbar-toggler {
@@ -289,15 +279,6 @@ body {
     height: 100%;
     /* overflow-y: scroll; */
     cursor: pointer;
-}
-
-#project_section #sidebar #backtohome a .mdi-home {
-    font-size: 15px;
-}
-
-#project_section #sidebar #backtohome a .mdi-home, 
-#project_section #sidebar #backtohome a small {
-    color: var(--main);
 }
 
 #project_section #main {

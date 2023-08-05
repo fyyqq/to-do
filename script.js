@@ -72,6 +72,7 @@ function generateString(length) {
 }
 
 const forms = document.forms;
+const tagsAndList = {}
 
 const createTag = forms[0];
 createTag.addEventListener('submit', event => {
@@ -84,8 +85,15 @@ createTag.addEventListener('submit', event => {
     if (title.value.trim() != '') {
         
         const rand = generateString(5);
+        tagsAndList[rand] = [];
         createTagSidebar(title, category, rand)
         createRecentTag(title, category, rand)
+
+        const listContainer = document.getElementById('list_container');
+        const childs = listContainer.querySelectorAll('.list');
+        childs.forEach(child => {
+            listContainer.removeChild(child);
+        });
 
         title.value = '';
         category.value = '';
@@ -109,35 +117,33 @@ function createTagSidebar(title, category, rand) {
     clone_tag.querySelector('#title').textContent = title.value;
     clone_tag.querySelector('#category').textContent = category.value;
     clone_tag.setAttribute('data-tag', rand);
+    clone_tag.setAttribute('onclick', 'chooseTag(this)');
     tags_container.children[1].style.display = 'none';
     tags_container.append(clone_tag);
-
-    chooseTag()
 }
 
-function chooseTag() {
+function chooseTag(event) {
     const tags = document.querySelectorAll('#tag');
-    tags.forEach(element => {
-        element.addEventListener('click', event => {
-            event.preventDefault();
-            
-            const choose = event.currentTarget;
-            choose.getAttribute('data-tag');
-            
-            const recent = document.getElementById('recent_tag');
-            recent.classList.remove('d-none');
-
-            const title = choose.children[0].children[1].querySelector('#title');
-            const category = choose.children[0].children[1].querySelector('#category');
-
-            const recent_title = recent.children[1].querySelector('#title');
-            const recent_category = recent.children[1].querySelector('#category');
-            recent_title.innerHTML = title.textContent;
-            recent_category.innerHTML = category.textContent;
-            const rand = choose.getAttribute("data-tag");
-            recent.setAttribute('data-tag', rand);
-        });
+    tags.forEach(tag => {
+        tag.classList.remove('border-success');
     });
+
+    event.classList.add('border-success');
+
+    const recent = document.getElementById('recent_tag');
+    recent.classList.remove('d-none');
+
+    const title = event.children[0].children[1].querySelector('#title');
+    const category = event.children[0].children[1].querySelector('#category');
+
+    const recent_title = recent.children[1].querySelector('#title');
+    const recent_category = recent.children[1].querySelector('#category');
+    recent_title.innerHTML = title.textContent;
+    recent_category.innerHTML = category.textContent;
+    const rand = event.getAttribute("data-tag");
+    recent.setAttribute('data-tag', rand);
+
+    changeTag(rand)
 }
 
 function createRecentTag(title, category, rand) {
@@ -156,12 +162,24 @@ function createRecentTag(title, category, rand) {
 const listContainer = document.getElementById('list_container');
 const listElement = listContainer.querySelector('.list');
 
+function changeTag(data) {
+    const childs = listContainer.querySelectorAll('.list');
+    childs.forEach(child => {
+        listContainer.removeChild(child);
+    });
+    
+    const dataTag = tagsAndList[data];
+    dataTag.forEach(data => {
+        const cloneList = listElement.cloneNode(true);
+        cloneList.classList.remove('d-none');
+        cloneList.children[1].querySelector('input').value = data;
+        listContainer.append(cloneList);
+    });
+}
+
 const createList = forms[1];
 const postIcon = createList.childNodes[1].querySelector('i');
 const loader = createList.childNodes[1].querySelector('.custom-loader');
-
-const lists = [];
-const tagsAndList = {}
 
 const input = document.getElementById('create_list_bar');
 createList.addEventListener('submit', event => {
@@ -171,7 +189,7 @@ createList.addEventListener('submit', event => {
     $(inputFilled).attr('disabled', true);
     
     if (inputFilled.value.trim() != '') {
-        lists.push(inputFilled.value);
+        const values = inputFilled.value;
         $(inputFilled).removeAttr('disabled');
         $(inputFilled).siblings().attr('disabled', true);
         $(postIcon).hide();
@@ -190,10 +208,8 @@ createList.addEventListener('submit', event => {
             $(postIcon).show();
             $(inputFilled).focus();
 
-            const recent = document.getElementById('recent_tag');
-            const rand = recent.getAttribute('data-tag');
-            
-            tagsAndList[rand] = lists;
+            const recent = document.getElementById('recent_tag').getAttribute('data-tag');
+            tagsAndList[recent].push(values);
         }, 1000);
     } else {
         return false;
@@ -204,19 +220,14 @@ function checkList(element) {
     const checkbox = element.children[0].querySelector('input');
     checkbox.addEventListener('click', event => {
         if (event.target.checked) {
-            document.getElementById('complete_container').classList.remove('d-none');
-            
             const element = $(event.target).closest('.list')[0];
             
             createCompleteList(element)
 
             element.remove();
-        } else {
-            console.log('unchecked');
         }
     });
 }
-
 
 function createCompleteList(element) {
     const completeContainer = document.getElementById("complete_list_container");
