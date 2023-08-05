@@ -71,10 +71,6 @@ function generateString(length) {
     return result;
 }
 
-const rand = generateString(5);
-
-const tagsAndList = {}
-
 const forms = document.forms;
 
 const createTag = forms[0];
@@ -87,8 +83,9 @@ createTag.addEventListener('submit', event => {
     
     if (title.value.trim() != '') {
         
-        createTagSidebar(title, category)
-        showTag(title, category)
+        const rand = generateString(5);
+        createTagSidebar(title, category, rand)
+        createRecentTag(title, category, rand)
 
         title.value = '';
         category.value = '';
@@ -103,7 +100,7 @@ createTag.addEventListener('submit', event => {
     }
 });
 
-function createTagSidebar(title, category, description) {
+function createTagSidebar(title, category, rand) {
     const tags_container = document.getElementById('tags');
     const tag = document.getElementById('tag');
     const clone_tag = tag.cloneNode(true);
@@ -124,7 +121,8 @@ function chooseTag() {
         element.addEventListener('click', event => {
             event.preventDefault();
             
-            const choose = event.currentTarget;            
+            const choose = event.currentTarget;
+            choose.getAttribute('data-tag');
             
             const recent = document.getElementById('recent_tag');
             recent.classList.remove('d-none');
@@ -136,13 +134,17 @@ function chooseTag() {
             const recent_category = recent.children[1].querySelector('#category');
             recent_title.innerHTML = title.textContent;
             recent_category.innerHTML = category.textContent;
+            const rand = choose.getAttribute("data-tag");
+            recent.setAttribute('data-tag', rand);
         });
     });
 }
 
-function showTag(title, category) {
+function createRecentTag(title, category, rand) {
     const recent = document.getElementById('recent_tag');
     recent.classList.remove('d-none');
+
+    recent.setAttribute('data-tag', rand);
 
     const recent_title = recent.children[1].querySelector('#title');
     const recent_category = recent.children[1].querySelector('#category');
@@ -159,6 +161,7 @@ const postIcon = createList.childNodes[1].querySelector('i');
 const loader = createList.childNodes[1].querySelector('.custom-loader');
 
 const lists = [];
+const tagsAndList = {}
 
 const input = document.getElementById('create_list_bar');
 createList.addEventListener('submit', event => {
@@ -166,6 +169,7 @@ createList.addEventListener('submit', event => {
 
     const inputFilled = createList['create'];
     $(inputFilled).attr('disabled', true);
+
     
     if (inputFilled.value.trim() != '') {
         lists.push(inputFilled.value);
@@ -178,16 +182,37 @@ createList.addEventListener('submit', event => {
             const cloneList = listElement.cloneNode(true);
             cloneList.classList.remove('d-none');
             cloneList.querySelector('.col-10').children[0].value = inputFilled.value;
+            checkList(cloneList)
             listContainer.append(cloneList);
             input.value = '';
             $(postIcon).show();
             $(inputFilled).focus();
-            console.log(lists);
+            const recent = document.getElementById('recent_tag');
+            const rand = recent.getAttribute('data-tag');
+            
+            tagsAndList[rand] = lists;
         }, 1000);
     } else {
         return false;
     }
 });
+
+function checkList(element) {
+    const checkbox = element.children[0].querySelector('input');
+    checkbox.addEventListener('click', event => {
+        if (event.target.checked) {
+            document.getElementById('complete_container').classList.remove('d-none');
+            const element = event.currentTarget.parentElement.parentElement;
+            const cloneElement = element.cloneNode(true);
+            cloneElement.children[0].querySelector('input').setAttribute('disabled', true);
+            const completeContainer = document.getElementById("complete_list_container");
+            completeContainer.append(cloneElement);
+            element.remove();
+        } else {
+            console.log('unchecked');
+        }
+    });
+}
 
 
 function createListInput(event) {

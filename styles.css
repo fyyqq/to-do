@@ -198,70 +198,6 @@ body {
     background-color: white;
 }
 
-.section {
-    height: max-content;
-    width: 100%;
-}
-
-.section .section-container {
-    height: 100%;
-}
-
-.section .section-container .todoList-container .form-text .input-text {
-    padding: 7px 5px 7px 38px;
-    color: #555;
-    background-color: transparent;
-}
-
-.section .section-container .todoList-container .form-text .input-text:focus {
-    border-color: red;
-}
-
-.list {
-    list-style: none;
-    background-color: transparent;
-    border: none;
-    outline: none;
-    color: #444;
-    font-weight: 300;
-}
-
-.list:focus {
-    border: unset;
-    border: none;
-}
-
-#fa-save {
-    display: none;
-    padding: 4px 10px;
-}
-
-#fa-pen .fa-solid {
-    font-size: 13px;
-}
-
-#fa-pen {
-    padding: 4px 10px;
-}
-
-#fa-pen .fa-solid {
-    font-size: 13px;
-}
-
-#fa-trash {
-    margin-left: 3px;
-    padding: 4px 10px;
-}
-
-#fa-trash .fa-solid {
-    font-size: 13px;
-}
-
-.article {
-    height: 580px;
-    width: 100%;
-}
-
 /* sidebar */
 #project_section #sidebar {
     height: 100%;
@@ -296,7 +232,7 @@ body {
     cursor: pointer;
 }
 
-#project_section #sidebar #tags div .fa-plus {
+#project_section #sidebar #tags div .mdi-plus {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
@@ -308,11 +244,11 @@ body {
     cursor: pointer;
 }
 
-#project_section #sidebar #backtohome a .fa-home {
+#project_section #sidebar #backtohome a .mdi-home {
     font-size: 15px;
 }
 
-#project_section #sidebar #backtohome a .fa-home, 
+#project_section #sidebar #backtohome a .mdi-home, 
 #project_section #sidebar #backtohome a small {
     color: var(--main);
 }
@@ -398,36 +334,37 @@ body {
     width: 270px;
 }
 
-#project_section #main #lists #list_container {
-    height: 550px;
-}
-
-#project_section #main #lists #list_container .list {
+#project_section #main #lists #list_container .list,
+#project_section #main #lists #complete_list_container .list {
     padding: 23px 10px;
     background-color: #fff;
-    /* display: none; */
 }
 
-#project_section #main #lists #list_container .list .col-1 input {
+#project_section #main #lists #list_container .list .col-1 input, 
+#project_section #main #lists #complete_list_container .list .col-1 input {
     height: 17px;
     width: 17px;
     cursor: pointer;
 }
 
-#project_section #main #lists #list_container .list .col-10 input {
+#project_section #main #lists #list_container .list .col-10 input,
+#project_section #main #lists #complete_list_container .list .col-10 input {
     color: #333;
     font-size: 15px;
 }
 
-#project_section #main #lists #list_container .list .col-10 input:read-only {
+#project_section #main #lists #list_container .list .col-10 input:read-only,
+#project_section #main #lists #complete_list_container .list .col-10 input:read-only {
     background-color: transparent;
 }
 
-#project_section #main #lists #list_container .list .col-1 i.mdi {
+#project_section #main #lists #list_container .list .col-1 i.mdi,
+#project_section #main #lists #complete_list_container .list .col-1 i.mdi {
     cursor: pointer;
 }
 
-#project_section #main #lists #list_container .list .col-1 i.mdi {
+#project_section #main #lists #list_container .list .col-1 i.mdi,
+#project_section #main #lists #complete_list_container .list .col-1 i.mdi {
     font-size: 19.5px;
 }
 

@@ -33,12 +33,12 @@
                         </div>
                     </div>
                     <div class="rounded position-relative border" id="list1" data-bs-toggle="modal" data-bs-target="#createTagModal">
-                        <i class="fa-solid fa-plus text-muted position-absolute"></i>
+                        <i class="mdi mdi-plus text-muted position-absolute fs-4"></i>
                     </div>
                 </div>
                 <div class="position-absolute bottom-0 start-0 w-100 mb-2 px-3" id="backtohome">
                     <a href="/" class="py-3 border rounded text-decoration-none d-flex align-items-center justify-content-center gap-2">
-                        <i class="fa-solid fa-home"></i>
+                        <i class="mdi mdi-home"></i>
                         <small class="">Home</small>
                     </a>
                 </div>
@@ -46,7 +46,7 @@
             <div class="px-4 ms-auto position-relative" id="main">
                 <!-- Top -->
                 <div class="pt-4 pb-3 w-100 d-flex align-items-center justify-content-between" id="top">
-                    <div class="px-3 py-2 d-flex align-items-center justify-content-start gap-3 border rounded d-none" id="recent_tag">
+                    <div class="px-3 py-2 d-flex align-items-center justify-content-start gap-3 border rounded d-none" id="recent_tag" data-tag="">
                         <i class="mdi mdi-panda fs-3"></i>
                         <div class="d-flex align-items-start justify-content-start flex-column lh-sm">
                             <small class="text-dark" id="title"></small>
@@ -56,9 +56,9 @@
                     <div class="d-flex align-items-center justify-content-end w-100 gap-1">
                         <div class="btn-group">
                             <input type="text" name="" id="" class="py-2 form-control shadow-none rounded-0 px-3 py-2">
-                            <button class="btn btn-success shadow-none px-3 py-2"><i class="fa-solid fa-magnifying-glass" style="font-size: 14px;"></i></button>
+                            <button class="btn btn-success shadow-none px-3 py-2"><i class="mdi mdi-magnify fs-6"></i></button>
                         </div>
-                        <button class="btn btn-success shadow-none py-2 px-3" data-bs-toggle="modal" data-bs-target="#createTagModal"><i class="fa-solid fa-plus"></i></button>
+                        <button class="btn btn-success shadow-none py-2 px-3" data-bs-toggle="modal" data-bs-target="#createTagModal"><i class="mdi mdi-plus fs-6"></i></button>
                         <div class="modal fade" id="createTagModal">
                             <div class="modal-dialog modal-dialog-centered modal-md">
                                 <div class="modal-content">
@@ -92,6 +92,7 @@
                 </div>
                 <!-- Middle -->
                 <div class="rounded-0 pt-3 border-top d-flex flex-column gap-2 w-100" id="lists">
+                    <small class="text-muted text-center" style="font-size: 13px;">Recent Task</small>
                     <div class="d-flex flex-column w-100 gap-2" id="list_container">
                         <div class="row mx-0 border rounded-3 pe-3 list d-none">
                             <div class="col-1 d-flex align-items-center justify-content-center">
@@ -111,6 +112,11 @@
                                     <i class="mdi mdi-delete-outline"></i>
                                 </span>
                             </div>
+                        </div>
+                    </div>
+                    <div class="mt-2 pt-2 text-center border-top w-100 d-none" id="complete_container">
+                        <small class="text-muted" style="font-size: 13px;">Completed Task</small>
+                        <div class="row mx-0 mt-2 w-100 gap-2" id="complete_list_container">
                         </div>
                     </div>
                 </div>
