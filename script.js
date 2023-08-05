@@ -94,8 +94,10 @@ createTag.addEventListener('submit', event => {
         category.value = '';
         desc.value = '';
         
-        $('#insert').show();
-        
+        const insertForm = document.getElementById('insert');
+        $(insertForm).show();
+
+        insertForm.children[0].children[0].querySelector('#create_list_bar').focus();
     } else {
         return false;
     }
@@ -156,13 +158,18 @@ const createList = forms[1];
 const postIcon = createList.childNodes[1].querySelector('i');
 const loader = createList.childNodes[1].querySelector('.custom-loader');
 
+const lists = [];
+
 const input = document.getElementById('create_list_bar');
 createList.addEventListener('submit', event => {
     event.preventDefault();
 
     const inputFilled = createList['create'];
-
+    $(inputFilled).attr('disabled', true);
+    
     if (inputFilled.value.trim() != '') {
+        lists.push(inputFilled.value);
+        $(inputFilled).removeAttr('disabled');
         $(inputFilled).siblings().attr('disabled', true);
         $(postIcon).hide();
         $(loader).removeClass('d-none');
@@ -174,11 +181,14 @@ createList.addEventListener('submit', event => {
             listContainer.append(cloneList);
             input.value = '';
             $(postIcon).show();
+            $(inputFilled).focus();
+            console.log(lists);
         }, 1000);
     } else {
         return false;
     }
 });
+
 
 function createListInput(event) {
     if (event.value.trim() != '') {
