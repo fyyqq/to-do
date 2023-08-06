@@ -358,8 +358,9 @@ body {
 }
 
 #project_section #main #top #recent_tag {
+    cursor: pointer;
     background-color: #fff;
-    width: 270px;
+    width: 300px;
 }
 
 #project_section #main #lists #list_container .list,

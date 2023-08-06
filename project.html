@@ -25,7 +25,7 @@
                 <div id="tags" class="mt-3 d-flex flex-column gap-2 px-3">
                     <div class="border d-flex rounded-3 align-items-center justify-content-center gap-1 flex-column d-none" id="tag" data-tag="">
                         <div class="px-3 py-2 w-100 d-flex align-items-center justify-content-start gap-3">
-                            <i class="mdi mdi-panda fs-3"></i>
+                            <i class="mdi mdi-leaf text-success fs-4"></i>
                             <div class="d-flex align-items-start justify-content-start flex-column lh-sm">
                                 <small class="" id="title"></small>
                                 <small class="" id="category" style="font-size: 12px;"></small>
@@ -46,11 +46,44 @@
             <div class="px-4 ms-auto position-relative" id="main">
                 <!-- Top -->
                 <div class="pt-4 pb-3 w-100 d-flex align-items-center justify-content-between" id="top">
-                    <div class="px-3 py-2 d-flex align-items-center justify-content-start gap-3 border rounded d-none" id="recent_tag" data-tag="">
-                        <i class="mdi mdi-panda fs-3"></i>
-                        <div class="d-flex align-items-start justify-content-start flex-column lh-sm">
-                            <small class="text-dark" id="title"></small>
-                            <small class="text-muted" id="category" style="font-size: 12px;"></small>
+                    <div class="px-3 py-2 d-flex align-items-center justify-content-between gap-3 border rounded d-none shadow-sm" id="recent_tag" data-tag="" data-bs-toggle="modal" data-bs-target="#editTagModal" onclick="editTag(this)">
+                        <div class="d-flex align-items-center justify-content-start gap-3">
+                            <i class="mdi mdi-leaf text-success fs-4"></i>
+                            <div class="d-flex align-items-start justify-content-start flex-column lh-sm">
+                                <small class="text-dark" id="title">asdsadasds</small>
+                                <small class="text-muted" id="category" style="font-size: 12px;"></small>
+                            </div>
+                        </div>
+                        <i class="mdi mdi-open-in-new"></i>
+                    </div>
+                    <!-- Edit Tag Modal -->
+                    <div class="modal fade" id="editTagModal">
+                        <div class="modal-dialog modal-dialog-centered modal-md">
+                            <div class="modal-content">
+                                <form action="/editTag" method="post">
+                                    <div class="modal-header">
+                                        <h1 class="modal-title">Edit Tag</h1>
+                                        <button type="button" class="btn-close shadow-none" data-bs-dismiss="modal"></button>
+                                    </div>
+                                    <div class="modal-body pb-0">
+                                        <div class="mb-2">
+                                            <label for="title" class="col-form-label">Title:</label>
+                                            <input type="text" name="title" class="form-control shadow-none" id="title" autofocus autocomplete="off">
+                                        </div>
+                                        <div class="mb-2">
+                                            <label for="category" class="col-form-label">Category:</label>
+                                            <input type="text" name="category" class="form-control shadow-none" id="category" autocomplete="off">
+                                        </div>
+                                        <div class="mb-2">
+                                            <label for="description" class="col-form-label">Description:</label>
+                                            <textarea class="form-control shadow-none" id="description" rows="7" name="description"></textarea>
+                                        </div>
+                                    </div>
+                                    <div class="modal-footer border-0 pt-1">
+                                        <button type="submit" class="py-2 btn btn-success rounded-pill w-100">Update</button>
+                                    </div>  
+                                </form>
+                            </div>
                         </div>
                     </div>
                     <div class="d-flex align-items-center justify-content-end w-100 gap-1">
@@ -59,22 +92,23 @@
                             <button class="btn btn-success shadow-none px-3 py-2"><i class="mdi mdi-magnify fs-6"></i></button>
                         </div>
                         <button class="btn btn-success shadow-none py-2 px-3" data-bs-toggle="modal" data-bs-target="#createTagModal"><i class="mdi mdi-plus fs-6"></i></button>
+                        <!-- Create Tag Modal -->
                         <div class="modal fade" id="createTagModal">
                             <div class="modal-dialog modal-dialog-centered modal-md">
                                 <div class="modal-content">
                                     <form action="/createTag" method="post">
                                         <div class="modal-header">
-                                            <h1 class="modal-title">Create List</h1>
-                                            <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                                            <h1 class="modal-title">Create Tag</h1>
+                                            <button type="button" class="btn-close shadow-none" data-bs-dismiss="modal"></button>
                                         </div>
                                         <div class="modal-body pb-0">
                                             <div class="mb-2">
                                                 <label for="title" class="col-form-label">Title:</label>
-                                                <input type="text" name="title" class="form-control shadow-none" id="title" autofocus>
+                                                <input type="text" name="title" class="form-control shadow-none" id="title" autofocus autocomplete="off">
                                             </div>
                                             <div class="mb-2">
                                                 <label for="category" class="col-form-label">Category:</label>
-                                                <input type="text" name="category" class="form-control shadow-none" id="category">
+                                                <input type="text" name="category" class="form-control shadow-none" id="category" autocomplete="off">
                                             </div>
                                             <div class="mb-2">
                                                 <label for="description" class="col-form-label">Description:</label>
@@ -91,9 +125,9 @@
                     </div>
                 </div>
                 <!-- Middle -->
-                <div class="rounded-0 pt-3 border-top d-flex flex-column gap-2 w-100" id="lists">
-                    <div class="w-100 rounded-pill border p-2 text-center bg-success">
-                        <small class="text-light" style="letter-spacing: 1px;">Recent Lists</small>
+                <div class="rounded-0 border-top d-flex flex-column gap-2 w-100" id="lists">
+                    <div class="w-100 p-2 text-center">
+                        <small class="text-dark d-none" style="letter-spacing: 1px;">Recent Lists</small>
                     </div>
                     <div class="d-flex flex-column w-100 gap-2" id="list_container">
                         <div class="row mx-0 border rounded-3 pe-3 list d-none">
@@ -119,11 +153,11 @@
                             </div>
                         </div>
                     </div>
-                    <div class="pt-2 text-center w-100" id="complete_container">
-                        <div class="w-100 border p-2 text-center bg-dark rounded-pill">
-                            <small class="text-light" style="letter-spacing: 1px;">Complete Lists</small>
+                    <div class="text-center w-100 border-top pt-2" id="complete_container">
+                        <div class="w-100 text-center rounded-pill">
+                            <small class="text-dark d-none" style="letter-spacing: 1px;">Complete Lists</small>
                         </div>
-                        <div class="row mx-0 mt-2 w-100 gap-2" id="complete_list_container">
+                        <div class="row mx-0 w-100 gap-2" id="complete_list_container">
                         </div>
                     </div>
                     <div class="" style="padding: 70px 0px;"></div>

@@ -62,7 +62,7 @@ $(document).ready(function() {
 const characters ='ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
 
 function generateString(length) {
-    let result = ' ';
+    let result = '';
     const charactersLength = characters.length;
     for ( let i = 0; i < length; i++ ) {
         result += characters.charAt(Math.floor(Math.random() * charactersLength));
@@ -74,7 +74,7 @@ function generateString(length) {
 const forms = document.forms;
 const tagsAndList = {}
 
-const createTag = forms[0];
+const createTag = forms[1];
 createTag.addEventListener('submit', event => {
     event.preventDefault();
     
@@ -85,9 +85,9 @@ createTag.addEventListener('submit', event => {
     if (title.value.trim() != '') {
         
         const rand = generateString(5);
-        tagsAndList[rand] = [];
-        createTagSidebar(title, category, rand)
-        createRecentTag(title, category, rand)
+        tagsAndList[rand] = [title.value, category.value, desc.value, []];
+        createTagSidebar(rand)
+        createRecentTag(rand)
 
         const listContainer = document.getElementById('list_container');
         const childs = listContainer.querySelectorAll('.list');
@@ -100,84 +100,149 @@ createTag.addEventListener('submit', event => {
         desc.value = '';
         
         const insertForm = document.getElementById('insert');
-        $(insertForm).show();
-
-        insertForm.children[0].children[0].querySelector('#create_list_bar').focus();
+        insertForm.style.display = 'block';
     } else {
         return false;
     }
 });
 
-function createTagSidebar(title, category, rand) {
+function editTag(event) {
+    const parent_modal = document.querySelector('#editTagModal .modal-body');
+
+    const tag = event.getAttribute('data-tag');
+    const title = tagsAndList[tag][0];
+    const category = tagsAndList[tag][1];
+    const description = tagsAndList[tag][2];
+
+    const modal_title = parent_modal.children[0].querySelector('input');
+    const modal_category = parent_modal.children[1].querySelector('input');
+    const modal_description = parent_modal.children[2].querySelector('textarea');
+    modal_title.value = title;
+    modal_category.value = category;
+    modal_description.value = description;
+}
+
+const formEditTag = forms[0];
+formEditTag.addEventListener('submit', event => {
+    event.preventDefault();
+    
+    const title = formEditTag['title'];
+    const category = formEditTag['category'];
+    const description = formEditTag['description'];
+    
+    const tag = document.getElementById('recent_tag').getAttribute('data-tag');
+    tagsAndList[tag][0] = title.value;
+    tagsAndList[tag][1] = category.value;
+    tagsAndList[tag][2] = description.value;
+
+    createRecentTag(tag);
+    updateSidebarTag(tag);
+
+    $(event.currentTarget).parent().closest('.modal').modal('hide');
+});
+
+function createTagSidebar(rand) {
     const tags_container = document.getElementById('tags');
     const tag = document.getElementById('tag');
     const clone_tag = tag.cloneNode(true);
+
+    const dataTag = tagsAndList[rand];
+
     $(createTag).parent().closest('.modal').modal('hide');
     $(clone_tag).removeClass('d-none');
-    clone_tag.querySelector('#title').textContent = title.value;
-    clone_tag.querySelector('#category').textContent = category.value;
+
+    const tags = document.querySelectorAll('#tag');
+    tags.forEach(tag => {
+        tag.classList.remove('border-success');
+    });
+
+    clone_tag.querySelector('#title').textContent = dataTag[0];
+    clone_tag.querySelector('#category').textContent = dataTag[1]
     clone_tag.setAttribute('data-tag', rand);
     clone_tag.setAttribute('onclick', 'chooseTag(this)');
+    clone_tag.classList.add('border-success');
+
     tags_container.children[1].style.display = 'none';
     tags_container.append(clone_tag);
 }
+
+function createRecentTag(rand) {
+    const recent = document.getElementById('recent_tag');
+    recent.classList.remove('d-none');
+
+    const dataTag = tagsAndList[rand];
+    
+    recent.setAttribute('data-tag', rand);
+    
+    const recent_title = recent.children[0].querySelector('#title');
+    const recent_category = recent.children[0].querySelector('#category');
+    
+    recent_title.innerHTML = dataTag[0];
+    recent_category.innerHTML = dataTag[1];
+}
+
+function updateSidebarTag(rand) {
+    const dataTag = tagsAndList[rand];
+
+    const tag = document.querySelector(`[data-tag='${rand}']`);
+    const tag_title = tag.children[0].children[1].querySelector('#title');
+    const tag_category = tag.children[0].children[1].querySelector('#category');
+    
+    tag_title.innerHTML = dataTag[0] ;
+    tag_category.innerHTML = dataTag[1];
+}
+
 
 function chooseTag(event) {
     const tags = document.querySelectorAll('#tag');
     tags.forEach(tag => {
         tag.classList.remove('border-success');
     });
-
+    
     event.classList.add('border-success');
-
+    
     const recent = document.getElementById('recent_tag');
     recent.classList.remove('d-none');
-
+    
     const title = event.children[0].children[1].querySelector('#title');
     const category = event.children[0].children[1].querySelector('#category');
-
-    const recent_title = recent.children[1].querySelector('#title');
-    const recent_category = recent.children[1].querySelector('#category');
+    
+    const recent_title = recent.children[0].querySelector('#title');
+    const recent_category = recent.children[0].querySelector('#category');
     recent_title.innerHTML = title.textContent;
     recent_category.innerHTML = category.textContent;
     const rand = event.getAttribute("data-tag");
     recent.setAttribute('data-tag', rand);
-
+    
     changeTag(rand)
 }
 
-function createRecentTag(title, category, rand) {
-    const recent = document.getElementById('recent_tag');
-    recent.classList.remove('d-none');
-
-    recent.setAttribute('data-tag', rand);
-
-    const recent_title = recent.children[1].querySelector('#title');
-    const recent_category = recent.children[1].querySelector('#category');
-    
-    recent_title.innerHTML = title.value;
-    recent_category.innerHTML = category.value;
-}
-
 const listContainer = document.getElementById('list_container');
+const completeListContainer = document.getElementById('complete_list_container');
 const listElement = listContainer.querySelector('.list');
 
-function changeTag(data) {
-    const childs = listContainer.querySelectorAll('.list');
-    childs.forEach(child => {
+function changeTag(tag) {
+    const childLists = listContainer.querySelectorAll('.list');
+    childLists.forEach(child => {
         listContainer.removeChild(child);
     });
     
-    const dataTag = tagsAndList[data];
+    const childCompletedLists = completeListContainer.querySelectorAll('.list');
+    childCompletedLists.forEach(child => {
+        completeListContainer.removeChild(child);
+    });
+    
+    const dataTag = tagsAndList[tag][3];
     dataTag.forEach(data => {
         const cloneList = listElement.cloneNode(true);
         cloneList.classList.remove('d-none');
         cloneList.children[1].querySelector('input').value = data;
+        checkList(cloneList)
         listContainer.append(cloneList);
     });
 }
 
-const createList = forms[1];
+const createList = forms[2];
 const postIcon = createList.childNodes[1].querySelector('i');
 const loader = createList.childNodes[1].querySelector('.custom-loader');
 
@@ -189,7 +254,6 @@ createList.addEventListener('submit', event => {
     $(inputFilled).attr('disabled', true);
     
     if (inputFilled.value.trim() != '') {
-        const values = inputFilled.value;
         $(inputFilled).removeAttr('disabled');
         $(inputFilled).siblings().attr('disabled', true);
         $(postIcon).hide();
@@ -207,14 +271,16 @@ createList.addEventListener('submit', event => {
 
             $(postIcon).show();
             $(inputFilled).focus();
-
-            const recent = document.getElementById('recent_tag').getAttribute('data-tag');
-            tagsAndList[recent].push(values);
         }, 1000);
+
+        
+        const recent = document.getElementById('recent_tag').getAttribute('data-tag');
+        tagsAndList[recent][3].push(inputFilled.value);
     } else {
         return false;
     }
 });
+
 
 function checkList(element) {
     const checkbox = element.children[0].querySelector('input');
