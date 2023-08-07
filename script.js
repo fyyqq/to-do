@@ -287,6 +287,9 @@ function checkList(element) {
     checkbox.addEventListener('click', event => {
         if (event.target.checked) {
             const element = $(event.target).closest('.list')[0];
+            const audio = new Audio();
+            audio.src = 'checked.mp3';
+            audio.play();
             
             createCompleteList(element)
 
