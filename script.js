@@ -325,8 +325,12 @@ function createListInput(event) {
     }
 }
 
+let inputValue;
+
 function editList(event) {
     const input = $(event).parent().prev().children('input');
+    const valueToEdit = $(input).val();
+    inputValue = valueToEdit;
     $(input).removeAttr('readonly', true);
     $(input).focus();
 
@@ -335,6 +339,16 @@ function editList(event) {
 }
 
 function saveList(event) {
+    const recent_tag = document.getElementById('recent_tag').getAttribute('data-tag');
+    const valueToUpdate = $(event).parent().prev().children().val();
+    const arrValue = tagsAndList[recent_tag][3];
+
+    let index = arrValue.indexOf(inputValue);
+    
+    if (index !== -1) {
+        arrValue[index] = valueToUpdate;
+    }
+
     const input = $(event).parent().prev().children('input');
     $(input).attr('readonly', true);
     
@@ -343,6 +357,10 @@ function saveList(event) {
 }
 
 function delList(event) {
+    const recent_tag = document.getElementById('recent_tag').getAttribute('data-tag');
+    const valueToDelete = $(event).parent().prev().children().val();
+    tagsAndList[recent_tag][3].pop(valueToDelete);
+
     const container = $(event).closest('.list');
     $(container).remove();
 }
