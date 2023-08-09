@@ -345,8 +345,8 @@ function checkList(element) {
             let index = lists.indexOf(lists.find(item => item.list === valueToChecked));
             
             if (index !== -1) {
-                const x = lists.find(item => item.list === valueToChecked);
-                x.status = true;
+                const dataValue = lists.find(item => item.list === valueToChecked);
+                dataValue.status = true;
             }
 
             element.remove();
@@ -400,12 +400,13 @@ function editList(event) {
 function saveList(event) {
     const recent_tag = document.getElementById('recent_tag').getAttribute('data-tag');
     const valueToUpdate = $(event).parent().prev().children().val();
-    const arrValue = tagsAndList[recent_tag][3];
+    const lists = tagsAndList[recent_tag][3];
 
-    let index = arrValue.indexOf(inputValue);
-    
+    let index = lists.indexOf(lists.find(item => item.list === inputValue));
+     
     if (index !== -1) {
-        arrValue[index] = valueToUpdate;
+        const dataValue = lists.find(item => item.list === inputValue);
+        dataValue.list = valueToUpdate;
     }
 
     const input = $(event).parent().prev().children('input');
@@ -418,7 +419,13 @@ function saveList(event) {
 function delList(event) {
     const recent_tag = document.getElementById('recent_tag').getAttribute('data-tag');
     const valueToDelete = $(event).parent().prev().children().val();
-    tagsAndList[recent_tag][3].pop(valueToDelete);
+    const lists = tagsAndList[recent_tag][3];
+
+    let index = lists.indexOf(lists.find(item => item.list === valueToDelete));
+     
+    if (index !== -1) {
+        lists.pop(valueToDelete);
+    }
 
     const container = $(event).closest('.list');
     $(container).remove();
