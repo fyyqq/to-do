@@ -90,9 +90,14 @@ createTag.addEventListener('submit', event => {
         createRecentTag(rand)
 
         const listContainer = document.getElementById('list_container');
-        const childs = listContainer.querySelectorAll('.list');
-        childs.forEach(child => {
+        const completeListContainer = document.getElementById('complete_list_container');
+        const listChild = listContainer.querySelectorAll('.list');
+        const completeListChild = completeListContainer.querySelectorAll('.list');
+        listChild.forEach(child => {
             listContainer.removeChild(child);
+        });
+        completeListChild.forEach(child => {
+            completeListContainer.removeChild(child);
         });
 
         title.value = '';
@@ -233,12 +238,47 @@ function changeTag(tag) {
     });
     
     const dataTag = tagsAndList[tag][3];
-    dataTag.forEach(data => {
+    const uncheckedLists = dataTag.filter(list => {
+        return list.status === false;
+    });
+
+    uncheckedLists.forEach(cList => {
         const cloneList = listElement.cloneNode(true);
         cloneList.classList.remove('d-none');
-        cloneList.children[1].querySelector('input').value = data;
+        cloneList.children[1].querySelector('input').value = cList.list;
         checkList(cloneList)
         listContainer.append(cloneList);
+    });
+    
+    const checkedLists = dataTag.filter(list => {
+        return list.status === true;
+    });
+
+    checkedLists.forEach(cList => {
+        const cloneList = listElement.cloneNode(true);
+        cloneList.classList.remove('d-none');
+        cloneList.children[1].querySelector('input').value = cList.list;
+        checkList(cloneList)
+        cloneList.children[0].querySelector('input').setAttribute('disabled', true);
+        cloneList.style.backgroundColor = 'gainsboro';
+        cloneList.children[0].querySelector('.checkmark').style.cursor = 'unset';
+        
+        const parentChild = cloneList.children[2];
+        parentChild.className += ' flex-row-reverse';
+        parentChild.removeChild(parentChild.children[0]);
+
+        const checkmark = cloneList.children[0].children[0].children[1];
+        checkmark.style.backgroundColor = 'rgb(77, 184, 148)';
+        checkmark.className += ' active';
+
+        const time = moment().format('MMMM Do YYYY, h:mm:ss a');
+        const infoIcon = document.createElement('i');
+        infoIcon.className = 'mdi mdi-information-outline fs-5';
+        infoIcon.setAttribute('data-bs-target', 'tooltip');
+        infoIcon.setAttribute('title', time);
+
+        parentChild.append(infoIcon);
+        completeListContainer.append(cloneList);
     });
 }
 
@@ -273,12 +313,17 @@ createList.addEventListener('submit', event => {
             $(inputFilled).focus();
         }, 1000);
 
+        const data = {
+            list: inputFilled.value,
+            status: false
+        }
         
         const recent = document.getElementById('recent_tag').getAttribute('data-tag');
-        tagsAndList[recent][3].push(inputFilled.value);
+        tagsAndList[recent][3].push(data);
     } else {
         return false;
     }
+
 });
 
 
@@ -292,6 +337,17 @@ function checkList(element) {
             audio.play();
             
             createCompleteList(element)
+
+            const dataTag = document.getElementById('recent_tag').getAttribute('data-tag');
+            const valueToChecked = $(event.currentTarget).closest('.col-1').next().children('input').val();
+            const lists = tagsAndList[dataTag][3];
+
+            let index = lists.indexOf(lists.find(item => item.list === valueToChecked));
+            
+            if (index !== -1) {
+                const x = lists.find(item => item.list === valueToChecked);
+                x.status = true;
+            }
 
             element.remove();
         }

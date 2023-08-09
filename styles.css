@@ -2,7 +2,7 @@
 
 :root {
     --main: mediumseagreen;
-    --hover: rgb(77, 184, 148);;
+    --hover: rgb(77, 184, 148);
 }
 
 * {
@@ -47,6 +47,10 @@ body {
     content: "";
     position: absolute;
     display: none;
+}
+
+.container-checkbox .checkmark.active:after {
+    display: block;
 }
 
 .container-checkbox input:checked ~ .checkmark:after {
