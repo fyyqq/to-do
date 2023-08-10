@@ -12,13 +12,13 @@
     <body>
         <div id="project_section">
             <nav id="sidebar" class="position-fixed border shadow-sm position-relative">
-                <a class="px-3 navbar-brand d-flex align-items-center justify-content-center text-uppercase border-bottom py-3" href="./project.html">
+                <a class="mx-3 navbar-brand d-flex align-items-center justify-content-center text-uppercase border-bottom py-3" href="./project.html">
                     <h1 class="mb-0 h5 text-success">Todo</h1>
                     <i class="mdi mdi-leaf ms-1 text-success"></i>
                 </a>
                 <div class="px-3 mt-3" id="search">
                     <span class="position-relative">
-                        <input type="text" name="" id="" class="shadow-none form-control text-muted box-shadow">
+                        <input type="text" name="" id="searchTag" class="shadow-none form-control text-muted box-shadow">
                         <i class="mdi mdi-magnify fs-6 position-absolute start-0"></i>
                     </span>
                 </div>
@@ -27,12 +27,12 @@
                         <div class="px-3 py-2 w-100 d-flex align-items-center justify-content-start gap-3">
                             <i class="mdi mdi-leaf text-success fs-4"></i>
                             <div class="d-flex align-items-start justify-content-start flex-column lh-sm">
-                                <small class="" id="title"></small>
+                                <small class="text-dark" id="title"></small>
                                 <small class="" id="category" style="font-size: 12px;"></small>
                             </div>
                         </div>
                     </div>
-                    <div class="rounded position-relative border" id="list1" data-bs-toggle="modal" data-bs-target="#createTagModal">
+                    <div class="rounded position-relative border mb-3" id="list1" data-bs-toggle="modal" data-bs-target="#createTagModal">
                         <i class="mdi mdi-plus text-muted position-absolute fs-4"></i>
                     </div>
                 </div>
@@ -172,6 +172,14 @@
                             </button>
                         </div>
                     </form>
+                </div>
+            </div>
+            <div class="display">
+                <div class="darkMode rounded-circle bg-dark" data-bs-target="tooltip" title="Go to Dark Mode">
+                    <i class="fa-solid fa-moon"></i>
+                </div>
+                <div class="lightMode rounded-circle bg-light" data-bs-target="tooltip" title="Go to Light Mode">
+                    <i class="fa-sharp fa-solid fa-lightbulb text-warning"></i>
                 </div>
             </div>
         </div>

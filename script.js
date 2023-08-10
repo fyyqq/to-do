@@ -3,14 +3,23 @@ $('.lightMode').css('display', 'none');
 $(document).ready(() => {
     $('.darkMode').click(() => {
         $('body').addClass('mode-color');
+        $('#sidebar').addClass('mode-color');
+        $('#project_section #main #top .modal .modal-dialog .modal-content').addClass('mode-color');
+        $('#project_section #main #top .modal .modal-dialog .modal-content .modal-header button').addClass('mode-color');
+        $('#project_section #main #top .modal .modal-dialog .modal-content .modal-header .modal-title').addClass('mode-color');
+        $('#project_section #main #top .modal .modal-dialog .modal-content form .modal-body input').addClass('mode-color');
+        $('#project_section #main #top .modal .modal-dialog .modal-content form .modal-body textarea').addClass('mode-color');
         $('.lightMode').css('display', 'grid');
         $(this).css('display', 'none');
     });
-});
-
-$(document).ready(() => {
     $('.lightMode').click(() => {
         $('body').removeClass('mode-color');
+        $('#sidebar').removeClass('mode-color');
+        $('#project_section #main #top .modal .modal-dialog .modal-content').removeClass('mode-color');
+        $('#project_section #main #top .modal .modal-dialog .modal-content .modal-header button').removeClass('mode-color');
+        $('#project_section #main #top .modal .modal-dialog .modal-content .modal-header .modal-title').removeClass('mode-color');
+        $('#project_section #main #top .modal .modal-dialog .modal-content form .modal-body input').removeClass('mode-color');
+        $('#project_section #main #top .modal .modal-dialog .modal-content form .modal-body textarea').removeClass('mode-color');
         $('.lightMode').css('display', 'none');
     });
 });
@@ -33,27 +42,6 @@ $(document).ready(function() {
         } else {
             $('.navbar-collapse').css({
                 'top': '-50%'
-            });
-        }
-    });
-
-    $(window).scroll(function() {
-        const scrollY = $(this).scrollTop();
-        const navbar = $('.navbar');
-        
-        if (scrollY > 60) {
-            $(navbar).addClass('fixed-top');
-            $(navbar).addClass('shadow-sm');
-            $(navbar).css({
-                "background-color" : "#fff"
-            });
-            $(navbar).children().addClass('py-1');
-        } else {
-            $(navbar).removeClass('fixed-top');
-            $(navbar).removeClass('shadow-sm');
-            $(navbar).children().removeClass('py-1');
-            $(navbar).css({
-                "background-color" : "transparent"
             });
         }
     });

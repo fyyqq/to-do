@@ -17,11 +17,11 @@
         <link rel="stylesheet" href="styles.css">
     </head>
     <body>
-        <nav class="navbar navbar-expand-md navbar-dark">
+        <nav class="navbar navbar-expand-md navbar-dark shadow-sm">
             <div class="container-md px-lg-0 px-4">
                 <a class="navbar-brand d-flex align-items-center text-uppercase" href="./">
-                    <h1 class="mb-0 h5">Todo</h1>
-                    <i class="fa-solid fa-leaf ms-1"></i>
+                    <h1 class="mb-0 h5 text-success">Todo</h1>
+                    <i class="fa-solid fa-leaf ms-1 text-success"></i>
                 </a>
                 <button class="navbar-toggler p-3 position-relative rounded-circle" type="button" data-bs-toggle="collapse" data-bs-target="#navbarToggle">
                     <i class="fa-solid fa-chevron-down"></i>
@@ -57,12 +57,14 @@
                 </div>
             </div>
         </header>
+        <div class="display">
             <div class="darkMode rounded-circle bg-dark" data-bs-target="tooltip" title="Go to Dark Mode">
                 <i class="fa-solid fa-moon"></i>
             </div>
             <div class="lightMode rounded-circle bg-light" data-bs-target="tooltip" title="Go to Light Mode">
                 <i class="fa-sharp fa-solid fa-lightbulb text-warning"></i>
             </div>
+        </div>
         <footer></footer>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
         <script src="https://kit.fontawesome.com/5e539df1ae.js" crossorigin="anonymous"></script>
