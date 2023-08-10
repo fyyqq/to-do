@@ -5,6 +5,8 @@
     --hover: rgb(77, 184, 148);
     --dark: #212121;
     --gray: #292b2c;
+    --light: #fff;
+    --lightgray: #ddd;
 }
 
 * {
@@ -38,7 +40,7 @@ body {
 }
 
 .container-checkbox:hover input ~ .checkmark {
-    background-color: #ccc;
+    background-color: var(--lightgray);
 }
 
 .container-checkbox input:checked ~ .checkmark {
@@ -91,7 +93,7 @@ body {
 }
 
 .custom-loader::after {
-    border-color:#0000 #0000 #fff #fff;
+    border-color:#0000 #0000 var(--light) var(--light);
     animation-direction: reverse;
 }
 
@@ -102,7 +104,7 @@ body {
 /* Navbar */
 .navbar {
     z-index: 199;
-    background-color: #fff;
+    background-color: var(--light);
     transition: all .5s ease;
 }
 
@@ -142,6 +144,10 @@ body {
     color: white;
 }
 
+.navbar .container-md .navbar-collapse.mode-color {
+    background-color: var(--gray);
+}
+
 .navbar .container-md .navbar-collapse .navbar-nav .nav-item .nav-link {
     color: var(--hover);
     font-size: 14.5px;
@@ -177,32 +183,38 @@ body {
     background-color: var(--main);
 }
 
-.header-container {
-    height: 580px;
+.header {
+    padding-top: 80px;
 }
 
-.header-container .header-left .header-title {
-    width: 600px;
-    transform: translateY(-15px);
+.header-container {
+    height: 580px;
     display: flex;
+    align-items: center;
     justify-content: center;
 }
 
-.header-container .header-left .w-100 .btn-explore {
+.header-container .col {
+    row-gap: 30px;
+}
+
+.header-container .col div .display-2.mode-color {
+    color: var(--lightgray);
+}
+
+.header-container .btn-explore {
     border: 2px solid var(--main);
-    font-size: 13px;
-    padding: 7px 40px;
+    font-size: 14px;
+    padding: 7px 35px;
     position: relative;
     text-transform: capitalize;
-    border-radius: 6px;
-    font-weight: 600;
     letter-spacing: 1px;
     overflow: hidden;
     outline: none;
-    color: #555;
+    color: #333;
 }
 
-.header-container .header-left .w-100 .btn-explore span {
+.header-container .btn-explore span {
     display: block;
     width: 0;
     height: 0;
@@ -217,16 +229,16 @@ body {
     height .8s ease 0s;
 }
 
-.header-container .header-left .w-100 .btn-explore:hover span {
+.header-container .btn-explore:hover span {
     width: 500px;
     height: 500px;
 }
 
-.header-container .header-left .w-100 .btn-explore:hover {
-    color: #eee;
+.header-container .btn-explore:hover {
+    color: var(--light);
 }
 
-.header-container .header-left .w-100 .btn-explore:focus {
+.header-container .btn-explore:focus {
     box-shadow: unset;
 }
 
@@ -245,7 +257,7 @@ body {
 /* sidebar */
 #project_section #sidebar {
     height: 100%;
-    background-color: #fff;
+    background-color: var(--light);
     width: 20%;
 }
 
@@ -278,7 +290,7 @@ body {
 
 #project_section #sidebar #tags #tag {
     cursor: pointer;
-    background-color: #fff;
+    background-color: var(--light);
 }
 
 #project_section #sidebar #tags div .mdi-plus {
@@ -339,11 +351,11 @@ body {
 }
 
 #project_section #main #top .modal .modal-dialog .modal-content .modal-header .modal-title.mode-color {
-    color: #fff;
+    color: var(--light);
 }
 
 #project_section #main #top .modal .modal-dialog .modal-content .modal-header button.mode-color {
-    background-color: #fff;
+    background-color: var(--light);
 }
 
 #project_section #main #top .modal .modal-dialog .modal-content form .modal-body .col-form-label {
@@ -353,12 +365,12 @@ body {
 
 #project_section #main #top .modal .modal-dialog .modal-content form .modal-body input.mode-color {
     background-color: var(--dark);
-    color: #ddd;
+    color: var(--lightgray);
 }
 
 #project_section #main #top .modal .modal-dialog .modal-content form .modal-body textarea.mode-color {
     background-color: var(--dark);
-    color: #ddd;
+    color: var(--lightgray);
 }
 
 #project_section #main #top .modal .modal-dialog .modal-content form .modal-body .form-control {
@@ -387,20 +399,20 @@ body {
 }
 
 #project_section #main #top #labels {
-    background-color: #fff;
+    background-color: var(--light);
     width: 230px;
 }
 
 #project_section #main #top #recent_tag {
     cursor: pointer;
-    background-color: #fff;
+    background-color: var(--light);
     width: 300px;
 }
 
 #project_section #main #lists #list_container .list,
 #project_section #main #lists #complete_list_container .list {
     padding: 23px 10px;
-    background-color: #fff;
+    background-color: var(--light);
 }
 
 #project_section #main #lists #list_container .list .col-1 input, 
@@ -435,9 +447,6 @@ body {
 }
 
 @media screen and (max-width: 768px) {
-    .header-container .header-left .header-title {
-        width: 100%;
-    }
     .navbar .container-md .navbar-collapse .navbar-nav .nav-item .nav-link {
         font-size: 13.5px;
         text-align: center;
@@ -452,12 +461,23 @@ body {
         align-items: center;
         justify-content: center;
         z-index: -9;
-        background-color: #fff;
+        background-color: var(--light);
         transform: translate(-50%,-50%);
         transition: top .5s ease;
     }
+    .header-container .col {
+        row-gap: 20px;
+    }
+    .header-container .col div {
+        width: 70%;
+        text-align: center;
+    }
+    .display .darkMode, 
+    .display .lightMode {
+        height: 40px;
+        width: 40px;
+    }
 }
-
 
 /* Display Mode */
 
@@ -478,7 +498,7 @@ body {
 .display .darkMode .fa-solid,
 .display .lightMode .fa-solid {
     font-size: 23px;
-    color: #ddd;
+    color: var(--lightgray);
 }
 
 body.mode-color {
@@ -487,16 +507,16 @@ body.mode-color {
     transition: all .3s ease;
 }
 
-body.mode-color .header-container .header-left .w-100 .btn-explore {
-    color: #ccc;
+body.mode-color .header-container .w-100 .btn-explore {
+    color: var(--lightgray);
 }
 
-body.mode-color .header-container .header-left .w-100 .btn-explore:hover {
-    color: #444;
+body.mode-color .header-container .w-100 .btn-explore:hover {
+    color: var(--lightgray);
 }
 
 body.mode-color .section .section-container .todoList-container .form-text .input-text {
-    color: #ccc;
+    color: var(--lightgray);
 }
 
 body.mode-color .navbar {
@@ -504,6 +524,6 @@ body.mode-color .navbar {
 }
 
 body.mode-color .list {
-    color: #ddd;
+    color: var(--lightgray);
 }
 

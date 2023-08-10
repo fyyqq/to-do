@@ -9,6 +9,8 @@ $(document).ready(() => {
         $('#project_section #main #top .modal .modal-dialog .modal-content .modal-header .modal-title').addClass('mode-color');
         $('#project_section #main #top .modal .modal-dialog .modal-content form .modal-body input').addClass('mode-color');
         $('#project_section #main #top .modal .modal-dialog .modal-content form .modal-body textarea').addClass('mode-color');
+        $('.header-container .col div .display-2').addClass('mode-color');
+        $('.navbar .container-md .navbar-collapse').addClass('mode-color');
         $('.lightMode').css('display', 'grid');
         $(this).css('display', 'none');
     });
@@ -20,6 +22,8 @@ $(document).ready(() => {
         $('#project_section #main #top .modal .modal-dialog .modal-content .modal-header .modal-title').removeClass('mode-color');
         $('#project_section #main #top .modal .modal-dialog .modal-content form .modal-body input').removeClass('mode-color');
         $('#project_section #main #top .modal .modal-dialog .modal-content form .modal-body textarea').removeClass('mode-color');
+        $('.header-container .col div .display-2').removeClass('mode-color');
+        $('.navbar .container-md .navbar-collapse').removeClass('mode-color');
         $('.lightMode').css('display', 'none');
     });
 });
