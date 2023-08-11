@@ -42,9 +42,13 @@
                     </div>
                 </div>
                 <div class="position-absolute bottom-0 start-0 w-100 my-2 px-3" id="backtohome">
-                    <span class="py-3 border rounded d-flex align-items-center justify-content-center gap-2 bg-secondary" style="cursor: pointer;">
+                    <span class="py-3 border rounded d-flex align-items-center justify-content-center gap-2 bg-dark darkModeApp">
                         <i class="mdi mdi-weather-night text-light fs-5"></i>
                         <small class="text-light">Dark Mode</small>
+                    </span>
+                    <span class="py-3 border rounded d-none align-items-center justify-content-center gap-2 bg-light lightModeApp">
+                        <i class="mdi mdi-white-balance-sunny text-dark fs-5"></i>
+                        <small class="text-dark">Light Mode</small>
                     </span>
                 </div>
             </nav>
@@ -180,14 +184,6 @@
                             </button>
                         </div>
                     </form>
-                </div>
-            </div>
-            <div class="display d-none">
-                <div class="darkMode rounded-circle bg-dark" data-bs-target="tooltip" title="Go to Dark Mode">
-                    <i class="fa-solid fa-moon"></i>
-                </div>
-                <div class="lightMode rounded-circle bg-light" data-bs-target="tooltip" title="Go to Light Mode">
-                    <i class="fa-sharp fa-solid fa-lightbulb text-warning"></i>
                 </div>
             </div>
         </div>

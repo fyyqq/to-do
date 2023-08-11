@@ -518,6 +518,12 @@ body {
 
 /* Display Mode */
 
+.darkModeApp,
+.lightModeApp {
+    cursor: pointer;
+    user-select: none;
+}
+
 .display .darkMode, 
 .display .lightMode {
     position: fixed;

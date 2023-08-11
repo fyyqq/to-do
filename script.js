@@ -3,6 +3,17 @@ $('.lightMode').css('display', 'none');
 $(document).ready(() => {
     $('.darkMode').click(() => {
         $('body').addClass('mode-color');
+        $('.lightMode').css('display', 'grid');
+        $(this).css('display', 'none');
+    });
+    $('.lightMode').click(() => {
+        $('.lightMode').css('display', 'none');
+        $('body').removeClass('mode-color');
+    });
+    
+    $('.darkModeApp').on('click', function(e) {
+        e.preventDefault();
+        $('body').addClass('mode-color');
         $('#sidebar').addClass('mode-color');
         $('#project_section #main #top .modal .modal-dialog .modal-content').addClass('mode-color');
         $('#project_section #main #top .modal .modal-dialog .modal-content .modal-header button').addClass('mode-color');
@@ -11,10 +22,13 @@ $(document).ready(() => {
         $('#project_section #main #top .modal .modal-dialog .modal-content form .modal-body textarea').addClass('mode-color');
         $('.header-container .col div .display-2').addClass('mode-color');
         $('.navbar .container-md .navbar-collapse').addClass('mode-color');
-        $('.lightMode').css('display', 'grid');
-        $(this).css('display', 'none');
+        $(this).removeClass('d-flex');
+        $(this).addClass('d-none');
+        $(this).next().removeClass('d-none');
+        $(this).next().addClass('d-flex');
     });
-    $('.lightMode').click(() => {
+    $('.lightModeApp').on('click', function(e) {
+        e.preventDefault();
         $('body').removeClass('mode-color');
         $('#sidebar').removeClass('mode-color');
         $('#project_section #main #top .modal .modal-dialog .modal-content').removeClass('mode-color');
@@ -24,7 +38,10 @@ $(document).ready(() => {
         $('#project_section #main #top .modal .modal-dialog .modal-content form .modal-body textarea').removeClass('mode-color');
         $('.header-container .col div .display-2').removeClass('mode-color');
         $('.navbar .container-md .navbar-collapse').removeClass('mode-color');
-        $('.lightMode').css('display', 'none');
+        $(this).removeClass('d-flex');
+        $(this).addClass('d-none');
+        $(this).prev().removeClass('d-none');
+        $(this).prev().addClass('d-flex');
     });
 });
 
