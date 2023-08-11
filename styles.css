@@ -259,6 +259,10 @@ body {
     height: 100%;
     background-color: var(--light);
     width: 20%;
+    z-index: 999;
+    position: fixed;
+    top: 0;
+    left: 0px;
 }
 
 #project_section #sidebar.mode-color {
@@ -317,6 +321,7 @@ body {
     right: 50%;
     transform: translateX(65%);
     display: none;
+    z-index: 999;
 }
 
 #project_section #main #insert .btn-group {
@@ -406,43 +411,55 @@ body {
 #project_section #main #top #recent_tag {
     cursor: pointer;
     background-color: var(--light);
-    width: 300px;
+    width: 250px;
 }
 
 #project_section #main #lists #list_container .list,
 #project_section #main #lists #complete_list_container .list {
-    padding: 23px 10px;
+    /* padding: 23px 10px; */
     background-color: var(--light);
 }
 
-#project_section #main #lists #list_container .list .col-1 input, 
-#project_section #main #lists #complete_list_container .list .col-1 input {
+#project_section #main #lists #list_container .list .col-2 input, 
+#project_section #main #lists #complete_list_container .list .col-2 input {
     height: 17px;
     width: 17px;
     cursor: pointer;
 }
 
-#project_section #main #lists #list_container .list .col-10 input,
-#project_section #main #lists #complete_list_container .list .col-10 input {
+#project_section #main #lists #list_container .list .col-lg-10 input,
+#project_section #main #lists #complete_list_container .list .col-lg-10 input {
     color: #333;
-    font-size: 15px;
+    font-size: 14px;
 }
 
-#project_section #main #lists #list_container .list .col-10 input:read-only,
-#project_section #main #lists #complete_list_container .list .col-10 input:read-only {
+#project_section #main #lists #list_container .list .col-lg-10 input:read-only,
+#project_section #main #lists #complete_list_container .list .col-lg-10 input:read-only {
     background-color: transparent;
 }
 
-#project_section #main #lists #list_container .list .col-1 i.mdi,
-#project_section #main #lists #complete_list_container .list .col-1 i.mdi {
+#project_section #main #lists #list_container .list .col-2 i.mdi,
+#project_section #main #lists #complete_list_container .list .col-2 i.mdi {
     cursor: pointer;
-    font-size: 19.5px;
+    font-size: 18px;
     color: #333;
 }
 
 @media screen and (max-width: 1000px) {
     .navbar .container-md .navbar-collapse .navbar-nav .nav-item .nav-link {
         font-size: 14px;
+    }
+    #project_section #main {
+        width: calc(100% - 30%);
+    }
+    #project_section #sidebar {
+        width: 29%;
+    }
+    #project_section #main #insert {
+        width: 50%;
+        bottom: 30px;
+        right: 25%;
+        transform: translateX(25%);
     }
 }
 
@@ -476,6 +493,26 @@ body {
     .display .lightMode {
         height: 40px;
         width: 40px;
+    }
+    #project_section #main {
+        width: 100%;
+    }
+    #project_section #sidebar {
+        height: 100%;
+        width: 100%;
+        background-color: var(--light);
+        position: fixed;
+        left: -800px;
+        transition: left .5s ease;
+    }
+    #project_section #main #insert {
+        width: 90%;
+        bottom: 25px;
+        right: 50%;
+        transform: translateX(50%);
+    }
+    #project_section #main #insert .btn-group {
+        height: 50px;
     }
 }
 

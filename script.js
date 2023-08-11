@@ -143,6 +143,10 @@ function createTagSidebar(rand) {
     const tag = document.getElementById('tag');
     const clone_tag = tag.cloneNode(true);
 
+    const top = document.getElementById('recent_tag').parentElement;
+    top.classList.remove('justify-content-md-end');
+    top.classList.add('justify-content-between');
+
     const dataTag = tagsAndList[rand];
 
     $(createTag).parent().closest('.modal').modal('hide');
@@ -294,7 +298,7 @@ createList.addEventListener('submit', event => {
             $(loader).addClass('d-none');
             const cloneList = listElement.cloneNode(true);
             cloneList.classList.remove('d-none');
-            cloneList.querySelector('.col-10').children[0].value = inputFilled.value;
+            cloneList.querySelector('.col-lg-10').children[0].value = inputFilled.value;
 
             checkList(cloneList)
 
@@ -331,7 +335,7 @@ function checkList(element) {
             createCompleteList(element)
 
             const dataTag = document.getElementById('recent_tag').getAttribute('data-tag');
-            const valueToChecked = $(event.currentTarget).closest('.col-1').next().children('input').val();
+            const valueToChecked = $(event.currentTarget).closest('.col-2').next().children('input').val();
             const lists = tagsAndList[dataTag][3];
 
             let index = lists.indexOf(lists.find(item => item.list === valueToChecked));
@@ -421,4 +425,14 @@ function delList(event) {
 
     const container = $(event).closest('.list');
     $(container).remove();
+}
+
+function openSidebar() {
+    const sidebar = document.getElementById('sidebar');
+    sidebar.style.left = '0px';
+}
+
+function closeSidebar() {
+    const sidebar = document.getElementById('sidebar');
+    sidebar.style.left = '-800px';
 }
