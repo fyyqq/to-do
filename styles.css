@@ -328,6 +328,7 @@ body.mode-color #project_section #sidebar #search span input {
 #project_section #sidebar #tags #tag {
     cursor: pointer;
     background-color: var(--light);
+    overflow: hidden;
 }
 
 body.mode-color #project_section #sidebar #tags #tag {
@@ -365,7 +366,7 @@ body.mode-color #project_section #sidebar #tags #createTag .mdi-plus {
     position: fixed;
     bottom: 40px;
     right: 50%;
-    transform: translateX(65%);
+    transform: translateX(70%);
     display: none;
     z-index: 99;
 }
@@ -386,6 +387,10 @@ body.mode-color #project_section #main #insert .btn-group input {
     background-color: var(--dark);
     border-color: var(--dark);
     color: #eee;
+}
+
+#project_section #main #insert .btn-group input::placeholder {
+    font-size: 14.5px;
 }
 
 body.mode-color #project_section #main #insert .btn-group input::placeholder {
@@ -468,32 +473,58 @@ body.mode-color #project_section #main #top .modal .modal-dialog .modal-content 
     cursor: pointer;
     background-color: var(--light);
     width: 250px;
+    overflow: hidden;
 }
 
 body.mode-color #project_section #main #top #recent_tag {
     background-color: var(--dark);
 }
 
+#project_section #main #lists #list_container {
+    height: 550px;
+}
+
+#project_section #main #lists #list_container #new_list_icon {
+    transform: translateY(0px);
+	animation: float 5s ease-in-out infinite;
+}
+
+@keyframes float {
+	0% {
+		transform: translateY(0px);
+	}
+	50% {
+		transform: translateY(-40px);
+	}
+	100% {
+		transform: translateY(0px);
+	}
+}
+
+#project_section #main #lists #list_container .mdi-format-list-checks {
+    font-size: 50px;
+}
+
 #project_section #main #lists #list_container .list,
-#project_section #main #lists #complete_list_container .list {
+#project_section #main #lists #complete_container #complete_list_container .list {
     background-color: var(--light);
 }
 
 body.mode-color #project_section #main #lists #list_container .list,
-body.mode-color #project_section #main #lists #complete_list_container .list {
+body.mode-color #project_section #main #lists #complete_container #complete_list_container .list {
     background-color: var(--dark);
 }
 
 body.mode-color #project_section #main #lists #list_container .list .col-lg-10 input,
-body.mode-color #project_section #main #lists #complete_list_container .list .col-lg-10 input {
+body.mode-color #project_section #main #lists #complete_container #complete_list_container .list .col-lg-10 input {
     color: var(--lightgray);
     background-color: transparent;
 }
 
 body.mode-color #project_section #main #lists #list_container .list .col-2 .mdi-delete-outline:hover,
-body.mode-color #project_section #main #lists #complete_list_container .list .col-2 .mdi-delete-outline:hover,
+body.mode-color #project_section #main #lists #complete_container #complete_list_container .list .col-2 .mdi-delete-outline:hover,
 #project_section #main #lists #list_container .list .col-2 .mdi-delete-outline:hover,
-#project_section #main #lists #complete_list_container .list .col-2 .mdi-delete-outline:hover {
+#project_section #main #lists #complete_container #complete_list_container .list .col-2 .mdi-delete-outline:hover {
     color: red;
     transition: all .4s ease;
 }
@@ -506,39 +537,39 @@ body.mode-color #project_section #main #lists #list_container .list .col-2 .mdi-
     transition: all .4s ease;
 }
 
-body.mode-color #project_section #main #lists #complete_list_container .list .col-2 .mdi-information-outline:hover,
-#project_section #main #lists #complete_list_container .list .col-2 .mdi-information-outline:hover {
+body.mode-color #project_section #main #lists #complete_container #complete_list_container .list .col-2 .mdi-information-outline:hover,
+#project_section #main #lists #complete_container #complete_list_container .list .col-2 .mdi-information-outline:hover {
     color: royalblue;
     transition: all .4s ease;
 }
 
 #project_section #main #lists #list_container .list .col-2 input, 
-#project_section #main #lists #complete_list_container .list .col-2 input {
+#project_section #main #lists #complete_container #complete_list_container .list .col-2 input {
     height: 17px;
     width: 17px;
     cursor: pointer;
 }
 
 #project_section #main #lists #list_container .list .col-lg-10 input,
-#project_section #main #lists #complete_list_container .list .col-lg-10 input {
+#project_section #main #lists #complete_container #complete_list_container .list .col-lg-10 input {
     color: #333;
     font-size: 14px;
 }
 
 #project_section #main #lists #list_container .list .col-lg-10 input:read-only,
-#project_section #main #lists #complete_list_container .list .col-lg-10 input:read-only {
+#project_section #main #lists #complete_container #complete_list_container .list .col-lg-10 input:read-only {
     background-color: transparent;
 }
 
 #project_section #main #lists #list_container .list .col-2 i.mdi,
-#project_section #main #lists #complete_list_container .list .col-2 i.mdi {
+#project_section #main #lists #complete_container #complete_list_container .list .col-2 i.mdi {
     cursor: pointer;
     font-size: 18px;
     color: #333;
 }
 
 body.mode-color #project_section #main #lists #list_container .list .col-2 i.mdi,
-body.mode-color #project_section #main #lists #complete_list_container .list .col-2 i.mdi {
+body.mode-color #project_section #main #lists #complete_container #complete_list_container .list .col-2 i.mdi {
     color: var(--lightgray);
 }
 
@@ -557,6 +588,9 @@ body.mode-color #project_section #main #lists #complete_list_container .list .co
         bottom: 30px;
         right: 25%;
         transform: translateX(25%);
+    }
+    #project_section #main #lists #list_container .mdi-format-list-checks {
+        font-size: 40px;
     }
 }
 

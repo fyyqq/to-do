@@ -225,6 +225,7 @@ function chooseTag(event) {
 }
 
 const listContainer = document.getElementById('list_container');
+const completeContainer = document.getElementById('complete_container');
 const completeListContainer = document.getElementById('complete_list_container');
 const listElement = listContainer.querySelector('.list');
 
@@ -287,11 +288,12 @@ function changeTag(tag) {
 const createList = forms[2];
 const postIcon = createList.childNodes[1].querySelector('i');
 const loader = createList.childNodes[1].querySelector('.custom-loader');
+const newListIcon = document.getElementById('new_list_icon');
 
 const input = document.getElementById('create_list_bar');
 createList.addEventListener('submit', event => {
     event.preventDefault();
-
+    
     const inputFilled = createList['create'];
     $(inputFilled).attr('disabled', true);
     
@@ -301,6 +303,7 @@ createList.addEventListener('submit', event => {
         $(postIcon).hide();
         $(loader).removeClass('d-none');
         setTimeout(() => {
+            removeNewIcon();
             $(loader).addClass('d-none');
             const cloneList = listElement.cloneNode(true);
             cloneList.classList.remove('d-none');
@@ -328,6 +331,12 @@ createList.addEventListener('submit', event => {
 
 });
 
+function removeNewIcon() {
+    newListIcon.remove();
+    listContainer.classList.remove('justify-content-center');
+    listContainer.classList.remove('align-items-center');
+    listContainer.style.height = "max-content";
+}
 
 function checkList(element) {
     const checkbox = element.children[0].querySelector('input');
@@ -357,7 +366,8 @@ function checkList(element) {
 }
 
 function createCompleteList(element) {
-    const completeContainer = document.getElementById("complete_list_container");
+    const completeListContainer = document.getElementById("complete_list_container");
+    completeContainer.classList.add('border-top');
     
     const cloneElement = element.cloneNode(true);
     cloneElement.children[0].querySelector('input').setAttribute('disabled', true);
@@ -377,7 +387,7 @@ function createCompleteList(element) {
     infoIcon.setAttribute('title', time);
 
     parentAction.append(infoIcon);
-    completeContainer.prepend(cloneElement);
+    completeListContainer.prepend(cloneElement);
 }
 
 function createListInput(event) {
