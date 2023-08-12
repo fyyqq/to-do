@@ -141,6 +141,7 @@ formEditTag.addEventListener('submit', event => {
 
 function createTagSidebar(rand) {
     const tags_container = document.getElementById('tags');
+    tags_container.style.overflowY = 'scroll';
     const tag = document.getElementById('tag');
     const clone_tag = tag.cloneNode(true);
 
@@ -353,14 +354,17 @@ function checkList(element) {
 
 function createCompleteList(element) {
     const completeContainer = document.getElementById("complete_list_container");
-
+    
     const cloneElement = element.cloneNode(true);
     cloneElement.children[0].querySelector('input').setAttribute('disabled', true);
     cloneElement.children[0].querySelector('.checkmark').style.cursor = 'unset';
-    const parentChild = cloneElement.children[2];
-    parentChild.className += ' flex-row-reverse';
-    parentChild.removeChild(parentChild.children[0]);
-    parentChild.removeChild(parentChild.children[0]);
+    const parentCheckmark = cloneElement.children[0].children[0];
+    parentCheckmark.removeAttribute('title');
+    parentCheckmark.setAttribute('title', 'Checked!');
+    const parentAction = cloneElement.children[2];
+    parentAction.className += ' flex-row-reverse';
+    parentAction.removeChild(parentAction.children[0]);
+    parentAction.removeChild(parentAction.children[0]);
     
     const time = moment().format('MMMM Do YYYY, h:mm:ss a');
     const infoIcon = document.createElement('i');
@@ -368,7 +372,7 @@ function createCompleteList(element) {
     infoIcon.setAttribute('data-bs-target', 'tooltip');
     infoIcon.setAttribute('title', time);
 
-    parentChild.append(infoIcon);
+    parentAction.append(infoIcon);
     completeContainer.prepend(cloneElement);
 }
 

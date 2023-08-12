@@ -347,7 +347,7 @@ body.mode-color #project_section #sidebar #tags #tag {
 }
 
 #project_section #sidebar #tags #addList .mdi-plus {
-    color: var(--dark);
+    color: var(--gray);
 }
 
 body.mode-color #project_section #sidebar #tags #addList .mdi-plus {
