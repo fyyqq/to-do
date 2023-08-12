@@ -224,8 +224,7 @@ const completeListContainer = document.getElementById('complete_list_container')
 const listElement = listContainer.querySelector('.list');
 
 function changeTag(tag) {
-    const sidebar = document.getElementById('sidebar');
-    sidebar.style.left = '-800px';
+    closeSidebar();
     const childLists = listContainer.querySelectorAll('.list');
     childLists.forEach(child => {
         listContainer.removeChild(child);
