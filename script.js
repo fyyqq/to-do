@@ -14,16 +14,6 @@ $(document).ready(() => {
     $('.darkModeApp').on('click', function(e) {
         e.preventDefault();
         $('body').addClass('mode-color');
-        $('#sidebar').addClass('mode-color');
-        $('#project_section #main #top .modal .modal-dialog .modal-content').addClass('mode-color');
-        $('#project_section #main #top .modal .modal-dialog .modal-content .modal-header button').addClass('mode-color');
-        $('#project_section #main #top .modal .modal-dialog .modal-content .modal-header .modal-title').addClass('mode-color');
-        $('#project_section #main #top .modal .modal-dialog .modal-content form .modal-body input').addClass('mode-color');
-        $('#project_section #main #top .modal .modal-dialog .modal-content form .modal-body textarea').addClass('mode-color');
-        $('.header-container .col div .display-2').addClass('mode-color');
-        $('.navbar .container-md .navbar-collapse').addClass('mode-color');
-        $('#project_section #main #insert .btn-group input').addClass('mode-color');
-        $('#project_section #sidebar #search span input').addClass('mode-color');
         $(this).removeClass('d-flex');
         $(this).addClass('d-none');
         $(this).next().removeClass('d-none');
@@ -32,16 +22,6 @@ $(document).ready(() => {
     $('.lightModeApp').on('click', function(e) {
         e.preventDefault();
         $('body').removeClass('mode-color');
-        $('#sidebar').removeClass('mode-color');
-        $('#project_section #main #top .modal .modal-dialog .modal-content').removeClass('mode-color');
-        $('#project_section #main #top .modal .modal-dialog .modal-content .modal-header button').removeClass('mode-color');
-        $('#project_section #main #top .modal .modal-dialog .modal-content .modal-header .modal-title').removeClass('mode-color');
-        $('#project_section #main #top .modal .modal-dialog .modal-content form .modal-body input').removeClass('mode-color');
-        $('#project_section #main #top .modal .modal-dialog .modal-content form .modal-body textarea').removeClass('mode-color');
-        $('.header-container .col div .display-2').removeClass('mode-color');
-        $('.navbar .container-md .navbar-collapse').removeClass('mode-color');
-        $('#project_section #main #insert .btn-group input').removeClass('mode-color');
-        $('#project_section #sidebar #search span input').removeClass('mode-color');
         $(this).removeClass('d-flex');
         $(this).addClass('d-none');
         $(this).prev().removeClass('d-none');
@@ -244,6 +224,8 @@ const completeListContainer = document.getElementById('complete_list_container')
 const listElement = listContainer.querySelector('.list');
 
 function changeTag(tag) {
+    const sidebar = document.getElementById('sidebar');
+    sidebar.style.left = '-800px';
     const childLists = listContainer.querySelectorAll('.list');
     childLists.forEach(child => {
         listContainer.removeChild(child);

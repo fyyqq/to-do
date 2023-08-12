@@ -4,7 +4,7 @@
     --main: mediumseagreen;
     --hover: rgb(77, 184, 148);
     --dark: #212121;
-    --gray: #292b2c;
+    --gray: #414141;
     --light: #fff;
     --lightgray: #ddd;
 }
@@ -144,8 +144,8 @@ body {
     color: white;
 }
 
-.navbar .container-md .navbar-collapse.mode-color {
-    background-color: var(--gray);
+body.mode-color .navbar .container-md .navbar-collapse {
+    background-color: var(--dark);
 }
 
 .navbar .container-md .navbar-collapse .navbar-nav .nav-item .nav-link {
@@ -198,8 +198,20 @@ body {
     row-gap: 30px;
 }
 
-.header-container .col div .display-2.mode-color {
+.header-container .col div .display-2 {
+    color: #333;
+}
+
+body.mode-color .header-container .col div .display-2 {
     color: var(--lightgray);
+}
+
+.header-container .col div p {
+    color: #555;
+}
+
+body.mode-color .header-container .col div p {
+    color: #ccc;
 }
 
 .header-container .btn-explore {
@@ -235,7 +247,12 @@ body {
 }
 
 .header-container .btn-explore:hover {
-    color: var(--light);
+    color: #fff;
+}
+
+.header-container .btn-explore:active {
+    transform: scale(0.95);
+    transition: transform .1s ease;
 }
 
 .header-container .btn-explore:focus {
@@ -265,8 +282,16 @@ body {
     left: 0px;
 }
 
-#project_section #sidebar.mode-color {
-    background-color: var(--gray);
+#project_section #sidebar .mdi-backburger {
+    color: #333;
+}
+
+body.mode-color #project_section #sidebar .mdi-backburger {
+    color: var(--lightgray);
+}
+
+body.mode-color #project_section #sidebar {
+    background-color: var(--dark);
 }
 
 #project_section #sidebar #search span input:focus {
@@ -283,7 +308,7 @@ body {
     letter-spacing: .5px;
 }
 
-#project_section #sidebar #search span input.mode-color {
+body.mode-color #project_section #sidebar #search span input {
     background-color: var(--dark);
     color: #eee;
 }
@@ -310,10 +335,18 @@ body {
     transform: translate(-50%, -50%);
 }
 
-#project_section #sidebar #tags #list1 {
+#project_section #sidebar #tags #addList {
     height: 100%;
     /* overflow-y: scroll; */
     cursor: pointer;
+}
+
+#project_section #sidebar #tags #addList .mdi-plus {
+    color: var(--dark);
+}
+
+body.mode-color #project_section #sidebar #tags #addList .mdi-plus {
+    color: var(--lightgray);
 }
 
 #project_section #main {
@@ -328,7 +361,7 @@ body {
     right: 50%;
     transform: translateX(65%);
     display: none;
-    z-index: 999;
+    z-index: 99;
 }
 
 #project_section #main #insert .btn-group {
@@ -343,8 +376,13 @@ body {
     color: #444;
 }
 
-#project_section #main #insert .btn-group input.mode-color {
-    background-color: var(--gray);
+body.mode-color #project_section #main #insert .btn-group input {
+    background-color: var(--dark);
+    border-color: var(--dark);
+    color: #eee;
+}
+
+body.mode-color #project_section #main #insert .btn-group input::placeholder {
     color: #eee;
 }
 
@@ -363,15 +401,15 @@ body {
     transform: translateX(-1px);
 }
 
-#project_section #main #top .modal .modal-dialog .modal-content.mode-color {
+body.mode-color #project_section #main #top .modal .modal-dialog .modal-content {
     background-color: var(--gray);
 }
 
-#project_section #main #top .modal .modal-dialog .modal-content .modal-header .modal-title.mode-color {
+body.mode-color #project_section #main #top .modal .modal-dialog .modal-content .modal-header .modal-title {
     color: var(--light);
 }
 
-#project_section #main #top .modal .modal-dialog .modal-content .modal-header button.mode-color {
+body.mode-color #project_section #main #top .modal .modal-dialog .modal-content .modal-header button {
     background-color: var(--light);
 }
 
@@ -380,13 +418,13 @@ body {
     letter-spacing: .3px;
 }
 
-#project_section #main #top .modal .modal-dialog .modal-content form .modal-body input.mode-color {
-    background-color: var(--dark);
+body.mode-color #project_section #main #top .modal .modal-dialog .modal-content form .modal-body input {
+    background-color: var(--gray);
     color: var(--lightgray);
 }
 
-#project_section #main #top .modal .modal-dialog .modal-content form .modal-body textarea.mode-color {
-    background-color: var(--dark);
+body.mode-color #project_section #main #top .modal .modal-dialog .modal-content form .modal-body textarea {
+    background-color: var(--gray);
     color: var(--lightgray);
 }
 
@@ -562,8 +600,8 @@ body {
 
 body.mode-color {
     color: #f5f5f5;
-    background-color: var(--dark);
-    transition: all .3s ease;
+    background-color: var(--gray);
+    transition: all .2s ease;
 }
 
 body.mode-color .header-container .w-100 .btn-explore {
@@ -579,7 +617,7 @@ body.mode-color .section .section-container .todoList-container .form-text .inpu
 }
 
 body.mode-color .navbar {
-    background-color: var(--gray);
+    background-color: var(--dark);
 }
 
 body.mode-color .list {
