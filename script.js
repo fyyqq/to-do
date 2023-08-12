@@ -66,10 +66,12 @@ function generateString(length) {
 
 const forms = document.forms;
 const tagsAndList = {}
+const tags_container = document.getElementById('tags');
 
 const createTag = forms[1];
 createTag.addEventListener('submit', event => {
     event.preventDefault();
+    tags_container.style.paddingBottom = '2.8rem';
     
     const title = createTag['title'];
     const category = createTag['category'];
@@ -81,6 +83,8 @@ createTag.addEventListener('submit', event => {
         tagsAndList[rand] = [title.value, category.value, desc.value, []];
         createTagSidebar(rand)
         createRecentTag(rand)
+        const createTag = document.getElementById('createMoreTags');
+        createTag.classList.remove('d-none');
 
         const listContainer = document.getElementById('list_container');
         const completeListContainer = document.getElementById('complete_list_container');
@@ -166,7 +170,7 @@ function createTagSidebar(rand) {
     clone_tag.classList.add('border-success');
 
     tags_container.children[1].style.display = 'none';
-    tags_container.append(clone_tag);
+    tags_container.prepend(clone_tag);
 }
 
 function createRecentTag(rand) {

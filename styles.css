@@ -322,6 +322,7 @@ body.mode-color #project_section #sidebar #search span input {
 
 #project_section #sidebar #tags {
     height: 535px;
+    padding-bottom: 1.75rem;
 }
 
 #project_section #sidebar #tags #tag {
@@ -340,17 +341,17 @@ body.mode-color #project_section #sidebar #tags #tag {
     transform: translate(-50%, -50%);
 }
 
-#project_section #sidebar #tags #addList {
+#project_section #sidebar #tags #createTag {
     height: 100%;
     /* overflow-y: scroll; */
     cursor: pointer;
 }
 
-#project_section #sidebar #tags #addList .mdi-plus {
+#project_section #sidebar #tags #createTag .mdi-plus {
     color: var(--gray);
 }
 
-body.mode-color #project_section #sidebar #tags #addList .mdi-plus {
+body.mode-color #project_section #sidebar #tags #createTag .mdi-plus {
     color: var(--lightgray);
 }
 
@@ -407,7 +408,7 @@ body.mode-color #project_section #main #insert .btn-group input::placeholder {
 }
 
 body.mode-color #project_section #main #top .modal .modal-dialog .modal-content {
-    background-color: var(--dark);
+    background-color: var(--gray);
 }
 
 body.mode-color #project_section #main #top .modal .modal-dialog .modal-content .modal-header .modal-title {
@@ -424,12 +425,12 @@ body.mode-color #project_section #main #top .modal .modal-dialog .modal-content 
 }
 
 body.mode-color #project_section #main #top .modal .modal-dialog .modal-content form .modal-body input {
-    background-color: var(--dark);
+    background-color: var(--gray);
     color: var(--lightgray);
 }
 
 body.mode-color #project_section #main #top .modal .modal-dialog .modal-content form .modal-body textarea {
-    background-color: var(--dark);
+    background-color: var(--gray);
     color: var(--lightgray);
 }
 
@@ -609,6 +610,9 @@ body.mode-color #project_section #main #lists #complete_list_container .list .co
     }
     #project_section #main #insert .btn-group {
         height: 50px;
+    }
+    #project_section #sidebar #tags {
+        padding-bottom: 3rem;
     }
 }
 
