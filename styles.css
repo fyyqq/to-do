@@ -329,6 +329,11 @@ body.mode-color #project_section #sidebar #search span input {
     background-color: var(--light);
 }
 
+body.mode-color #project_section #sidebar #tags #tag {
+    background-color: var(--dark);
+    color: var(--lightgray);
+}
+
 #project_section #sidebar #tags div .mdi-plus {
     top: 50%;
     left: 50%;
@@ -383,7 +388,7 @@ body.mode-color #project_section #main #insert .btn-group input {
 }
 
 body.mode-color #project_section #main #insert .btn-group input::placeholder {
-    color: #eee;
+    color: #eeeeeea8;
 }
 
 #project_section #main #insert .btn-group input:focus {
@@ -402,7 +407,7 @@ body.mode-color #project_section #main #insert .btn-group input::placeholder {
 }
 
 body.mode-color #project_section #main #top .modal .modal-dialog .modal-content {
-    background-color: var(--gray);
+    background-color: var(--dark);
 }
 
 body.mode-color #project_section #main #top .modal .modal-dialog .modal-content .modal-header .modal-title {
@@ -419,12 +424,12 @@ body.mode-color #project_section #main #top .modal .modal-dialog .modal-content 
 }
 
 body.mode-color #project_section #main #top .modal .modal-dialog .modal-content form .modal-body input {
-    background-color: var(--gray);
+    background-color: var(--dark);
     color: var(--lightgray);
 }
 
 body.mode-color #project_section #main #top .modal .modal-dialog .modal-content form .modal-body textarea {
-    background-color: var(--gray);
+    background-color: var(--dark);
     color: var(--lightgray);
 }
 
@@ -464,10 +469,46 @@ body.mode-color #project_section #main #top .modal .modal-dialog .modal-content 
     width: 250px;
 }
 
+body.mode-color #project_section #main #top #recent_tag {
+    background-color: var(--dark);
+}
+
 #project_section #main #lists #list_container .list,
 #project_section #main #lists #complete_list_container .list {
-    /* padding: 23px 10px; */
     background-color: var(--light);
+}
+
+body.mode-color #project_section #main #lists #list_container .list,
+body.mode-color #project_section #main #lists #complete_list_container .list {
+    background-color: var(--dark);
+}
+
+body.mode-color #project_section #main #lists #list_container .list .col-lg-10 input,
+body.mode-color #project_section #main #lists #complete_list_container .list .col-lg-10 input {
+    color: var(--lightgray);
+    background-color: transparent;
+}
+
+body.mode-color #project_section #main #lists #list_container .list .col-2 .mdi-delete-outline:hover,
+body.mode-color #project_section #main #lists #complete_list_container .list .col-2 .mdi-delete-outline:hover,
+#project_section #main #lists #list_container .list .col-2 .mdi-delete-outline:hover,
+#project_section #main #lists #complete_list_container .list .col-2 .mdi-delete-outline:hover {
+    color: red;
+    transition: all .4s ease;
+}
+
+body.mode-color #project_section #main #lists #list_container .list .col-2 .mdi-square-edit-outline:hover,
+#project_section #main #lists #list_container .list .col-2 .mdi-square-edit-outline:hover,
+body.mode-color #project_section #main #lists #list_container .list .col-2 .mdi-content-save:hover,
+#project_section #main #lists #list_container .list .col-2 .mdi-content-save:hover {
+    color: var(--main);
+    transition: all .4s ease;
+}
+
+body.mode-color #project_section #main #lists #complete_list_container .list .col-2 .mdi-information-outline:hover,
+#project_section #main #lists #complete_list_container .list .col-2 .mdi-information-outline:hover {
+    color: royalblue;
+    transition: all .4s ease;
 }
 
 #project_section #main #lists #list_container .list .col-2 input, 
@@ -493,6 +534,11 @@ body.mode-color #project_section #main #top .modal .modal-dialog .modal-content 
     cursor: pointer;
     font-size: 18px;
     color: #333;
+}
+
+body.mode-color #project_section #main #lists #list_container .list .col-2 i.mdi,
+body.mode-color #project_section #main #lists #complete_list_container .list .col-2 i.mdi {
+    color: var(--lightgray);
 }
 
 @media screen and (max-width: 1000px) {
@@ -575,7 +621,13 @@ body.mode-color #project_section #main #top .modal .modal-dialog .modal-content 
 }
 
 .darkModeApp {
-    background-color: var(--gray);
+    background-color: var(--light);
+    color: var(--gray);
+}
+
+.lightModeApp {
+    background-color: var(--dark);
+    color: var(--lightgray);
 }
 
 .display .darkMode, 

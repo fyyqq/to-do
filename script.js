@@ -224,7 +224,7 @@ const completeListContainer = document.getElementById('complete_list_container')
 const listElement = listContainer.querySelector('.list');
 
 function changeTag(tag) {
-    closeSidebar();
+    // closeSidebar();
     const childLists = listContainer.querySelectorAll('.list');
     childLists.forEach(child => {
         listContainer.removeChild(child);
@@ -258,7 +258,6 @@ function changeTag(tag) {
         cloneList.children[1].querySelector('input').value = cList.list;
         checkList(cloneList)
         cloneList.children[0].querySelector('input').setAttribute('disabled', true);
-        cloneList.style.backgroundColor = 'gainsboro';
         cloneList.children[0].querySelector('.checkmark').style.cursor = 'unset';
         
         const parentChild = cloneList.children[2];
@@ -357,10 +356,10 @@ function createCompleteList(element) {
 
     const cloneElement = element.cloneNode(true);
     cloneElement.children[0].querySelector('input').setAttribute('disabled', true);
-    cloneElement.style.backgroundColor = 'gainsboro';
     cloneElement.children[0].querySelector('.checkmark').style.cursor = 'unset';
     const parentChild = cloneElement.children[2];
     parentChild.className += ' flex-row-reverse';
+    parentChild.removeChild(parentChild.children[0]);
     parentChild.removeChild(parentChild.children[0]);
     
     const time = moment().format('MMMM Do YYYY, h:mm:ss a');
