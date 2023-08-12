@@ -22,6 +22,8 @@ $(document).ready(() => {
         $('#project_section #main #top .modal .modal-dialog .modal-content form .modal-body textarea').addClass('mode-color');
         $('.header-container .col div .display-2').addClass('mode-color');
         $('.navbar .container-md .navbar-collapse').addClass('mode-color');
+        $('#project_section #main #insert .btn-group input').addClass('mode-color');
+        $('#project_section #sidebar #search span input').addClass('mode-color');
         $(this).removeClass('d-flex');
         $(this).addClass('d-none');
         $(this).next().removeClass('d-none');
@@ -38,6 +40,8 @@ $(document).ready(() => {
         $('#project_section #main #top .modal .modal-dialog .modal-content form .modal-body textarea').removeClass('mode-color');
         $('.header-container .col div .display-2').removeClass('mode-color');
         $('.navbar .container-md .navbar-collapse').removeClass('mode-color');
+        $('#project_section #main #insert .btn-group input').removeClass('mode-color');
+        $('#project_section #sidebar #search span input').removeClass('mode-color');
         $(this).removeClass('d-flex');
         $(this).addClass('d-none');
         $(this).prev().removeClass('d-none');
@@ -291,7 +295,7 @@ function changeTag(tag) {
         infoIcon.setAttribute('title', time);
 
         parentChild.append(infoIcon);
-        completeListContainer.append(cloneList);
+        completeListContainer.prepend(cloneList);
     });
 }
 
@@ -374,7 +378,6 @@ function createCompleteList(element) {
     cloneElement.children[0].querySelector('input').setAttribute('disabled', true);
     cloneElement.style.backgroundColor = 'gainsboro';
     cloneElement.children[0].querySelector('.checkmark').style.cursor = 'unset';
-    
     const parentChild = cloneElement.children[2];
     parentChild.className += ' flex-row-reverse';
     parentChild.removeChild(parentChild.children[0]);
@@ -386,7 +389,7 @@ function createCompleteList(element) {
     infoIcon.setAttribute('title', time);
 
     parentChild.append(infoIcon);
-    completeContainer.append(cloneElement);
+    completeContainer.prepend(cloneElement);
 }
 
 function createListInput(event) {

@@ -279,6 +279,13 @@ body {
     height: 40px;
     font-weight: normal;
     caret-color: var(--hover);
+    color: #333;
+    letter-spacing: .5px;
+}
+
+#project_section #sidebar #search span input.mode-color {
+    background-color: var(--dark);
+    color: #eee;
 }
 
 #project_section #sidebar #search span i {
@@ -334,6 +341,11 @@ body {
     border-bottom-left-radius: 30px;
     caret-color: var(--hover);
     color: #444;
+}
+
+#project_section #main #insert .btn-group input.mode-color {
+    background-color: var(--gray);
+    color: #eee;
 }
 
 #project_section #main #insert .btn-group input:focus {
@@ -522,6 +534,10 @@ body {
 .lightModeApp {
     cursor: pointer;
     user-select: none;
+}
+
+.darkModeApp {
+    background-color: var(--gray);
 }
 
 .display .darkMode, 
