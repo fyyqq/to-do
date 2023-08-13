@@ -21,8 +21,8 @@ $(document).ready(() => {
 
 
 $(document).ready(function() {
-    $(document).on('click', '.nav-link', function(e) {
-        $('.nav-link').removeClass('active');
+    $(document).on('click', '.nav-link.ok', function(e) {
+        $('.nav-link.ok').removeClass('active');
         $(this).addClass('active');
         $('.navbar-collapse').css({
             'top': '-50%'
@@ -494,9 +494,9 @@ function findTag(event) {
         displayTag(tags, value)
     }
 }
-const clone_tag = tags_container.children[0].cloneNode(true);
 
 function displayTag(tags, value) {
+    const clone_tag = tags_container.children[0].cloneNode(true);
     const filterTags = tags.filter(tag => {
         const tagName = tag[0].toLowerCase();
         return tagName.startsWith(value);

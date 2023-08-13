@@ -467,6 +467,11 @@ body.mode-color #project_section #main #top .modal .modal-dialog .modal-content 
     letter-spacing: .3px;
 }
 
+body.mode-color #project_section #main #top .modal .modal-dialog .modal-content form .modal-body select {
+    background-color: var(--gray);
+    color: var(--lightgray);
+}
+
 body.mode-color #project_section #main #top .modal .modal-dialog .modal-content form .modal-body input {
     background-color: var(--gray);
     color: var(--lightgray);
