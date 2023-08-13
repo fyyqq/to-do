@@ -689,8 +689,43 @@ body.mode-color {
 footer {
     box-shadow: rgba(14, 30, 37, 0.12) 0px 2px 4px 0px, rgba(14, 30, 37, 0.32) 0px 2px 16px 0px;
     margin-top: 130px;
-    height: 500px;
     background-color: #fff;
     border-top-left-radius: 50px;
     border-top-right-radius: 50px;
 }
+
+footer .mdi {
+    font-size: 80px;
+}
+
+footer .card .form-floating label {
+    color: #444;
+    font-size: 14px;
+}
+
+footer .card .form-floating input,
+footer .card .form-floating textarea {
+    color: #333;
+}
+
+footer .card .form-floating input:focus,
+footer .card .form-floating textarea:focus {
+    border: 1.5px solid var(--main);
+}
+
+footer .card #rating_container .star_rating {
+    cursor: pointer;
+    color: #444;
+}
+
+footer .card #rating_container .star_rating.active {
+    color: var(--main);
+}
+
+footer .card #rating_container .star_rating:hover {
+    color: var(--main);
+}
+
+
+
+
