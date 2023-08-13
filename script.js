@@ -1,16 +1,6 @@
 $('.lightMode').css('display', 'none');
 
 $(document).ready(() => {
-    $('.darkMode').click(() => {
-        $('body').addClass('mode-color');
-        $('.lightMode').css('display', 'grid');
-        $(this).css('display', 'none');
-    });
-    $('.lightMode').click(() => {
-        $('.lightMode').css('display', 'none');
-        $('body').removeClass('mode-color');
-    });
-    
     $('.darkModeApp').on('click', function(e) {
         e.preventDefault();
         $('body').addClass('mode-color');
@@ -34,6 +24,9 @@ $(document).ready(function() {
     $(document).on('click', '.nav-link', function(e) {
         $('.nav-link').removeClass('active');
         $(this).addClass('active');
+        $('.navbar-collapse').css({
+            'top': '-50%'
+        });
     });
 
     $('.navbar-toggler').on('click', function(e) {
@@ -44,10 +37,12 @@ $(document).ready(function() {
                 'top': '50%',
                 'height': '100%'
             });
+            $(this).css('transform', 'rotate(180deg)');
         } else {
             $('.navbar-collapse').css({
                 'top': '-50%'
             });
+            $(this).css('transform', 'rotate(0deg)');
         }
     });
 });
@@ -96,6 +91,11 @@ createTag.addEventListener('submit', event => {
         completeListChild.forEach(child => {
             completeListContainer.removeChild(child);
         });
+
+        newListIcon.classList.remove('d-none');
+        newListIcon.classList.add('d-flex');
+        $(listContainer).addClass('align-items-center justify-content-center');
+        listContainer.style.height = '550px';
 
         title.value = '';
         category.value = '';
@@ -220,6 +220,19 @@ function chooseTag(event) {
     recent_category.innerHTML = category.textContent;
     const rand = event.getAttribute("data-tag");
     recent.setAttribute('data-tag', rand);
+
+    const dataTag = tagsAndList[rand][3];
+    if (dataTag === undefined || dataTag.length == 0) {
+        newListIcon.classList.remove('d-none');
+        newListIcon.classList.add('d-flex');
+        $(listContainer).addClass('align-items-center justify-content-center');
+        listContainer.style.height = '550px';
+    } else {
+        newListIcon.classList.remove('d-flex');
+        newListIcon.classList.add('d-none');
+        $(listContainer).removeClass('align-items-center justify-content-center');
+        listContainer.style.height = 'max-content';
+    }
     
     changeTag(rand)
 }
@@ -235,7 +248,7 @@ function changeTag(tag) {
     childLists.forEach(child => {
         listContainer.removeChild(child);
     });
-    
+
     const childCompletedLists = completeListContainer.querySelectorAll('.list');
     childCompletedLists.forEach(child => {
         completeListContainer.removeChild(child);
@@ -332,7 +345,8 @@ createList.addEventListener('submit', event => {
 });
 
 function removeNewIcon() {
-    newListIcon.remove();
+    newListIcon.classList.remove('d-flex');
+    newListIcon.classList.add('d-none');
     listContainer.classList.remove('justify-content-center');
     listContainer.classList.remove('align-items-center');
     listContainer.style.height = "max-content";

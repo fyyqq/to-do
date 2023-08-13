@@ -14,53 +14,139 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>What Todo ?</title>
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/MaterialDesign-Webfont/7.2.96/css/materialdesignicons.min.css">
         <link rel="stylesheet" href="styles.css">
     </head>
     <body>
-        <nav class="navbar navbar-expand-md navbar-dark fixed-top shadow-sm">
-            <div class="container-md px-lg-0 px-4">
-                <a class="navbar-brand d-flex align-items-center text-uppercase" href="./">
-                    <h1 class="mb-0 h5 text-success">Todo</h1>
-                    <i class="fa-solid fa-leaf ms-1 text-success"></i>
-                </a>
-                <button class="navbar-toggler p-3 position-relative rounded-circle" type="button" data-bs-toggle="collapse" data-bs-target="#navbarToggle">
-                    <i class="fa-solid fa-chevron-down"></i>
-                </button>
-                <div class="row w-100"></div>
-                <div class="collapse navbar-collapse" id="navbarToggle">
-                    <ul class="navbar-nav pt-md-0 pt-3 pt-lg-0">
-                        <li class="nav-item">
-                            <a class="nav-link" href="#home">Home</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#about">About</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link project" href="./project.html">Project</a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </nav>
-        <header class="container-lg header w-100 px-0" id="home">
-            <div class="row mx-0 header-container">
-                <div class="col w-100 w-100 d-flex justify-content-center align-items-center flex-column">
-                    <div class="d-flex align-items-center flex-column">
-                        <h1 class="display-2 ">Write Less, Do More</h1>
-                        <p class="mb-0">Become focused, organized, and calm with Todo.</p>
+        <div class="container-lg">
+            <nav class="navbar navbar-expand-md navbar-dark fixed-top shadow-sm">
+                <div class="container-md px-lg-0 px-4">
+                    <a class="navbar-brand d-flex align-items-center text-uppercase" href="./">
+                        <h1 class="mb-0 h5 text-success">Todo</h1>
+                        <i class="mdi mdi-leaf ms-1 text-success"></i>
+                    </a>
+                    <button class="navbar-toggler p-3 position-relative rounded-circle" type="button" data-bs-toggle="collapse" data-bs-target="#navbarToggle">
+                        <i class="fa-solid fa-chevron-down"></i>
+                    </button>
+                    <div class="row w-100"></div>
+                    <div class="collapse navbar-collapse" id="navbarToggle">
+                        <ul class="navbar-nav pt-md-0 pt-3 pt-lg-0">
+                            <li class="nav-item">
+                                <a class="nav-link" href="#home">Home</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#about">About</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link project" href="./project.html">Project</a>
+                            </li>
+                        </ul>
                     </div>
-                    <a href="./project.html" class="btn btn-explore fw-normal rounded-pill">Get Started<span></span></a>
                 </div>
-            </div>
-        </header>
-        <section style="height: 550px;" id="about"></section>
-        <div class="display">
-            <div class="darkMode rounded-circle bg-dark" data-bs-target="tooltip" title="Go to Dark Mode">
-                <i class="fa-solid fa-moon"></i>
-            </div>
-            <div class="lightMode rounded-circle bg-light" data-bs-target="tooltip" title="Go to Light Mode">
-                <i class="fa-sharp fa-solid fa-lightbulb text-warning"></i>
-            </div>
+            </nav>
+            <header class="header w-100 px-0" id="home">
+                <div class="row mx-0 header-container">
+                    <div class="col w-100 w-100 d-flex justify-content-center align-items-center flex-column">
+                        <div class="d-flex align-items-center flex-column">
+                            <h1 class="display-2 ">Write Less, Do More</h1>
+                            <p class="mb-0">Become focused, organized and calm with Todo.</p>
+                        </div>
+                        <a href="./project.html" class="btn btn-explore fw-normal rounded-pill">Get Started<span></span></a>
+                    </div>
+                </div>
+            </header>
+            <section class="pb-md-3 pb-3" id="about">
+                <div class="mb-5 text-center">
+                    <h1 class="h4 fw-bold text-success">About</h1>
+                </div>
+                <div class="row pt-4 mx-auto align-items-center justify-content-center flex-md-row flex-column">
+                    <div class="col-md-6 col-12 d-flex align-items-md-start align-items-center justify-content-start flex-column gap-3">
+                        <div class="d-flex flex-column align-items-md-start align-items-center gap-2">
+                            <p class="mb-0 fw-bold text-success">Be Productive</p>
+                            <h1 class="h2 text-dark fw-bold">Manage Your Daily Tasks</h1>
+                        </div>
+                        <p class="text-muted mb-0 text-md-start text-center">Hi, I’m  <b class="text-success">Todo</b>, your personal assistant for getting things done. I’m here to help you organize your tasks, manage your time, and achieve your goals. Whether you need to plan a project, track a habit, or remember a deadline, I’ve got you covered. With me, you can create, edit and update your to-do lists with ease. I’m more than just an app, I’m your partner in productivity.</p>
+                    </div>
+                    <div class="col-md-6 col-12 mt-md-0 mt-4">
+                        <img src="https://c4.wallpaperflare.com/wallpaper/482/58/519/leaves-plants-neon-hd-wallpaper-preview.jpg" class="w-100 h-100 rounded-3">
+                    </div>
+                </div>
+            </section>
+            <section class="pt-md-5 pt-3">
+                <div class="row pt-4 mx-auto align-items-center justify-content-center flex-md-row-reverse flex-column">
+                    <div class="col-md-6 col-12 d-flex align-items-md-start align-items-center justify-content-start flex-column gap-3">
+                        <div class="d-flex flex-column align-items-md-start align-items-center gap-2">
+                            <p class="mb-0 fw-bold text-success">Be Successfull</p>
+                            <h1 class="h2 text-dark fw-bold">Manage Your Daily Tasks</h1>
+                        </div>
+                        <p class="text-muted mb-0 text-md-start text-center">Hi, I’m  <b class="text-success">Todo</b>, your personal assistant for getting things done. I’m here to help you organize your tasks, manage your time, and achieve your goals. Whether you need to plan a project, track a habit, or remember a deadline, I’ve got you covered. With me, you can create, edit and update your to-do lists with ease. I’m more than just an app, I’m your partner in productivity.</p>
+                    </div>
+                    <div class="col-md-6 col-12 mt-md-0 mt-4">
+                        <img src="https://c4.wallpaperflare.com/wallpaper/482/58/519/leaves-plants-neon-hd-wallpaper-preview.jpg" class="w-100 h-100 rounded-3">
+                    </div>
+                </div>
+            </section>
+            <section id="feature">
+                <div class="mb-5 text-center">
+                    <h1 class="h4 fw-bold text-success">Feature</h1>
+                </div>
+                <div class="row mx-auto">
+                    <div class="col-lg-4 col-md-6 col-12">
+                        <div class="card w-100">
+                            <div class="card-body px-4 pb-5 pt-5 d-flex flex-column align-items-center justify-content-center gap-1">
+                                <i class="fs-2 mdi mdi-leaf text-success"></i>
+                                <h5 class="card-title mt-2">Multiple Tags</h5>
+                                <p class="card-text lh-sm text-center" style="font-size: 15px;">Multiple tags are one of the ways to make my to-do list app more flexible and suitable for your needs.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6 col-12">
+                        <div class="card w-100">
+                            <div class="card-body px-4 pb-5 pt-5 d-flex flex-column align-items-center justify-content-center gap-1">
+                                <i class="fs-2 mdi mdi-leaf text-success"></i>
+                                <h5 class="card-title mt-2">Tag Searching</h5>
+                                <p class="card-text lh-sm text-center" style="font-size: 15px;">You can use searching for a tag to manage your tasks more effectively, and achieve your goals faster.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6 col-12">
+                        <div class="card w-100">
+                            <div class="card-body px-4 pb-5 pt-5 d-flex flex-column align-items-center justify-content-center gap-1">
+                                <i class="fs-2 mdi mdi-leaf text-success"></i>
+                                <h5 class="card-title mt-2">Responsive</h5>
+                                <p class="card-text lh-sm text-center" style="font-size: 15px;">A responsive todo app is one of the ways to make our experience more convenient and user-friendly.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6 col-12">
+                        <div class="card w-100">
+                            <div class="card-body px-4 pb-5 pt-5 d-flex flex-column align-items-center justify-content-center gap-1">
+                                <i class="fs-2 mdi mdi-leaf text-success"></i>
+                                <h5 class="card-title mt-2">Unlimited List</h5>
+                                <p class="card-text lh-sm text-center" style="font-size: 15px;">Todo app allows you to create unlimited lists for your tasks and goals with ease to manage your task.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6 col-12">
+                        <div class="card w-100">
+                            <div class="card-body px-4 pb-5 pt-5 d-flex flex-column align-items-center justify-content-center gap-1">
+                                <i class="fs-2 mdi mdi-leaf text-success"></i>
+                                <h5 class="card-title mt-2">Check Sound</h5>
+                                <p class="card-text lh-sm text-center" style="font-size: 15px;">Todo app has a sound check feature that when you click for complete your list. It will make a sound.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6 col-12">
+                        <div class="card w-100">
+                            <div class="card-body px-4 pb-5 pt-5 d-flex flex-column align-items-center justify-content-center gap-1">
+                                <i class="fs-2 mdi mdi-leaf text-success"></i>
+                                <h5 class="card-title mt-2">Timeline</h5>
+                                <p class="card-text lh-sm text-center" style="font-size: 15px;">Todo apps have a timeline feature to make it easier for users to know when the list is complete</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
         </div>
         <footer></footer>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
