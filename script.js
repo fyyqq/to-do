@@ -120,7 +120,7 @@ function editTag(event) {
     const description = tagsAndList[tag][2];
 
     const modal_title = parent_modal.children[0].querySelector('input');
-    const modal_category = parent_modal.children[1].querySelector('input');
+    const modal_category = parent_modal.children[1].querySelector('select');
     const modal_description = parent_modal.children[2].querySelector('textarea');
     modal_title.value = title;
     modal_category.value = category;
