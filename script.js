@@ -490,17 +490,24 @@ function findTag(event) {
         return [arr[0], arr[1]];
     });
 
-    if (value.trim() !== '') {
+    if (value.trim()) {
         displayTag(tags, value)
     }
 }
+const clone_tag = tags_container.children[0].cloneNode(true);
 
 function displayTag(tags, value) {
     const filterTags = tags.filter(tag => {
         const tagName = tag[0].toLowerCase();
         return tagName.startsWith(value);
     });
+
     console.log(filterTags);
+    // tags_container.innerHTML = '';
+    // filterTags.forEach(tag => {
+    //     clone_tag.classList.remove('d-none');
+    //     tags_container.append(clone_tag);
+    // });
 }
 
 const stars = document.querySelectorAll('.star_rating');
