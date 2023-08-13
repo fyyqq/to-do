@@ -38,7 +38,13 @@
                                 <a class="nav-link" href="#about">About</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link project" href="./project.html">Project</a>
+                                <a class="nav-link" href="#review">Review</a>
+                            </li>
+                            <li class="nav-item d-md-none d-flex">
+                                <a class="nav-link" href="./project.html">Get Started</a>
+                            </li>
+                            <li class="nav-item ms-md-2 ms-0 mt-md-0 mt-1 d-md-flex d-none">
+                                <a class="nav-link rounded-3" href="./project.html">Get Started</a>
                             </li>
                         </ul>
                     </div>
@@ -148,7 +154,7 @@
                 </div>
             </section>
         </div>
-        <footer>
+        <footer id="review">
             <div class="row mx-0 pt-4 pb-4 px-md-4 px-0">
                 <div class="pb-3 mt-md-0 mt-1 text-center border-bottom">
                     <h1 class="h6 text-success">Review & Rating</h1>
@@ -191,7 +197,7 @@
                             <label for="floatingTextarea2">Review</label>
                         </div>
                         <div class="w-100">
-                            <button class="btn btn-success w-100 rounded-pill shadow-none">Submit</button>
+                            <button class="btn btn-success w-100 rounded-pill shadow-none" onclick="sendMessage()">Submit</button>
                         </div>
                     </div>
                 </div>
@@ -200,6 +206,7 @@
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
         <script src="https://kit.fontawesome.com/5e539df1ae.js" crossorigin="anonymous"></script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
         <script src="script.js"></script>
     </body>
 </html>

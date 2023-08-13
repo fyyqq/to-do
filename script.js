@@ -500,6 +500,7 @@ function displayTag(tags, value) {
         const tagName = tag[0].toLowerCase();
         return tagName.startsWith(value);
     });
+    console.log(filterTags);
 }
 
 const stars = document.querySelectorAll('.star_rating');

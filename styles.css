@@ -169,6 +169,24 @@ body.mode-color .navbar .container-md .navbar-collapse {
     position: relative;
 }
 
+.navbar .container-md .navbar-collapse .navbar-nav .nav-item:last-child .nav-link {
+    width: 110px;
+    text-align: center;
+    background-color: var(--main);
+    color: var(--light);
+    border: 1.5px solid var(--main);
+    transition: all .4s ease-in-out;
+}
+
+.navbar .container-md .navbar-collapse .navbar-nav .nav-item:last-child .nav-link:hover {
+    background-color: transparent;
+    color: var(--main);
+}
+
+.navbar .container-md .navbar-collapse .navbar-nav .nav-item:last-child .nav-link:hover::after {
+    width: 0%;
+}
+
 .navbar .container-md .navbar-collapse .navbar-nav .nav-item .nav-link:hover::after {
     width: 100%;
     transition: width .4s ease;
@@ -498,23 +516,27 @@ body.mode-color #project_section #main #top #recent_tag {
 }
 
 #project_section #main #lists #list_container {
-    height: 550px;
+    height: 400px;
 }
 
 #project_section #main #lists #list_container #new_list_icon {
-    transform: translateY(0px);
+    transform: translateY(30px);
 	animation: float 5s ease-in-out infinite;
+}
+
+#project_section #main #lists #list_container #new_list_icon i {
+    color: var(--main);
 }
 
 @keyframes float {
 	0% {
-		transform: translateY(0px);
+		transform: translateY(30px);
 	}
 	50% {
-		transform: translateY(-20px);
+		transform: translateY(10px);
 	}
 	100% {
-		transform: translateY(0px);
+		transform: translateY(30px);
 	}
 }
 
