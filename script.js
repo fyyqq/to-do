@@ -501,3 +501,15 @@ function displayTag(tags, value) {
         return tagName.startsWith(value);
     });
 }
+
+const stars = document.querySelectorAll('.star_rating');
+stars.forEach(star => {
+    star.addEventListener('click', e => {
+        e.preventDefault();
+
+        const element = $(e.currentTarget);
+        $(element).addClass('active');
+        $(element).prevAll().addClass('active');
+        $(element).nextAll().removeClass('active');
+    });
+});
