@@ -197,7 +197,11 @@ body.mode-color .navbar .container-md .navbar-collapse {
 }
 
 .header {
-    padding-top: 80px;
+    padding-top: 100px;
+    background-image: url('./leaf.png');
+    background-position-y: 25px;
+    background-repeat: no-repeat;
+    background-size: cover; 
 }
 
 .header-container {
@@ -605,6 +609,9 @@ body.mode-color #project_section #main #lists #complete_container #complete_list
     #project_section #main #lists #list_container .mdi-format-list-checks {
         font-size: 40px;
     }
+    .header {
+        background-position: center 25px;
+    }
 }
 
 @media screen and (max-width: 768px) {
@@ -658,6 +665,11 @@ body.mode-color #project_section #main #lists #complete_container #complete_list
     }
     #feature {
         margin-top: 100px;
+    }
+    .header {
+        background-position: -150px 25px;
+        padding-left: 0px;
+        padding-right: 0px;
     }
 }
 
