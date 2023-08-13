@@ -514,3 +514,55 @@ stars.forEach(star => {
         $(element).nextAll().removeClass('active');
     });
 });
+
+
+// (function(){
+//     emailjs.init("51lK1nLrWIcoV6rf_");
+// })();
+
+// function sendMessage() {
+
+//     const name = $('.inputName');
+//     const email = $('.inputEmail');
+//     const message = $('.inputMessage');
+    
+//     var mailValue = $(email).val();
+//     const errElement = $(email).siblings('#error');
+
+//     if (mailValue === '') {
+//         $(email).addClass('border-danger');
+//         $(errElement).removeClass('d-none');
+//         $(errElement).html('Email is Required!');
+
+//         return false;
+//     } else if (!mailValue.includes('@') || !mailValue.includes('.com')) {
+//         $(email).addClass('border-danger');
+//         $(errElement).removeClass('d-none');
+//         $(errElement).html('Enter a valid Email Address!');
+        
+//         return false;
+//     }
+    
+//     const params = {
+//         name: $(name).val(),
+//         email: mailValue,
+//         message: $(message).val(),
+//     };
+    
+//     const serviceID = "service_5q3703o";
+//     const templateID = "template_k52q591";
+    
+//     emailjs.send(serviceID, templateID, params)
+//     .then(res => {
+//         $(name).val('');
+//         $(email).val('');
+//         $(message).val('');
+
+//         if (res.status == 200) {
+//             $(email).removeClass('border-danger');
+//             $(errElement).addClass('d-none');
+//         }
+//     }).catch(err => {
+//         console.error(err);
+//     });
+// }

@@ -18,8 +18,7 @@
 }
 
 body {
-    background-color: #f4f4f4;
-    transition: all .3s ease;
+    background-color: #fff;
 }
 
 .container-checkbox input {
@@ -509,10 +508,12 @@ body.mode-color #project_section #main #top .modal .modal-dialog .modal-content 
     background-color: var(--light);
     width: 250px;
     overflow: hidden;
+    border: 1px solid gainsboro;
 }
 
 body.mode-color #project_section #main #top #recent_tag {
     background-color: var(--dark);
+    border: 1px solid #333;
 }
 
 #project_section #main #lists #list_container {
@@ -547,11 +548,13 @@ body.mode-color #project_section #main #top #recent_tag {
 #project_section #main #lists #list_container .list,
 #project_section #main #lists #complete_container #complete_list_container .list {
     background-color: var(--light);
+    border: 1px solid gainsboro;
 }
 
 body.mode-color #project_section #main #lists #list_container .list,
 body.mode-color #project_section #main #lists #complete_container #complete_list_container .list {
     background-color: var(--dark);
+    border: 1px solid #333;
 }
 
 body.mode-color #project_section #main #lists #list_container .list .col-lg-10 input,
@@ -610,6 +613,12 @@ body.mode-color #project_section #main #lists #complete_container #complete_list
 body.mode-color #project_section #main #lists #list_container .list .col-2 i.mdi,
 body.mode-color #project_section #main #lists #complete_container #complete_list_container .list .col-2 i.mdi {
     color: var(--lightgray);
+}
+
+@media screen and (max-width: 1200px) {
+    .header {
+        background-position: center 25px;
+    }
 }
 
 @media screen and (max-width: 1000px) {
@@ -689,7 +698,7 @@ body.mode-color #project_section #main #lists #complete_container #complete_list
         margin-top: 100px;
     }
     .header {
-        background-position: -150px 25px;
+        background-position: -100px 25px;
         padding-left: 0px;
         padding-right: 0px;
     }
@@ -752,11 +761,13 @@ footer .card #rating_container .star_rating {
     color: #444;
 }
 
-footer .card #rating_container .star_rating.active {
+footer .card #rating_container .star_rating:hover {
     color: var(--main);
+    transform: translateY(-2px);
+    transition: all .3s ease-in-out;
 }
 
-footer .card #rating_container .star_rating:hover {
+footer .card #rating_container .star_rating.active {
     color: var(--main);
 }
 
