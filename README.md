@@ -1,12 +1,16 @@
 # Todo
 
-Deskripsi singkat tentang aplikasi Anda.
+Todo is a todo list application that helps you manage your daily tasks easily and quickly. You can create lists, tags, and tasks with just a few clicks. You can also edit and delete your tasks at any time. Todo has a dark mode feature that protects your eyes from screen glare. This application is also responsive, meaning it can be adjusted to the screen size of your device. With Todo, you never have to worry about forgetting or missing anything again. Todo will remind you of your important tasks and make sure you complete them on time. Todo is the perfect todo list app for you who are busy and productive. Download Todo now and enjoy the convenience and efficiency it offers. Todo the app you need! 😊
 
-## Fitur Utama
+## Feature
 
-- Fitur 1: Deskripsi fitur pertama.
-- Fitur 2: Deskripsi fitur kedua.
-- ...
+- Dark Mode: The application is equipped with a dark mode that makes the user experience more comfortable in low light environments.
+- Tags: Users can add tags to each task to categorize tasks based on specific topics or categories.
+- Task List Management: Users can easily create, read, edit, and delete task lists.
+- User-Friendly Interface: An intuitive interface design allows users to quickly adapt and take advantage of the application's features.
+- Responsive: Applications can be accessed and used smoothly on various devices, including mobile devices.
+- Time Reminder: Each task has a creation timestamp that can help users see when the task was created.
+- Ease of Use: Intuitive and simple interactions allow users to quickly manage their to-do list.
 
 ## Technology In Used
 
@@ -16,7 +20,7 @@ Deskripsi singkat tentang aplikasi Anda.
 - Bootstrap
 - Jquery
 
-## Tampilan Aplikasi
+## Application Display
 
 <img src="https://github.com/fyyqq/to-do/assets/93767398/97571e79-e671-4a83-8bbd-531d29a5ffd7" width="400">
 <img src="https://github.com/fyyqq/to-do/assets/93767398/3f4b300c-e9cd-4935-960e-17d44abbc661" width="400">
@@ -27,6 +31,8 @@ Deskripsi singkat tentang aplikasi Anda.
 <br>
 
 <img src="https://github.com/fyyqq/to-do/assets/93767398/064582a3-5887-4a12-b4e4-8675af98d534" width="600">
+&nbsp
+&nbsp
 <img src="https://github.com/fyyqq/to-do/assets/93767398/acc6faee-d03d-4904-b9bc-7dd2bef62820" width="170">
 
 ## Penggunaan
