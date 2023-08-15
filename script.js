@@ -403,13 +403,13 @@ function createCompleteList(element) {
     parentCheckmark.removeAttribute('title');
     parentCheckmark.setAttribute('title', 'Checked!');
     const parentAction = cloneElement.children[2];
-    parentAction.className += ' flex-row-reverse';
+    parentAction.classList.add('flex-row-reverse');
     parentAction.removeChild(parentAction.children[0]);
     parentAction.removeChild(parentAction.children[0]);
     
     const time = moment().format('MMMM Do YYYY, h:mm:ss a');
     const infoIcon = document.createElement('i');
-    infoIcon.className = 'mdi mdi-information-outline fs-5';
+    infoIcon.className = 'mdi mdi-information-outline fs-5 px-1';
     infoIcon.setAttribute('data-bs-target', 'tooltip');
     infoIcon.setAttribute('title', time);
 

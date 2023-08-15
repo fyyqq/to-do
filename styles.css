@@ -62,7 +62,7 @@ body {
 
 .container-checkbox .checkmark:after {
     left: 9.5px;
-    top: 6px;
+    top: 6.5px;
     width: 6px;
     height: 10px;
     border: solid white;
@@ -711,6 +711,19 @@ body.mode-color #project_section #main #lists #complete_container #complete_list
         padding-left: 0px;
         padding-right: 0px;
     }
+    #project_section #main #top #recent_tag {
+        width: 230px;
+    }
+    .container-checkbox .checkmark {
+        height: 22px;
+        width: 22px;
+    }
+    .container-checkbox .checkmark:after {
+        left: 8px;
+        top: 5.5px;
+        width: 6px;
+        height: 9px;
+    }   
 }
 
 /* Display Mode */
