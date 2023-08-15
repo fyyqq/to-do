@@ -93,8 +93,8 @@ if (createTag != null) {
                 completeListContainer.removeChild(child);
             });
     
-            newListIcon.classList.remove('d-none');
-            newListIcon.classList.add('d-flex');
+            // newListIcon.classList.remove('d-none');
+            // newListIcon.classList.add('d-flex');
             $(listContainer).addClass('align-items-center justify-content-center');
             listContainer.style.height = '550px';
     
@@ -194,8 +194,8 @@ function createRecentTag(rand) {
     
     recent.setAttribute('data-tag', rand);
     
-    const recent_title = recent.children[0].querySelector('#title');
-    const recent_category = recent.children[0].querySelector('#category');
+    const recent_title = recent.querySelector('#title');
+    const recent_category = recent.querySelector('#category');
     
     recent_title.innerHTML = dataTag[0];
     recent_category.innerHTML = dataTag[1];
@@ -218,6 +218,9 @@ function chooseTag(event) {
         tag.classList.remove('border-success');
         tag.querySelector('.mdi-delete-outline').style.display = 'none';
     });
+
+    $('#top').removeClass('justify-content-end');
+    $('#top').addClass('justify-content-between');
     
     event.classList.add('border-success');
     showDeleteTag(event)
@@ -225,11 +228,11 @@ function chooseTag(event) {
     const recent = document.getElementById('recent_tag');
     recent.classList.remove('d-none');
     
-    const title = event.children[0].children[1].querySelector('#title');
-    const category = event.children[0].children[1].querySelector('#category');
+    const title = event.querySelector('#title');
+    const category = event.querySelector('#category');
     
-    const recent_title = recent.children[0].querySelector('#title');
-    const recent_category = recent.children[0].querySelector('#category');
+    const recent_title = recent.querySelector('#title');
+    const recent_category = recent.querySelector('#category');
     recent_title.innerHTML = title.textContent;
     recent_category.innerHTML = category.textContent;
     const rand = event.getAttribute("data-tag");
@@ -265,18 +268,21 @@ if (listContainer != null) {
     listElement = listContainer.querySelector('.list');
 }
 
-function changeTag(tag) {
-    // closeSidebar();
+function clearList() {
     const childLists = listContainer.querySelectorAll('.list');
     childLists.forEach(child => {
         listContainer.removeChild(child);
     });
-
+    
     const childCompletedLists = completeListContainer.querySelectorAll('.list');
     childCompletedLists.forEach(child => {
         completeListContainer.removeChild(child);
     });
-    
+}
+
+function changeTag(tag) {
+    clearList();
+
     const dataTag = tagsAndList[tag][3];
     const uncheckedLists = dataTag.filter(list => {
         return list.status === false;
@@ -299,8 +305,8 @@ function changeTag(tag) {
         cloneList.classList.remove('d-none');
         cloneList.children[1].querySelector('input').value = cList.list;
         checkList(cloneList)
-        cloneList.children[0].querySelector('input').setAttribute('disabled', true);
-        cloneList.children[0].querySelector('.checkmark').style.cursor = 'unset';
+        cloneList.querySelector('input').setAttribute('disabled', true);
+        cloneList.querySelector('.checkmark').style.cursor = 'unset';
         
         const parentChild = cloneList.children[2];
         parentChild.className += ' flex-row-reverse';
@@ -382,7 +388,7 @@ function removeNewIcon() {
 }
 
 function checkList(element) {
-    const checkbox = element.children[0].querySelector('input');
+    const checkbox = element.querySelector('input');
     checkbox.addEventListener('click', event => {
         if (event.target.checked) {
             const element = $(event.target).closest('.list')[0];
@@ -413,8 +419,8 @@ function createCompleteList(element) {
     completeContainer.classList.add('border-top');
     
     const cloneElement = element.cloneNode(true);
-    cloneElement.children[0].querySelector('input').setAttribute('disabled', true);
-    cloneElement.children[0].querySelector('.checkmark').style.cursor = 'unset';
+    cloneElement.querySelector('input').setAttribute('disabled', true);
+    cloneElement.querySelector('.checkmark').style.cursor = 'unset';
     const parentCheckmark = cloneElement.children[0].children[0];
     parentCheckmark.removeAttribute('title');
     parentCheckmark.setAttribute('title', 'Checked!');
@@ -500,10 +506,32 @@ function closeSidebar() {
 
 function deleteTag(event) {
     const tag = $(event).closest('#tag').data('tag');
-    delete tagsAndList[tag];
-    $(event).closest('#tag').remove();
-    
-    $('#recent_tag').remove();
+
+    const swalWithBootstrapButtons = Swal.mixin({
+        customClass: {
+          confirmButton: 'btn btn-danger shadow-none',
+          cancelButton: 'btn btn-secondary shadow-none'
+        },
+        buttonsStyling: false
+    });
+      
+    swalWithBootstrapButtons.fire({
+        icon: 'warning',
+        text: "Are you sure ?",
+        showCancelButton: true,
+        cancelButtonColor: '#d33',
+        confirmButtonColor: '#3085d6',
+        confirmButtonText: 'Delete it!'
+      }).then((result) => {
+            if (result.isConfirmed) {
+                delete tagsAndList[tag];
+                $(event).closest('#tag').remove();
+                $('#recent_tag').addClass('d-none');
+                $('#top').removeClass('justify-content-between');
+                $('#top').addClass('justify-content-end');
+                clearList();
+            }
+      });
 }
 
 function findTag(event) {

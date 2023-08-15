@@ -21,6 +21,19 @@ body {
     background-color: #fff;
 }
 
+body.mode-color .swal2-popup {
+    background-color: var(--gray);
+}
+
+.swal2-popup .swal2-actions {
+    column-gap: 10px;
+    flex-direction: row-reverse;
+}
+
+body.mode-color .swal2-popup .swal2-html-container {
+    color: var(--light);
+}
+
 .container-checkbox input {
     cursor: pointer;
     opacity: 0;
@@ -569,7 +582,6 @@ body.mode-color #project_section #main #top #recent_tag {
 body.mode-color #project_section #main #top #recent_tag::after {
     background: linear-gradient(90deg, rgba(33,33,33, 0.5) 0%, rgba(33,33,33,1) 12%);
 }
-
 
 #project_section #main #top #recent_tag .mdi-open-in-new {
     position: absolute;
