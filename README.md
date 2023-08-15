@@ -33,7 +33,7 @@ Todo is a todo list application that helps you manage your daily tasks easily an
 <img src="https://github.com/fyyqq/to-do/assets/93767398/064582a3-5887-4a12-b4e4-8675af98d534" width="600">
 &nbsp
 &nbsp
-<img src="https://github.com/fyyqq/to-do/assets/93767398/acc6faee-d03d-4904-b9bc-7dd2bef62820" width="170">
+<img src="https://github.com/fyyqq/to-do/assets/93767398/b4e42e8f-7369-4e1e-8163-6200ce0534b9" width="170">
 
 ## Penggunaan
 
