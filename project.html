@@ -29,12 +29,15 @@
                 </div>
                 <div id="tags" class="mt-3 d-flex flex-column gap-2 px-3">
                     <div class="d-flex rounded-3 align-items-center justify-content-center gap-1 flex-column d-none border py-md-0 py-2" id="tag" data-tag="">
-                        <div class="px-3 py-2 w-100 d-flex align-items-center justify-content-start gap-3">
-                            <i class="mdi mdi-leaf text-success fs-4"></i>
-                            <div class="d-flex align-items-start justify-content-start flex-column lh-sm">
-                                <small class="" id="title"></small>
-                                <small class="" id="category" style="font-size: 12px;"></small>
+                        <div class="px-3 py-2 w-100 d-flex align-items-center justify-content-between gap-3 position-relative">
+                            <div class="d-flex align-items-center justify-content-start gap-2">
+                                <i class="mdi mdi-leaf text-success fs-4"></i>
+                                <div class="d-flex align-items-start justify-content-start flex-column lh-sm">
+                                    <small class="" id="title"></small>
+                                    <small class="" id="category" style="font-size: 12px;"></small>
+                                </div>
                             </div>
+                            <i class="mdi mdi-delete-outline" data-bs-target="tooltip" title="Delete" onclick="deleteTag(this)"></i>
                         </div>
                     </div>
                     <div class="rounded position-relative border mb-2" id="createTag" data-bs-toggle="modal" data-bs-target="#createTagModal">
@@ -63,7 +66,7 @@
                     <div class="d-flex align-items-center justify-content-center d-md-none" onclick="openSidebar(this)">
                         <button class="btn btn-success py-2 px-3 shadow-none"><i class="mdi mdi-menu"></i></button>
                     </div>
-                    <div class="px-3 py-2 d-flex align-items-center justify-content-between gap- rounded d-none shadow-sm" id="recent_tag" data-tag="" data-bs-toggle="modal" data-bs-target="#editTagModal" onclick="editTag(this)">
+                    <div class="px-3 py-2 d-flex align-items-center justify-content-between gap- rounded d-none shadow-sm position-relative" id="recent_tag" data-tag="" data-bs-toggle="modal" data-bs-target="#editTagModal" onclick="editTag(this)">
                         <div class="d-flex align-items-center justify-content-start gap-3">
                             <i class="mdi mdi-leaf text-success fs-4"></i>
                             <div class="d-flex align-items-start justify-content-start flex-column lh-sm">
@@ -71,7 +74,7 @@
                                 <small class="" id="category" style="font-size: 12px;"></small>
                             </div>
                         </div>
-                        <i class="mdi mdi-open-in-new text-muted"></i>
+                        <i class="mdi mdi-open-in-new"></i>
                     </div>
                     <!-- Edit & Tag Modal -->
                     <div class="modal fade" id="editTagModal">

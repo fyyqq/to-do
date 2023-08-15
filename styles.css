@@ -313,7 +313,7 @@ body.mode-color .header-container .col div p {
 #project_section #sidebar {
     height: 100%;
     background-color: var(--light);
-    width: 20%;
+    width: 21%;
     z-index: 899;
     position: fixed;
     top: 0;
@@ -367,11 +367,41 @@ body.mode-color #project_section #sidebar #search span input {
     cursor: pointer;
     background-color: var(--light);
     overflow: hidden;
+    position: relative;
+}
+
+#project_section #sidebar #tags #tag:after {
+    content: '';
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    height: 100%;
+    width: 23%;
+    background: linear-gradient(90deg, rgba(255,255,255,0.5) 0%, rgba(255,255,255,1) 12%);
+}
+
+body.mode-color #project_section #sidebar #tags #tag:after {
+    background: linear-gradient(90deg, rgba(33,33,33, 0.5) 0%, rgba(33,33,33,1) 12%);
 }
 
 body.mode-color #project_section #sidebar #tags #tag {
     background-color: var(--dark);
     color: var(--lightgray);
+}
+
+#project_section #sidebar #tags #tag .mdi-delete-outline {
+    position: absolute;
+    top: 50%;
+    right: 16px;
+    transform: translateY(-50%);
+    z-index: 999;
+    font-size: 15px;
+    display: none;
+}
+
+#project_section #sidebar #tags #tag .mdi-delete-outline:hover {
+    color: red;
 }
 
 #project_section #sidebar #tags div .mdi-plus {
@@ -395,7 +425,7 @@ body.mode-color #project_section #sidebar #tags #createTag .mdi-plus {
 }
 
 #project_section #main {
-    width: calc(100% - 21%);
+    width: calc(100% - 22%);
     transition: width .3s ease;
 }
 
@@ -520,10 +550,41 @@ body.mode-color #project_section #main #top .modal .modal-dialog .modal-content 
     border: 1px solid gainsboro;
 }
 
+#project_section #main #top #recent_tag::after {
+    content: '';
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    height: 100%;
+    width: 23%;
+    background: linear-gradient(90deg, rgba(255,255,255,0.5) 0%, rgba(255,255,255,1) 12%);
+}
+
 body.mode-color #project_section #main #top #recent_tag {
     background-color: var(--dark);
     border: 1px solid #333;
 }
+
+body.mode-color #project_section #main #top #recent_tag::after {
+    background: linear-gradient(90deg, rgba(33,33,33, 0.5) 0%, rgba(33,33,33,1) 12%);
+}
+
+
+#project_section #main #top #recent_tag .mdi-open-in-new {
+    position: absolute;
+    top: 50%;
+    right: 16px;
+    transform: translateY(-50%);
+    z-index: 999;
+    color: var(--gray);
+    
+}
+
+body.mode-color #project_section #main #top #recent_tag .mdi-open-in-new {
+    color: var(--lightgray);
+}
+
 
 #project_section #main #lists #list_container {
     height: 400px;
@@ -742,6 +803,7 @@ body.mode-color #project_section #main #lists #complete_container #complete_list
 .lightModeApp {
     background-color: var(--dark);
     color: var(--lightgray);
+    display: none;
 }
 
 body.mode-color {

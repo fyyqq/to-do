@@ -1,4 +1,3 @@
-$('.lightMode').css('display', 'none');
 
 $(document).ready(() => {
     $('.darkModeApp').on('click', function(e) {
@@ -158,6 +157,13 @@ function createTagSidebar(rand) {
     top.classList.remove('justify-content-md-end');
     top.classList.add('justify-content-between');
 
+    const allTag = document.querySelectorAll('#tag');
+    allTag.forEach(tag => {
+        tag.querySelector('.mdi-delete-outline').style.display = 'none';
+    });
+    
+    showDeleteTag(clone_tag)
+
     const dataTag = tagsAndList[rand];
 
     $(createTag).parent().closest('.modal').modal('hide');
@@ -173,6 +179,8 @@ function createTagSidebar(rand) {
     clone_tag.setAttribute('data-tag', rand);
     clone_tag.setAttribute('onclick', 'chooseTag(this)');
     clone_tag.classList.add('border-success');
+
+    showDeleteTag(clone_tag)
 
     tags_container.children[1].style.display = 'none';
     tags_container.prepend(clone_tag);
@@ -197,8 +205,8 @@ function updateSidebarTag(rand) {
     const dataTag = tagsAndList[rand];
 
     const tag = document.querySelector(`[data-tag='${rand}']`);
-    const tag_title = tag.children[0].children[1].querySelector('#title');
-    const tag_category = tag.children[0].children[1].querySelector('#category');
+    const tag_title = tag.querySelector('#title');
+    const tag_category = tag.querySelector('#category');
     
     tag_title.innerHTML = dataTag[0] ;
     tag_category.innerHTML = dataTag[1];
@@ -208,9 +216,11 @@ function chooseTag(event) {
     const tags = document.querySelectorAll('#tag');
     tags.forEach(tag => {
         tag.classList.remove('border-success');
+        tag.querySelector('.mdi-delete-outline').style.display = 'none';
     });
     
     event.classList.add('border-success');
+    showDeleteTag(event)
     
     const recent = document.getElementById('recent_tag');
     recent.classList.remove('d-none');
@@ -237,8 +247,14 @@ function chooseTag(event) {
         $(listContainer).removeClass('align-items-center justify-content-center');
         listContainer.style.height = 'max-content';
     }
+
+    showDeleteTag(event);
     
     changeTag(rand)
+}
+
+function showDeleteTag(element) {
+    element.querySelector('.mdi-delete-outline').style.display = 'block';
 }
 
 const listContainer = document.getElementById('list_container');
@@ -480,6 +496,14 @@ function openSidebar() {
 function closeSidebar() {
     const sidebar = document.getElementById('sidebar');
     sidebar.style.left = '-800px';
+}
+
+function deleteTag(event) {
+    const tag = $(event).closest('#tag').data('tag');
+    delete tagsAndList[tag];
+    $(event).closest('#tag').remove();
+    
+    $('#recent_tag').remove();
 }
 
 function findTag(event) {
