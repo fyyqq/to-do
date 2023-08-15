@@ -588,9 +588,8 @@ body.mode-color #project_section #main #top #recent_tag::after {
     top: 50%;
     right: 16px;
     transform: translateY(-50%);
-    z-index: 999;
+    z-index: 99;
     color: var(--gray);
-    
 }
 
 body.mode-color #project_section #main #top #recent_tag .mdi-open-in-new {
