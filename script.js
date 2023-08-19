@@ -59,7 +59,7 @@ function generateString(length) {
 }
 
 const forms = document.forms;
-const tagsAndList = {}
+const tagAndList = {}
 const tags_container = document.getElementById('tags');
  
 const createTag = forms[1];
@@ -77,7 +77,7 @@ if (createTag != null) {
         if (title.value.trim() != '') {
             
             const rand = generateString(5);
-            tagsAndList[rand] = [title.value, category.value, desc.value, []];
+            tagAndList[rand] = [title.value, category.value, desc.value, []];
             createTagSidebar(rand)
             createRecentTag(rand)
             const createTag = document.getElementById('createMoreTags');
@@ -93,9 +93,6 @@ if (createTag != null) {
             completeListChild.forEach(child => {
                 completeListContainer.removeChild(child);
             });
-    
-            $(listContainer).addClass('align-items-center justify-content-center');
-            listContainer.style.height = '550px';
     
             title.value = '';
             category.value = '';
@@ -113,9 +110,9 @@ function editTag(event) {
     const parent_modal = document.querySelector('#editTagModal .modal-body');
 
     const tag = event.getAttribute('data-tag');
-    const title = tagsAndList[tag][0];
-    const category = tagsAndList[tag][1];
-    const description = tagsAndList[tag][2];
+    const title = tagAndList[tag][0];
+    const category = tagAndList[tag][1];
+    const description = tagAndList[tag][2];
 
     const modal_title = parent_modal.children[0].querySelector('input');
     const modal_category = parent_modal.children[1].querySelector('select');
@@ -135,9 +132,9 @@ if (formEditTag != null) {
         const description = formEditTag['description'];
         
         const tag = document.getElementById('recent_tag').getAttribute('data-tag');
-        tagsAndList[tag][0] = title.value;
-        tagsAndList[tag][1] = category.value;
-        tagsAndList[tag][2] = description.value;
+        tagAndList[tag][0] = title.value;
+        tagAndList[tag][1] = category.value;
+        tagAndList[tag][2] = description.value;
     
         createRecentTag(tag);
         updateSidebarTag(tag);
@@ -151,17 +148,8 @@ function createTagSidebar(rand) {
     tags_container.style.overflowY = 'scroll';
     const tag = document.getElementById('tag');
     const clone_tag = tag.cloneNode(true);
-
-    const top = document.getElementById('recent_tag').parentElement;
-    top.classList.remove('justify-content-md-end');
-    top.classList.add('justify-content-between');
-
-    // const allTag = document.querySelectorAll('#tag');
-    // allTag.forEach(tag => {
-    //     tag.querySelector('.mdi-delete-outline').style.display = 'none';
-    // });
     
-    const dataTag = tagsAndList[rand];
+    const dataTag = tagAndList[rand];
 
     $(createTag).parent().closest('.modal').modal('hide');
     $(clone_tag).removeClass('d-none');
@@ -176,7 +164,6 @@ function createTagSidebar(rand) {
     clone_tag.setAttribute('data-tag', rand);
     clone_tag.classList.add('active');
 
-    tags_container.children[1].style.display = 'none';
     tags_container.prepend(clone_tag);
 }
 
@@ -185,8 +172,8 @@ function createRecentTag(rand) {
     const recent = document.getElementById('recent_tag');
     recent.classList.remove('d-none');
 
-    const dataTag = tagsAndList[rand];
-    
+    const dataTag = tagAndList[rand];    
+
     recent.setAttribute('data-tag', rand);
     
     const recent_title = recent.querySelector('#title');
@@ -197,7 +184,7 @@ function createRecentTag(rand) {
 }
 
 function updateSidebarTag(rand) {
-    const dataTag = tagsAndList[rand];
+    const dataTag = tagAndList[rand];
 
     const tag = document.querySelector(`[data-tag='${rand}']`);
     const tag_title = tag.querySelector('#title');
@@ -234,19 +221,6 @@ function chooseTag(event) {
     recent.setAttribute('data-tag', rand);
     latestTag = rand;
 
-    const dataTag = tagsAndList[rand][3];
-    if (dataTag === undefined || dataTag.length == 0) {
-        newListIcon.classList.remove('d-none');
-        newListIcon.classList.add('d-flex');
-        $(listContainer).addClass('align-items-center justify-content-center');
-        listContainer.style.height = '550px';
-    } else {
-        newListIcon.classList.remove('d-flex');
-        newListIcon.classList.add('d-none');
-        $(listContainer).removeClass('align-items-center justify-content-center');
-        listContainer.style.height = 'max-content';
-    }
-
     changeTag(rand)
 }
 
@@ -272,8 +246,9 @@ function clearList() {
 
 function changeTag(tag) {
     clearList();
+    const time = moment().calendar();
 
-    const dataTag = tagsAndList[tag][3];
+    const dataTag = tagAndList[tag][3];
     const uncheckedLists = dataTag.filter(list => {
         return list.status === false;
     });
@@ -282,6 +257,7 @@ function changeTag(tag) {
         const cloneList = listElement.cloneNode(true);
         cloneList.classList.remove('d-none');
         cloneList.children[1].querySelector('input').value = cList.list;
+        cloneList.querySelector('#timeline').innerHTML = `Created: ${time}`;
         checkList(cloneList)
         listContainer.append(cloneList);
     });
@@ -297,22 +273,13 @@ function changeTag(tag) {
         checkList(cloneList)
         cloneList.querySelector('input').setAttribute('disabled', true);
         cloneList.querySelector('.checkmark').style.cursor = 'unset';
-        
-        const parentChild = cloneList.children[2];
-        parentChild.className += ' flex-row-reverse';
-        parentChild.removeChild(parentChild.children[0]);
 
         const checkmark = cloneList.children[0].children[0].children[1];
         checkmark.style.backgroundColor = 'rgb(77, 184, 148)';
         checkmark.className += ' active';
 
-        const time = moment().format('MMMM Do YYYY, h:mm:ss a');
-        const infoIcon = document.createElement('i');
-        infoIcon.className = 'mdi mdi-information-outline fs-5';
-        infoIcon.setAttribute('data-bs-target', 'tooltip');
-        infoIcon.setAttribute('title', time);
+        cloneList.querySelector('#timeline').innerHTML = `Completed: ${time}`;
 
-        parentChild.append(infoIcon);
         completeListContainer.prepend(cloneList);
     });
 }
@@ -324,8 +291,6 @@ if (createList != null) {
     postIcon = createList.childNodes[1].querySelector('i');
     loader = createList.childNodes[1].querySelector('.custom-loader');
 }
-const newListIcon = document.getElementById('new_list_icon');
-
 const input = document.getElementById('create_list_bar');
 if (createList != null) {
     createList.addEventListener('submit', event => {
@@ -341,10 +306,8 @@ if (createList != null) {
             $(loader).removeClass('d-none');
             const time = moment().calendar();
             setTimeout(() => {
-                removeNewIcon();
                 $(loader).addClass('d-none');
                 const cloneList = listElement.cloneNode(true);
-                cloneList.classList.remove('d-none');
                 cloneList.querySelector('.col-lg-10').querySelector('input').value = inputFilled.value;
                 cloneList.querySelector('#timeline').innerHTML = `Created: ${time}`;
     
@@ -363,20 +326,12 @@ if (createList != null) {
             }
             
             const recent = document.getElementById('recent_tag').getAttribute('data-tag');
-            tagsAndList[recent][3].push(data);
+            tagAndList[recent][3].push(data);
         } else {
             return false;
         }
     
     });
-}
-
-function removeNewIcon() {
-    newListIcon.classList.remove('d-flex');
-    newListIcon.classList.add('d-none');
-    listContainer.classList.remove('justify-content-center');
-    listContainer.classList.remove('align-items-center');
-    listContainer.style.height = "max-content";
 }
 
 function checkList(element) {
@@ -391,8 +346,8 @@ function checkList(element) {
             createCompleteList(element)
 
             const dataTag = document.getElementById('recent_tag').getAttribute('data-tag');
-            const valueToChecked = $(event.currentTarget).closest('.col-2').next().children('input').val();
-            const lists = tagsAndList[dataTag][3];
+            const valueToChecked = $(event.currentTarget).closest('.col-2').next().children().children('input').val();
+            const lists = tagAndList[dataTag][3];
 
             let index = lists.indexOf(lists.find(item => item.list === valueToChecked));
             
@@ -418,7 +373,6 @@ function createCompleteList(element) {
     parentCheckmark.setAttribute('title', 'Checked!');
     
     const time = moment().calendar();
-    cloneElement.querySelector('#timeline').style.color = 'rgb(232, 6, 6)';
     cloneElement.querySelector('#timeline').innerHTML = `Completed: ${time}`;
 
     completeListContainer.prepend(cloneElement);
@@ -448,7 +402,7 @@ function editList(event) {
 function saveList(event) {
     const recent_tag = document.getElementById('recent_tag').getAttribute('data-tag');
     const valueToUpdate = $(event).parent().prev().children().children('input').val();
-    const lists = tagsAndList[recent_tag][3];
+    const lists = tagAndList[recent_tag][3];
 
     let index = lists.indexOf(lists.find(item => item.list === inputValue));
      
@@ -466,8 +420,8 @@ function saveList(event) {
 
 function delList(event) {
     const recent_tag = document.getElementById('recent_tag').getAttribute('data-tag');
-    const valueToDelete = $(event).parent().prev().children().val();
-    const lists = tagsAndList[recent_tag][3];
+    const valueToDelete = $(event).parent().prev().children().children('input').val();
+    const lists = tagAndList[recent_tag][3];
 
     let index = lists.indexOf(lists.find(item => item.list === valueToDelete));
      
@@ -509,7 +463,7 @@ function deleteTag(event) {
         confirmButtonText: 'Delete it!'
       }).then((result) => {
             if (result.isConfirmed) {
-                delete tagsAndList[tag];
+                delete tagAndList[tag];
                 $(event).closest('#tag').remove();
                 $('#recent_tag').addClass('d-none');
                 $('#top').removeClass('justify-content-between');
@@ -522,7 +476,7 @@ function deleteTag(event) {
 function findTag(event) {
     const value = event.value.toLowerCase();
     
-    const tagValues = Object.entries(tagsAndList);
+    const tagValues = Object.entries(tagAndList);
     const getValue = tagValues.map(tag => {
         return [tag[0], tag[1][0], tag[1][1]];
     });
@@ -556,7 +510,7 @@ function displayTag(tags) {
     
     const clone_tag = resetTag();
     
-    if (tags.length < 1) {
+    if (tags.length < 1 && Object.keys(tagAndList).length != 0) {
         clone_tag.classList.remove('d-none')
         clone_tag.querySelector('#title').innerHTML = 'No Tag Found!';
         clone_tag.removeAttribute('onclick');
@@ -589,4 +543,3 @@ stars.forEach(star => {
         $(element).nextAll().removeClass('active');
     });
 });
-

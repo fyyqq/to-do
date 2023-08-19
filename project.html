@@ -40,9 +40,6 @@
                             <i class="mdi mdi-delete-outline" data-bs-target="tooltip" title="Delete" onclick="deleteTag(this)"></i>
                         </div>
                     </div>
-                    <div class="rounded border position-relative" id="createTag" data-bs-toggle="modal" data-bs-target="#createTagModal">
-                        <i class="mdi mdi-plus position-absolute fs-4"></i>
-                    </div>
                     <div class="d-flex rounded-3 align-items-center justify-content-center border d-none" style="cursor: pointer;" data-bs-toggle="modal" data-bs-target="#createTagModal" id="createMoreTags">
                         <div class="d-flex align-items-center justify-content-center py-md-3 py-4">
                             <i class="fa-solid fa-plus"></i>
@@ -60,13 +57,13 @@
                     </span>
                 </div>
             </nav>
-            <div class="ps-md-4 ps-3 pe-4 ms-auto position-relative" id="main">
+            <div class="px-md-4 px-2 ms-auto position-relative" id="main">
                 <!-- Top -->
-                <div class="pt-md-4 pt-3 pb-3 mb-2 w-100 d-flex align-items-center justify-content-md-end justify-content-between flex-md-row flex-row-reverse w-100 border-bottom" id="top">
+                <div class="pt-md-4 pt-3 pb-3 mb-2 w-100 d-flex align-items-center justify-content-between flex-md-row flex-row-reverse w-100 border-bottom" id="top">
                     <div class="d-flex align-items-center justify-content-center d-md-none" onclick="openSidebar(this)">
                         <button class="btn btn-success py-2 px-3 shadow-none"><i class="mdi mdi-menu"></i></button>
                     </div>
-                    <div class="px-3 py-2 d-flex align-items-center justify-content-between gap- rounded d-none shadow-sm position-relative" id="recent_tag" data-tag="" data-bs-toggle="modal" data-bs-target="#editTagModal" onclick="editTag(this)">
+                    <div class="px-3 py-2 d-flex align-items-center justify-content-between rounded shadow-sm position-relative" id="recent_tag" data-tag="" data-bs-toggle="modal" data-bs-target="#editTagModal" onclick="editTag(this)">
                         <div class="d-flex align-items-center justify-content-start gap-3">
                             <i class="mdi mdi-leaf text-success fs-4"></i>
                             <div class="d-flex align-items-start justify-content-start flex-column lh-sm">
@@ -165,14 +162,14 @@
                     <div class="d-md-flex align-items-center justify-content-end gap-1 d-none">
                         <button class="btn btn-success shadow-none py-2 px-3" data-bs-toggle="modal" data-bs-target="#createTagModal"><i class="fa-solid fa-plus" style="font-size: 14px;"></i></button>
                     </div>
+                    <div class="d-flex align-items-center justify-content-end gap-1 d-md-none">
+                        <button class="btn btn-success shadow-none py-2 px-3" data-bs-toggle="modal" data-bs-target="#createTagModal"><i class="fa-solid fa-plus" style="font-size: 14px;"></i></button>
+                    </div>
                 </div>
                 <!-- Middle -->
                 <div class="rounded-0 d-flex flex-column gap-2 w-100" id="lists">
                     <div class="d-flex flex-column justify-content-center align-items-center w-100 gap-2" id="list_container">
-                        <div class="d-flex align-items-center justify-content-center" id="new_list_icon">
-                            <i class="mdi mdi-format-list-checks"></i>
-                        </div>
-                        <div class="row mx-0 rounded-3 list py-md-4 py-3 px-3 d-none w-100 shadow-sm">
+                        <div class="row mx-0 rounded-3 list py-md-4 py-3 px-3 w-100 shadow-sm">
                             <div class="col-md-1 col-2 d-flex align-items-center justify-content-center position-relative">
                                 <label class="container-checkbox" data-bs-target="tooltip" title="Check">
                                     <input type="checkbox">
@@ -181,8 +178,8 @@
                             </div>
                             <div class="col-lg-10 col-md-9 col-8 d-flex align-items-center justify-content-center ps-lg-2 ps-0">
                                 <div class="d-flex flex-column w-100 lh-1 ps-2">
-                                    <input type="text" name="" id="" class="form-control shadow-none border-0 ps-0 pb-1 pt-0" value="Morning" readonly>
-                                    <small class="fw-bold fst-italic" id="timeline" style="font-size: 11.5px;"></small>
+                                    <input type="text" name="" id="" class="form-control shadow-none border-0 ps-0 pb-1 pt-0" value="Welcome to Todo!" readonly>
+                                    <small class="fw-bold fst-italic" id="timeline" style="font-size: 11.5px;">Timeline</small>
                                 </div>
                             </div>
                             <div class="col-lg-1 col-2 d-flex align-items-center justify-content-center gap-2">
