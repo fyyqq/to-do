@@ -209,6 +209,7 @@ function updateSidebarTag(rand) {
 
 let latestTag;
 function chooseTag(event) {
+    document.getElementById('sidebar').classList.remove('active');
     const tags = document.querySelectorAll('#tag');
     const recent = document.getElementById('recent_tag');
     tags.forEach(tag => {
@@ -483,12 +484,12 @@ function delList(event) {
 
 function openSidebar() {
     const sidebar = document.getElementById('sidebar');
-    sidebar.style.left = '0px';
+    sidebar.classList.add('active');
 }
 
 function closeSidebar() {
     const sidebar = document.getElementById('sidebar');
-    sidebar.style.left = '-800px';
+    sidebar.classList.remove('active');
 }
 
 function deleteTag(event) {

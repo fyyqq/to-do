@@ -782,6 +782,9 @@ body.mode-color #project_section #main #lists #complete_container #complete_list
         left: -800px;
         transition: left .5s ease;
     }
+    #project_section #sidebar.active {
+        left: 0px;
+    }
     #project_section #main #insert {
         width: 90%;
         bottom: 25px;
