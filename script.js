@@ -416,9 +416,6 @@ function createCompleteList(element) {
     const parentCheckmark = cloneElement.children[0].children[0];
     parentCheckmark.removeAttribute('title');
     parentCheckmark.setAttribute('title', 'Checked!');
-    const parentAction = cloneElement.children[2];
-    parentAction.removeChild(parentAction.children[0]);
-    parentAction.removeChild(parentAction.children[1]);
     
     const time = moment().calendar();
     cloneElement.querySelector('#timeline').style.color = 'rgb(232, 6, 6)';
@@ -438,7 +435,7 @@ function createListInput(event) {
 let inputValue;
 
 function editList(event) {
-    const input = $(event).parent().prev().children('input');
+    const input = $(event).parent().prev().children().children('input');
     const valueToEdit = $(input).val();
     inputValue = valueToEdit;
     $(input).removeAttr('readonly', true);
@@ -450,7 +447,7 @@ function editList(event) {
 
 function saveList(event) {
     const recent_tag = document.getElementById('recent_tag').getAttribute('data-tag');
-    const valueToUpdate = $(event).parent().prev().children().val();
+    const valueToUpdate = $(event).parent().prev().children().children('input').val();
     const lists = tagsAndList[recent_tag][3];
 
     let index = lists.indexOf(lists.find(item => item.list === inputValue));
@@ -460,7 +457,7 @@ function saveList(event) {
         dataValue.list = valueToUpdate;
     }
 
-    const input = $(event).parent().prev().children('input');
+    const input = $(event).parent().prev().children().children('input');
     $(input).attr('readonly', true);
     
     $(event).addClass('d-none');

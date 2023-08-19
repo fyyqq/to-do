@@ -698,6 +698,10 @@ body.mode-color #project_section #main #lists #complete_container #complete_list
     font-size: 14px;
 }
 
+#project_section #main #lists #complete_container #complete_list_container .list .col-lg-10 input {
+    background-color: gainsboro;
+}
+
 #project_section #main #lists #list_container .list .col-lg-10 input:read-only,
 #project_section #main #lists #complete_container #complete_list_container .list .col-lg-10 input:read-only {
     background-color: transparent;
