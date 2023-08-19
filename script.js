@@ -338,12 +338,14 @@ if (createList != null) {
             $(inputFilled).siblings().attr('disabled', true);
             $(postIcon).hide();
             $(loader).removeClass('d-none');
+            const time = moment().calendar();
             setTimeout(() => {
                 removeNewIcon();
                 $(loader).addClass('d-none');
                 const cloneList = listElement.cloneNode(true);
                 cloneList.classList.remove('d-none');
-                cloneList.querySelector('.col-lg-10').children[0].value = inputFilled.value;
+                cloneList.querySelector('.col-lg-10').querySelector('input').value = inputFilled.value;
+                cloneList.querySelector('#timeline').innerHTML = `Created: ${time}`;
     
                 checkList(cloneList)
     
@@ -414,17 +416,13 @@ function createCompleteList(element) {
     parentCheckmark.removeAttribute('title');
     parentCheckmark.setAttribute('title', 'Checked!');
     const parentAction = cloneElement.children[2];
-    parentAction.classList.add('flex-row-reverse');
     parentAction.removeChild(parentAction.children[0]);
-    parentAction.removeChild(parentAction.children[0]);
+    parentAction.removeChild(parentAction.children[1]);
     
-    const time = moment().format('MMMM Do YYYY, h:mm:ss a');
-    const infoIcon = document.createElement('i');
-    infoIcon.className = 'mdi mdi-information-outline fs-5 px-1';
-    infoIcon.setAttribute('data-bs-target', 'tooltip');
-    infoIcon.setAttribute('title', time);
+    const time = moment().calendar();
+    cloneElement.querySelector('#timeline').style.color = 'rgb(232, 6, 6)';
+    cloneElement.querySelector('#timeline').innerHTML = `Completed: ${time}`;
 
-    parentAction.append(infoIcon);
     completeListContainer.prepend(cloneElement);
 }
 

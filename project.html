@@ -172,7 +172,7 @@
                         <div class="d-flex align-items-center justify-content-center" id="new_list_icon">
                             <i class="mdi mdi-format-list-checks"></i>
                         </div>
-                        <div class="row mx-0 rounded-3 list py-md-4 py-3 px-3 d-none shadow-sm">
+                        <div class="row mx-0 rounded-3 list py-md-4 py-3 px-3 d-none w-100 shadow-sm">
                             <div class="col-md-1 col-2 d-flex align-items-center justify-content-center position-relative">
                                 <label class="container-checkbox" data-bs-target="tooltip" title="Check">
                                     <input type="checkbox">
@@ -180,7 +180,10 @@
                                 </label>
                             </div>
                             <div class="col-lg-10 col-md-9 col-8 d-flex align-items-center justify-content-center ps-lg-2 ps-0">
-                                <input type="text" name="" id="" class="form-control shadow-none border-0" value="" readonly>
+                                <div class="d-flex flex-column w-100 lh-1 ps-2">
+                                    <input type="text" name="" id="" class="form-control shadow-none border-0 ps-0 pb-1 pt-0" value="Morning" readonly>
+                                    <small class="fw-bold fst-italic" id="timeline" style="font-size: 11.5px;"></small>
+                                </div>
                             </div>
                             <div class="col-lg-1 col-2 d-flex align-items-center justify-content-center gap-2">
                                 <span class="px-1" onclick="editList(this)">

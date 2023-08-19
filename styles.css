@@ -658,6 +658,11 @@ body.mode-color #project_section #main #lists #complete_container #complete_list
     background-color: transparent;
 }
 
+#project_section #main #lists #list_container .list .col-lg-10 #timeline,
+#project_section #main #lists #complete_container #complete_list_container .list .col-lg-10 #timeline {
+    color: var(--main);
+}
+
 body.mode-color #project_section #main #lists #list_container .list .col-2 .mdi-delete-outline:hover,
 body.mode-color #project_section #main #lists #complete_container #complete_list_container .list .col-2 .mdi-delete-outline:hover,
 #project_section #main #lists #list_container .list .col-2 .mdi-delete-outline:hover,
