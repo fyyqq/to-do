@@ -156,13 +156,11 @@ function createTagSidebar(rand) {
     top.classList.remove('justify-content-md-end');
     top.classList.add('justify-content-between');
 
-    const allTag = document.querySelectorAll('#tag');
-    allTag.forEach(tag => {
-        tag.querySelector('.mdi-delete-outline').style.display = 'none';
-    });
+    // const allTag = document.querySelectorAll('#tag');
+    // allTag.forEach(tag => {
+    //     tag.querySelector('.mdi-delete-outline').style.display = 'none';
+    // });
     
-    showDeleteTag(clone_tag)
-
     const dataTag = tagsAndList[rand];
 
     $(createTag).parent().closest('.modal').modal('hide');
@@ -177,8 +175,6 @@ function createTagSidebar(rand) {
     clone_tag.querySelector('#category').textContent = dataTag[1]
     clone_tag.setAttribute('data-tag', rand);
     clone_tag.classList.add('active');
-
-    showDeleteTag(clone_tag)
 
     tags_container.children[1].style.display = 'none';
     tags_container.prepend(clone_tag);
@@ -211,19 +207,18 @@ function updateSidebarTag(rand) {
     tag_category.innerHTML = dataTag[1];
 }
 
+let latestTag;
 function chooseTag(event) {
     const tags = document.querySelectorAll('#tag');
     const recent = document.getElementById('recent_tag');
     tags.forEach(tag => {
         tag.classList.remove('active');
-        tag.querySelector('.mdi-delete-outline').style.display = 'none';
     });
 
     $('#top').removeClass('justify-content-end');
     $('#top').addClass('justify-content-between');
     
     event.classList.add('active');
-    showDeleteTag(event)
     
     recent.classList.remove('d-none');
     
@@ -236,6 +231,7 @@ function chooseTag(event) {
     recent_category.innerHTML = category.textContent;
     const rand = event.getAttribute("data-tag");
     recent.setAttribute('data-tag', rand);
+    latestTag = rand;
 
     const dataTag = tagsAndList[rand][3];
     if (dataTag === undefined || dataTag.length == 0) {
@@ -250,13 +246,7 @@ function chooseTag(event) {
         listContainer.style.height = 'max-content';
     }
 
-    showDeleteTag(event);
-    
     changeTag(rand)
-}
-
-function showDeleteTag(element) {
-    element.querySelector('.mdi-delete-outline').style.display = 'block';
 }
 
 const listContainer = document.getElementById('list_container');
@@ -536,7 +526,6 @@ function deleteTag(event) {
 function findTag(event) {
     const value = event.value.toLowerCase();
     
-    // const tagValues = Object.values(tagsAndList);
     const tagValues = Object.entries(tagsAndList);
     const getValue = tagValues.map(tag => {
         return [tag[0], tag[1][0], tag[1][1]];
@@ -550,15 +539,7 @@ function findTag(event) {
     if (value.trim()) {
         displayTag(matchingValue)
     } else {
-        const clone_tag = resetTag();
-        matchingValue.forEach(tag => {
-            clone_tag.classList.remove('d-none');
-            clone_tag.querySelector('#title').innerHTML = tag[1];
-            clone_tag.querySelector('#category').innerHTML = tag[2];
-            clone_tag.classList.remove('active');
-            clone_tag.setAttribute('data-tag', tag[0]);
-            tags_container.insertAdjacentHTML('afterbegin', clone_tag.outerHTML);
-        });
+        displayTag(matchingValue)
     }
 }
 
@@ -589,8 +570,13 @@ function displayTag(tags) {
             clone_tag.classList.remove('d-none')
             clone_tag.querySelector('#title').innerHTML = tag[1];
             clone_tag.querySelector('#category').innerHTML = tag[2];
-            clone_tag.classList.remove('active');
             clone_tag.setAttribute('data-tag', tag[0]);
+            const dataTag = latestTag != undefined ? latestTag : $('#recent_tag').data('tag');
+            if (clone_tag.getAttribute('data-tag') !== dataTag) {
+                clone_tag.classList.remove('active');
+            } else {
+                clone_tag.classList.add('active');
+            }
             tags_container.insertAdjacentHTML('afterbegin', clone_tag.outerHTML);
         });
     }

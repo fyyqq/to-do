@@ -23,7 +23,7 @@
                 </div>
                 <div class="px-3 mt-3" id="search">
                     <span class="position-relative">
-                        <input type="text" name="" id="searchTag" class="shadow-none form-control box-shadow" onkeyup="findTag(this)">
+                        <input type="text" name="" id="searchTag" class="shadow-none form-control box-shadow" onkeyup="findTag(this)" autocomplete="off">
                         <i class="mdi mdi-magnify fs-6 position-absolute start-0"></i>
                     </span>
                 </div>
@@ -204,7 +204,7 @@
                 <div class="" id="insert">
                     <form action="/postList" method="post">
                         <div class="btn-group w-100 rounded-pill">
-                            <input type="text" name="create" id="create_list_bar" class="form-control shadow-none ps-4 pe-3" placeholder="Take a shower" autocomplete="off" onkeyup="createListInput(this)" autofocus style="border-top-right-radius: 0px; border-bottom-right-radius: 0px;">
+                            <input type="text" name="create" id="create_list_bar" class="form-control shadow-none ps-4 pe-3" placeholder="Start Your Day..." autocomplete="off" onkeyup="createListInput(this)" autofocus style="border-top-right-radius: 0px; border-bottom-right-radius: 0px;">
                             <button type="submit" class="btn btn-success shadow-none px-4" disabled>
                                 <i class="mdi mdi-arrow-up-circle"></i>
                                 <div class="custom-loader d-none"></div>

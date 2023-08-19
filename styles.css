@@ -421,6 +421,10 @@ body.mode-color #project_section #sidebar #tags #tag {
     display: none;
 }
 
+#project_section #sidebar #tags #tag.active .mdi-delete-outline {
+    display: block;
+}
+
 #project_section #sidebar #tags #tag .mdi-delete-outline:hover {
     color: red;
 }
