@@ -67,7 +67,8 @@ const createTag = forms[1];
 if (createTag != null) {
     createTag.addEventListener('submit', event => {
         event.preventDefault();
-        tags_container.style.paddingBottom = '2.8rem';
+
+        tags_container.style.overflowY = 'scroll';
         
         const title = createTag['title'];
         const category = createTag['category'];
@@ -93,8 +94,6 @@ if (createTag != null) {
                 completeListContainer.removeChild(child);
             });
     
-            // newListIcon.classList.remove('d-none');
-            // newListIcon.classList.add('d-flex');
             $(listContainer).addClass('align-items-center justify-content-center');
             listContainer.style.height = '550px';
     
@@ -171,20 +170,20 @@ function createTagSidebar(rand) {
 
     const tags = document.querySelectorAll('#tag');
     tags.forEach(tag => {
-        tag.classList.remove('border-success');
+        tag.classList.remove('active');
     });
 
     clone_tag.querySelector('#title').textContent = dataTag[0];
     clone_tag.querySelector('#category').textContent = dataTag[1]
     clone_tag.setAttribute('data-tag', rand);
-    clone_tag.setAttribute('onclick', 'chooseTag(this)');
-    clone_tag.classList.add('border-success');
+    clone_tag.classList.add('active');
 
     showDeleteTag(clone_tag)
 
     tags_container.children[1].style.display = 'none';
     tags_container.prepend(clone_tag);
 }
+
 
 function createRecentTag(rand) {
     const recent = document.getElementById('recent_tag');
@@ -214,18 +213,18 @@ function updateSidebarTag(rand) {
 
 function chooseTag(event) {
     const tags = document.querySelectorAll('#tag');
+    const recent = document.getElementById('recent_tag');
     tags.forEach(tag => {
-        tag.classList.remove('border-success');
+        tag.classList.remove('active');
         tag.querySelector('.mdi-delete-outline').style.display = 'none';
     });
 
     $('#top').removeClass('justify-content-end');
     $('#top').addClass('justify-content-between');
     
-    event.classList.add('border-success');
+    event.classList.add('active');
     showDeleteTag(event)
     
-    const recent = document.getElementById('recent_tag');
     recent.classList.remove('d-none');
     
     const title = event.querySelector('#title');
@@ -536,30 +535,65 @@ function deleteTag(event) {
 
 function findTag(event) {
     const value = event.value.toLowerCase();
+    
+    // const tagValues = Object.values(tagsAndList);
+    const tagValues = Object.entries(tagsAndList);
+    const getValue = tagValues.map(tag => {
+        return [tag[0], tag[1][0], tag[1][1]];
+    });
 
-    const objectValue = Object.values(tagsAndList);
-    let tags = objectValue.map(arr => {
-        return [arr[0], arr[1]];
+    const matchingValue = getValue.filter(tag => {
+        const tagValue = tag[1].toLowerCase();
+        return tagValue.startsWith(value);
     });
 
     if (value.trim()) {
-        displayTag(tags, value)
+        displayTag(matchingValue)
+    } else {
+        const clone_tag = resetTag();
+        matchingValue.forEach(tag => {
+            clone_tag.classList.remove('d-none');
+            clone_tag.querySelector('#title').innerHTML = tag[1];
+            clone_tag.querySelector('#category').innerHTML = tag[2];
+            clone_tag.classList.remove('active');
+            clone_tag.setAttribute('data-tag', tag[0]);
+            tags_container.insertAdjacentHTML('afterbegin', clone_tag.outerHTML);
+        });
     }
 }
 
-function displayTag(tags, value) {
-    const clone_tag = tags_container.children[0].cloneNode(true);
-    const filterTags = tags.filter(tag => {
-        const tagName = tag[0].toLowerCase();
-        return tagName.startsWith(value);
+function resetTag() {
+    const allTag = tags_container.querySelectorAll('#tag');
+    const lastTag = allTag[allTag.length - 1];
+    
+    allTag.forEach(tag => {
+        tags_container.removeChild(tag);
     });
+    
+    tags_container.prepend(lastTag); 
+    
+    return tags_container.children[0].cloneNode(true);
+}
 
-    console.log(filterTags);
-    // tags_container.innerHTML = '';
-    // filterTags.forEach(tag => {
-    //     clone_tag.classList.remove('d-none');
-    //     tags_container.append(clone_tag);
-    // });
+function displayTag(tags) {
+    
+    const clone_tag = resetTag();
+    
+    if (tags.length < 1) {
+        clone_tag.classList.remove('d-none')
+        clone_tag.querySelector('#title').innerHTML = 'No Tag Found!';
+        clone_tag.removeAttribute('onclick');
+        tags_container.insertAdjacentHTML('afterbegin', clone_tag.outerHTML);
+    } else {
+        tags.forEach(tag => {
+            clone_tag.classList.remove('d-none')
+            clone_tag.querySelector('#title').innerHTML = tag[1];
+            clone_tag.querySelector('#category').innerHTML = tag[2];
+            clone_tag.classList.remove('active');
+            clone_tag.setAttribute('data-tag', tag[0]);
+            tags_container.insertAdjacentHTML('afterbegin', clone_tag.outerHTML);
+        });
+    }
 }
 
 const stars = document.querySelectorAll('.star_rating');
@@ -574,54 +608,3 @@ stars.forEach(star => {
     });
 });
 
-
-// (function(){
-//     emailjs.init("51lK1nLrWIcoV6rf_");
-// })();
-
-// function sendMessage() {
-
-//     const name = $('.inputName');
-//     const email = $('.inputEmail');
-//     const message = $('.inputMessage');
-    
-//     var mailValue = $(email).val();
-//     const errElement = $(email).siblings('#error');
-
-//     if (mailValue === '') {
-//         $(email).addClass('border-danger');
-//         $(errElement).removeClass('d-none');
-//         $(errElement).html('Email is Required!');
-
-//         return false;
-//     } else if (!mailValue.includes('@') || !mailValue.includes('.com')) {
-//         $(email).addClass('border-danger');
-//         $(errElement).removeClass('d-none');
-//         $(errElement).html('Enter a valid Email Address!');
-        
-//         return false;
-//     }
-    
-//     const params = {
-//         name: $(name).val(),
-//         email: mailValue,
-//         message: $(message).val(),
-//     };
-    
-//     const serviceID = "service_5q3703o";
-//     const templateID = "template_k52q591";
-    
-//     emailjs.send(serviceID, templateID, params)
-//     .then(res => {
-//         $(name).val('');
-//         $(email).val('');
-//         $(message).val('');
-
-//         if (res.status == 200) {
-//             $(email).removeClass('border-danger');
-//             $(errElement).addClass('d-none');
-//         }
-//     }).catch(err => {
-//         console.error(err);
-//     });
-// }
