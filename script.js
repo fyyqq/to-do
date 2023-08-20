@@ -61,6 +61,7 @@ function generateString(length) {
 const forms = document.forms;
 const tagAndList = {}
 const tags_container = document.getElementById('tags');
+const insertForm = document.getElementById('insert');
  
 const createTag = forms[1];
 
@@ -96,8 +97,7 @@ if (createTag != null) {
             category.value = '';
             desc.value = '';
             
-            const insertForm = document.getElementById('insert');
-            insertForm.style.display = 'block';
+            $(insertForm).show();
         } else {
             return false;
         }
@@ -166,11 +166,12 @@ function createTagSidebar(rand) {
     tags_container.prepend(clone_tag);
 }
 
+const noTag = $('#notag');
 
 function createRecentTag(rand) {
     const recent = document.getElementById('recent_tag');
     recent.classList.remove('d-none');
-    $(recent).prev('#notag').remove();
+    $(noTag).hide();
 
     const dataTag = tagAndList[rand];    
 
@@ -220,6 +221,8 @@ function chooseTag(event) {
     const rand = event.getAttribute("data-tag");
     recent.setAttribute('data-tag', rand);
     latestTag = rand;
+
+    $(noTag).hide();
 
     changeTag(rand)
 }
@@ -469,6 +472,12 @@ function deleteTag(event) {
                 $('#top').removeClass('justify-content-between');
                 $('#top').addClass('justify-content-end');
                 clearList();
+                $(insertForm).hide();
+                if (Object.keys(tagAndList).length < 1) {
+                    $(noTag).text('No tag exists!').show();
+                } else {
+                    $(noTag).text('No tag selected!').show();
+                }
             }
       });
 }
