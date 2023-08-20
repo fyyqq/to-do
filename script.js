@@ -260,7 +260,7 @@ function changeTag(tag) {
         const cloneList = listElement.cloneNode(true);
         cloneList.classList.remove('d-none');
         cloneList.children[1].querySelector('input').value = cList.list;
-        cloneList.querySelector('#timeline').innerHTML = `Created: ${time}`;
+        cloneList.querySelector('#timeline').innerHTML = cList.timeline;
         checkList(cloneList)
         listContainer.append(cloneList);
     });
@@ -273,6 +273,7 @@ function changeTag(tag) {
         const cloneList = listElement.cloneNode(true);
         cloneList.classList.remove('d-none');
         cloneList.children[1].querySelector('input').value = cList.list;
+        // cloneList.children[1].querySelector('#timeline').innerHTML = cList.timeline;
         checkList(cloneList)
         cloneList.querySelector('input').setAttribute('disabled', true);
         cloneList.querySelector('.checkmark').style.cursor = 'unset';
@@ -280,8 +281,6 @@ function changeTag(tag) {
         const checkmark = cloneList.children[0].children[0].children[1];
         checkmark.style.backgroundColor = 'rgb(77, 184, 148)';
         checkmark.className += ' active';
-
-        cloneList.querySelector('#timeline').innerHTML = `Completed: ${time}`;
 
         completeListContainer.prepend(cloneList);
     });
@@ -311,6 +310,7 @@ if (createList != null) {
             setTimeout(() => {
                 $(loader).addClass('d-none');
                 const cloneList = listElement.cloneNode(true);
+                cloneList.querySelector('.col-lg-1').classList.remove('d-none');
                 cloneList.querySelector('.col-lg-10').querySelector('input').value = inputFilled.value;
                 cloneList.querySelector('#timeline').innerHTML = `Created: ${time}`;
     
@@ -325,11 +325,13 @@ if (createList != null) {
     
             const data = {
                 list: inputFilled.value,
-                status: false
+                status: false,
+                timeline: time
             }
             
             const recent = document.getElementById('recent_tag').getAttribute('data-tag');
             tagAndList[recent][3].push(data);
+            console.log(tagAndList);
         } else {
             return false;
         }
