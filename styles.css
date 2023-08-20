@@ -567,6 +567,13 @@ body.mode-color #project_section #main #top .modal .modal-dialog .modal-content 
     font-size: 16px;
 }
 
+#project_section #main #top div .fa-solid {
+    color: var(--gray);
+}
+
+body.mode-color #project_section #main #top div .fa-solid {
+    color: var(--light);
+}
 
 @keyframes float {
 	0% {
