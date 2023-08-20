@@ -777,6 +777,11 @@ body.mode-color #project_section #main #lists #complete_container #complete_list
     }   
     #project_section #sidebar #tags {
         padding-bottom: 70px;
+    }   
+    #project_section #main #top #recent_tag div {
+        overflow: hidden;
+        width: 200px;
+        margin: 0 auto;
     }
 }
 
