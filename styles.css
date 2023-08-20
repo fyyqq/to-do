@@ -377,7 +377,7 @@ body.mode-color #project_section #sidebar #search span input {
 }
 
 #project_section #sidebar #tags #icon .mdi {
-    font-size: 30px;
+    font-size: 27px;
     color: var(--main);
 }
 
@@ -416,6 +416,14 @@ body.mode-color #project_section #sidebar #tags #tag {
     color: var(--lightgray);
 }
 
+#project_section #sidebar #tags #tag #title {
+    font-size: 13px;
+}
+
+#project_section #sidebar #tags #tag #category {
+    font-size: 11px;
+}
+
 #project_section #sidebar #tags #tag #tag_action {
     position: absolute;
     top: 50%;
@@ -424,7 +432,7 @@ body.mode-color #project_section #sidebar #tags #tag {
     z-index: 99;
     font-size: 15px;
     display: none;
-    column-gap: 8px;
+    column-gap: 7px;
 }
 
 #project_section #sidebar #tags #tag #tag_action .mdi-delete-outline {
@@ -438,6 +446,10 @@ body.mode-color #project_section #sidebar #tags #tag {
 
 #project_section #sidebar #tags #tag #tag_action .mdi-delete-outline:hover {
     color: red;
+}
+
+#project_section #sidebar #tags #tag #tag_action .mdi-pencil {
+    font-size: 14.5px;
 }
 
 #project_section #sidebar #tags #tag #tag_action .mdi-pencil:hover {
@@ -564,7 +576,7 @@ body.mode-color #project_section #main #top .modal .modal-dialog .modal-content 
 }
 
 #project_section #main #top #recent_tag div #title {
-    font-size: 16px;
+    font-size: 14px;
 }
 
 #project_section #main #top div .fa-solid {
@@ -782,6 +794,10 @@ body.mode-color #project_section #main #lists #complete_container #complete_list
         overflow: hidden;
         width: 200px;
         margin: 0 auto;
+    }
+    #project_section #sidebar #tags #tag #tag_action {
+        right: 25px;
+        column-gap: 15px;
     }
 }
 
