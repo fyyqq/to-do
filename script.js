@@ -80,8 +80,6 @@ if (createTag != null) {
             tagAndList[rand] = [title.value, category.value, desc.value, []];
             createTagSidebar(rand)
             createRecentTag(rand)
-            const createTag = document.getElementById('createMoreTags');
-            createTag.classList.remove('d-none');
     
             const listContainer = document.getElementById('list_container');
             const completeListContainer = document.getElementById('complete_list_container');
@@ -109,7 +107,7 @@ if (createTag != null) {
 function editTag(event) {
     const parent_modal = document.querySelector('#editTagModal .modal-body');
 
-    const tag = event.getAttribute('data-tag');
+    const tag = $(event).closest('#tag').data('tag');
     const title = tagAndList[tag][0];
     const category = tagAndList[tag][1];
     const description = tagAndList[tag][2];
@@ -145,6 +143,7 @@ if (formEditTag != null) {
 
 function createTagSidebar(rand) {
     const tags_container = document.getElementById('tags');
+    $(tags_container).children('#icon').remove();
     tags_container.style.overflowY = 'scroll';
     const tag = document.getElementById('tag');
     const clone_tag = tag.cloneNode(true);
@@ -171,6 +170,7 @@ function createTagSidebar(rand) {
 function createRecentTag(rand) {
     const recent = document.getElementById('recent_tag');
     recent.classList.remove('d-none');
+    $(recent).prev('#notag').remove();
 
     const dataTag = tagAndList[rand];    
 

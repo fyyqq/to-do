@@ -376,6 +376,11 @@ body.mode-color #project_section #sidebar #search span input {
     padding-bottom: 5px;
 }
 
+#project_section #sidebar #tags #icon .mdi {
+    font-size: 30px;
+    color: var(--main);
+}
+
 #project_section #sidebar #tags #tag {
     cursor: pointer;
     background-color: var(--light);
@@ -398,7 +403,7 @@ body.mode-color #project_section #sidebar #search span input {
     top: 50%;
     transform: translateY(-50%);
     height: 95%;
-    width: 23%;
+    width: 30%;
     background: linear-gradient(90deg, rgba(255,255,255,0.5) 0%, rgba(255,255,255,1) 12%);
 }
 
@@ -411,7 +416,7 @@ body.mode-color #project_section #sidebar #tags #tag {
     color: var(--lightgray);
 }
 
-#project_section #sidebar #tags #tag .mdi-delete-outline {
+#project_section #sidebar #tags #tag #tag_action {
     position: absolute;
     top: 50%;
     right: 16px;
@@ -419,14 +424,24 @@ body.mode-color #project_section #sidebar #tags #tag {
     z-index: 99;
     font-size: 15px;
     display: none;
+    column-gap: 8px;
 }
 
-#project_section #sidebar #tags #tag.active .mdi-delete-outline {
-    display: block;
+#project_section #sidebar #tags #tag #tag_action .mdi-delete-outline {
+    font-size: 16px;
+    transform: translateY(-1px);
 }
 
-#project_section #sidebar #tags #tag .mdi-delete-outline:hover {
+#project_section #sidebar #tags #tag.active #tag_action {
+    display: flex;
+}
+
+#project_section #sidebar #tags #tag #tag_action .mdi-delete-outline:hover {
     color: red;
+}
+
+#project_section #sidebar #tags #tag #tag_action .mdi-pencil:hover {
+    color: var(--main);
 }
 
 #project_section #sidebar #tags div .mdi-plus {
@@ -548,51 +563,10 @@ body.mode-color #project_section #main #top .modal .modal-dialog .modal-content 
     box-shadow: unset;
 }
 
-#project_section #main #top #labels {
-    background-color: var(--light);
-    width: 230px;
+#project_section #main #top #recent_tag div #title {
+    font-size: 16px;
 }
 
-#project_section #main #top #recent_tag {
-    cursor: pointer;
-    background-color: var(--light);
-    width: 250px;
-    overflow: hidden;
-    border: 1px solid gainsboro;
-}
-
-#project_section #main #top #recent_tag::after {
-    content: '';
-    position: absolute;
-    right: 0;
-    top: 50%;
-    transform: translateY(-50%);
-    height: 100%;
-    width: 23%;
-    background: linear-gradient(90deg, rgba(255,255,255,0.5) 0%, rgba(255,255,255,1) 12%);
-}
-
-body.mode-color #project_section #main #top #recent_tag {
-    background-color: var(--dark);
-    border: 1px solid #333;
-}
-
-body.mode-color #project_section #main #top #recent_tag::after {
-    background: linear-gradient(90deg, rgba(33,33,33, 0.5) 0%, rgba(33,33,33,1) 12%);
-}
-
-#project_section #main #top #recent_tag .mdi-open-in-new {
-    position: absolute;
-    top: 50%;
-    right: 16px;
-    transform: translateY(-50%);
-    z-index: 99;
-    color: var(--gray);
-}
-
-body.mode-color #project_section #main #top #recent_tag .mdi-open-in-new {
-    color: var(--lightgray);
-}
 
 @keyframes float {
 	0% {
@@ -633,10 +607,12 @@ body.mode-color #project_section #main #lists #complete_container #complete_list
 
 #project_section #main #lists #list_container .list .col-lg-10 #timeline {
     color: var(--main);
+    font-weight: 100;
 }
 
 #project_section #main #lists #complete_container #complete_list_container .list .col-lg-10 #timeline {
     color: rgb(232, 6, 6);
+    font-weight: 100;
 }
 
 body.mode-color #project_section #main #lists #list_container .list .col-2 .mdi-delete-outline:hover,
@@ -782,9 +758,6 @@ body.mode-color #project_section #main #lists #complete_container #complete_list
         padding-left: 0px;
         padding-right: 0px;
     }
-    #project_section #main #top #recent_tag {
-        width: 230px;
-    }
     .container-checkbox .checkmark {
         height: 22px;
         width: 22px;
@@ -815,11 +788,27 @@ body.mode-color #displayMode {
 #displayMode .lightModeApp {
     cursor: pointer;
     user-select: none;
+    border-top-left-radius: 6px;
+    border-bottom-left-radius: 6px;
 }
 
-#displayMode .darkModeApp {
+#displayMode .createTag {
+    border-top-right-radius: 6px;
+    border-bottom-right-radius: 6px;
+}
+
+#displayMode .darkModeApp, .createTag {
     background-color: var(--light);
     color: var(--gray);
+}
+
+#displayMode .darkModeApp:hover, .createTag:hover {
+    background-color: rgba(220, 220, 220, 0.475);
+}
+
+body.mode-color #displayMode .createTag {
+    background-color: var(--dark);
+    color: var(--light);
 }
 
 #displayMode .lightModeApp {

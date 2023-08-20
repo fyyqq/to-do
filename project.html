@@ -28,6 +28,10 @@
                     </span>
                 </div>
                 <div id="tags" class="mt-3 d-flex flex-column gap-2 px-3">
+                    <div class="d-flex align-items-center justify-content-center flex-column h-100 w-100" id="icon">
+                        <i class="mdi mdi-view-dashboard"></i>
+                        <small class="">Create your first tag</small>
+                    </div>
                     <div class="d-flex rounded-3 align-items-center justify-content-center gap-1 flex-column py-md-0 py-2 d-none" id="tag" data-tag="" onclick="chooseTag(this)">
                         <div class="px-3 py-2 w-100 d-flex align-items-center justify-content-between gap-3 position-relative">
                             <div class="d-flex align-items-center justify-content-start gap-2">
@@ -37,137 +41,137 @@
                                     <small class="" id="category" style="font-size: 12px;"></small>
                                 </div>
                             </div>
-                            <i class="mdi mdi-delete-outline" data-bs-target="tooltip" title="Delete" onclick="deleteTag(this)"></i>
-                        </div>
-                    </div>
-                    <div class="d-flex rounded-3 align-items-center justify-content-center border d-none" style="cursor: pointer;" data-bs-toggle="modal" data-bs-target="#createTagModal" id="createMoreTags">
-                        <div class="d-flex align-items-center justify-content-center py-md-3 py-4">
-                            <i class="fa-solid fa-plus"></i>
+                            <div class="align-items-center justify-content-center" id="tag_action">
+                                <i class="mdi mdi-pencil" data-bs-toggle="modal" data-bs-target="#editTagModal" onclick="editTag(this)"></i>
+                                <i class="mdi mdi-delete-outline" data-bs-target="tooltip" title="Delete" onclick="deleteTag(this)"></i>
+                            </div>
                         </div>
                     </div>
                 </div>
                 <div class="position-absolute bottom-0 w-100 py-3 px-3" id="displayMode">
-                    <span class="py-3 border rounded d-flex align-items-center justify-content-center gap-2 darkModeApp">
-                        <i class="mdi mdi-weather-night fs-5"></i>
-                        <small class="">Dark Mode</small>
-                    </span>
-                    <span class="py-3 border rounded d-none align-items-center justify-content-center gap-2 lightModeApp">
-                        <i class="mdi mdi-white-balance-sunny fs-5"></i>
-                        <small class="">Light Mode</small>
-                    </span>
+                    <div class="btn-group w-100 row mx-0" role="group">
+                        <button class="col-3 py-3 border d-flex align-items-center justify-content-center darkModeApp" data-bs-target="tooltip" title="Dark Mode">
+                            <i class="mdi mdi-weather-night fs-5"></i>
+                        </button>
+                        <button class="col-3 py-3 border d-none align-items-center justify-content-center lightModeApp" data-bs-target="tooltip" title="Light Mode">
+                            <i class="mdi mdi-white-balance-sunny fs-5"></i>
+                        </button>
+                        <button class="col-9 py-3 border d-flex align-items-center justify-content-center createTag" data-bs-toggle="modal" data-bs-target="#createTagModal">
+                            <i class="mdi mdi-plus fs-5"></i>
+                        </button>
+                    </div>
                 </div>
             </nav>
             <div class="px-md-4 px-2 ms-auto position-relative" id="main">
                 <!-- Top -->
-                <div class="pt-md-4 pt-3 pb-3 mb-2 w-100 d-flex align-items-center justify-content-between flex-md-row flex-row-reverse w-100 border-bottom" id="top">
-                    <div class="d-flex align-items-center justify-content-center d-md-none" onclick="openSidebar(this)">
-                        <button class="btn btn-success py-2 px-3 shadow-none"><i class="mdi mdi-menu"></i></button>
-                    </div>
-                    <div class="px-3 py-2 d-flex align-items-center justify-content-between rounded shadow-sm position-relative" id="recent_tag" data-tag="" data-bs-toggle="modal" data-bs-target="#editTagModal" onclick="editTag(this)">
-                        <div class="d-flex align-items-center justify-content-start gap-3">
-                            <i class="mdi mdi-leaf text-success fs-4"></i>
-                            <div class="d-flex align-items-start justify-content-start flex-column lh-sm">
+                <div class="py-md-4 py-3 border-bottom" id="top">
+                    <div class="d-flex align-items-center justify-content-md-center justify-content-between flex-md-row flex-row-reverse w-100">
+                        <div class="d-flex align-items-center justify-content-center d-md-none" onclick="openSidebar(this)">
+                            <button class="btn py-2 px-3 shadow-none"><i class="fa-solid fa-bars"></i></button>
+                        </div>
+                        <h1 class="h6 mb-0 fst-italic" id="notag">No tag created!</h1>
+                        <div class="d-flex align-items-center justify-content-between d-none rounded position-relative" id="recent_tag" data-tag="">
+                            <div class="d-flex align-items-center justify-content-start flex-column lh-sm">
                                 <small class="" id="title"></small>
                                 <small class="" id="category" style="font-size: 12px;"></small>
                             </div>
                         </div>
-                        <i class="mdi mdi-open-in-new"></i>
-                    </div>
-                    <!-- Edit & Tag Modal -->
-                    <div class="modal fade" id="editTagModal">
-                        <div class="modal-dialog modal-dialog-centered modal-md">
-                            <div class="modal-content">
-                                <form action="/editTag" method="post">
-                                    <div class="modal-header">
-                                        <h1 class="modal-title">Edit Tag</h1>
-                                        <button type="button" class="btn-close shadow-none" data-bs-dismiss="modal"></button>
-                                    </div>
-                                    <div class="modal-body pb-0">
-                                        <div class="mb-2">
-                                            <label for="title" class="col-form-label">Title:</label>
-                                            <input type="text" name="title" class="form-control shadow-none" id="title" autofocus autocomplete="off">
+                        <!-- Edit & Tag Modal -->
+                        <div class="modal fade" id="editTagModal">
+                            <div class="modal-dialog modal-dialog-centered modal-md">
+                                <div class="modal-content">
+                                    <form action="/editTag" method="post">
+                                        <div class="modal-header">
+                                            <h1 class="modal-title">Edit Tag</h1>
+                                            <button type="button" class="btn-close shadow-none" data-bs-dismiss="modal"></button>
                                         </div>
-                                        <div class="mb-2">
-                                            <label for="category" class="col-form-label">Category:</label>
-                                            <select name="category" id="category" class="form-control shadow-none">
-                                                <option value="">Select Category</option>
-                                                <option value="Work">Work</option>
-                                                <option value="Personal">Personal</option>
-                                                <option value="Home">Home</option>
-                                                <option value="Health">Health</option>
-                                                <option value="Entertainment">Entertainment</option>
-                                                <option value="Priority">Priority</option>
-                                                <option value="Travel">Travel</option>
-                                                <option value="Finance">Finance</option>
-                                                <option value="Social">Social</option>
-                                                <option value="Technology">Technology</option>
-                                                <option value="Projects">Projects</option>
-                                            </select>
+                                        <div class="modal-body pb-0">
+                                            <div class="mb-2">
+                                                <label for="title" class="col-form-label">Title:</label>
+                                                <input type="text" name="title" class="form-control shadow-none" id="title" autofocus autocomplete="off">
+                                            </div>
+                                            <div class="mb-2">
+                                                <label for="category" class="col-form-label">Category:</label>
+                                                <select name="category" id="category" class="form-control shadow-none">
+                                                    <option value="">Select Category</option>
+                                                    <option value="Work">Work</option>
+                                                    <option value="Personal">Personal</option>
+                                                    <option value="Home">Home</option>
+                                                    <option value="Health">Health</option>
+                                                    <option value="Entertainment">Entertainment</option>
+                                                    <option value="Priority">Priority</option>
+                                                    <option value="Travel">Travel</option>
+                                                    <option value="Finance">Finance</option>
+                                                    <option value="Social">Social</option>
+                                                    <option value="Technology">Technology</option>
+                                                    <option value="Projects">Projects</option>
+                                                </select>
+                                            </div>
+                                            <div class="mb-2">
+                                                <label for="description" class="col-form-label">Description:</label>
+                                                <textarea class="form-control shadow-none" id="description" rows="7" name="description"></textarea>
+                                            </div>
                                         </div>
-                                        <div class="mb-2">
-                                            <label for="description" class="col-form-label">Description:</label>
-                                            <textarea class="form-control shadow-none" id="description" rows="7" name="description"></textarea>
+                                        <div class="modal-footer border-0 pt-1">
+                                            <button type="submit" class="py-2 btn btn-success rounded-pill w-100">Update</button>
                                         </div>
-                                    </div>
-                                    <div class="modal-footer border-0 pt-1">
-                                        <button type="submit" class="py-2 btn btn-success rounded-pill w-100">Update</button>
-                                    </div>
-                                </form>
+                                    </form>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <!-- Create Tag Modal -->
-                    <div class="modal fade" id="createTagModal">
-                        <div class="modal-dialog modal-dialog-centered modal-md">
-                            <div class="modal-content">
-                                <form action="/createTag" method="post">
-                                    <div class="modal-header">
-                                        <h1 class="modal-title">Create Tag</h1>
-                                        <button type="button" class="btn-close shadow-none" data-bs-dismiss="modal"></button>
-                                    </div>
-                                    <div class="modal-body pb-0">
-                                        <div class="mb-2">
-                                            <label for="title" class="col-form-label">Title:</label>
-                                            <input type="text" name="title" class="form-control shadow-none" id="title" autofocus autocomplete="off">
+                        <!-- Create Tag Modal -->
+                        <div class="modal fade" id="createTagModal">
+                            <div class="modal-dialog modal-dialog-centered modal-md">
+                                <div class="modal-content">
+                                    <form action="/createTag" method="post">
+                                        <div class="modal-header">
+                                            <h1 class="modal-title">Create Tag</h1>
+                                            <button type="button" class="btn-close shadow-none" data-bs-dismiss="modal"></button>
                                         </div>
-                                        <div class="mb-2">
-                                            <label for="category" class="col-form-label">Category:</label>
-                                            <select name="category" id="category" class="form-control shadow-none">
-                                                <option value="">Select Category</option>
-                                                <option value="Work">Work</option>
-                                                <option value="Personal">Personal</option>
-                                                <option value="Home">Home</option>
-                                                <option value="Health">Health</option>
-                                                <option value="Entertainment">Entertainment</option>
-                                                <option value="Priority">Priority</option>
-                                                <option value="Travel">Travel</option>
-                                                <option value="Finance">Finance</option>
-                                                <option value="Social">Social</option>
-                                                <option value="Technology">Technology</option>
-                                                <option value="Projects">Projects</option>
-                                            </select>
+                                        <div class="modal-body pb-0">
+                                            <div class="mb-2">
+                                                <label for="title" class="col-form-label">Title:</label>
+                                                <input type="text" name="title" class="form-control shadow-none" id="title" autofocus autocomplete="off">
+                                            </div>
+                                            <div class="mb-2">
+                                                <label for="category" class="col-form-label">Category:</label>
+                                                <select name="category" id="category" class="form-control shadow-none">
+                                                    <option value="">Select Category</option>
+                                                    <option value="Work">Work</option>
+                                                    <option value="Personal">Personal</option>
+                                                    <option value="Home">Home</option>
+                                                    <option value="Health">Health</option>
+                                                    <option value="Entertainment">Entertainment</option>
+                                                    <option value="Priority">Priority</option>
+                                                    <option value="Travel">Travel</option>
+                                                    <option value="Finance">Finance</option>
+                                                    <option value="Social">Social</option>
+                                                    <option value="Technology">Technology</option>
+                                                    <option value="Projects">Projects</option>
+                                                </select>
+                                            </div>
+                                            <div class="mb-2">
+                                                <label for="description" class="col-form-label">Description:</label>
+                                                <textarea class="form-control shadow-none" id="description" rows="7" name="description"></textarea>
+                                            </div>
                                         </div>
-                                        <div class="mb-2">
-                                            <label for="description" class="col-form-label">Description:</label>
-                                            <textarea class="form-control shadow-none" id="description" rows="7" name="description"></textarea>
-                                        </div>
-                                    </div>
-                                    <div class="modal-footer border-0 pt-1">
-                                        <button type="submit" class="py-2 btn btn-success rounded-pill w-100">Save</button>
-                                    </div>  
-                                </form>
+                                        <div class="modal-footer border-0 pt-1">
+                                            <button type="submit" class="py-2 btn btn-success rounded-pill w-100">Save</button>
+                                        </div>  
+                                    </form>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="d-md-flex align-items-center justify-content-end gap-1 d-none">
-                        <button class="btn btn-success shadow-none py-2 px-3" data-bs-toggle="modal" data-bs-target="#createTagModal"><i class="fa-solid fa-plus" style="font-size: 14px;"></i></button>
-                    </div>
-                    <div class="d-flex align-items-center justify-content-end gap-1 d-md-none">
-                        <button class="btn btn-success shadow-none py-2 px-3" data-bs-toggle="modal" data-bs-target="#createTagModal"><i class="fa-solid fa-plus" style="font-size: 14px;"></i></button>
+                        <div class="d-md-none align-items-center justify-content-end gap-1 d-none">
+                            <button class="btn shadow-none py-2 px-3" data-bs-toggle="modal" data-bs-target="#createTagModal"><i class="fa-solid fa-plus" style="font-size: 15px;"></i></button>
+                        </div>
+                        <div class="d-flex align-items-center justify-content-end gap-1 d-md-none">
+                            <button class="btn shadow-none py-2 px-3" data-bs-toggle="modal" data-bs-target="#createTagModal"><i class="fa-solid fa-plus" style="font-size: 15px;"></i></button>
+                        </div>
                     </div>
                 </div>
                 <!-- Middle -->
-                <div class="rounded-0 d-flex flex-column gap-2 w-100" id="lists">
+                <div class="rounded-0 d-flex flex-column gap-2 w-100 mt-3" id="lists">
                     <div class="d-flex flex-column justify-content-center align-items-center w-100 gap-2" id="list_container">
                         <div class="row mx-0 rounded-3 list py-md-4 py-3 px-3 w-100 shadow-sm">
                             <div class="col-md-1 col-2 d-flex align-items-center justify-content-center position-relative">
@@ -179,7 +183,7 @@
                             <div class="col-lg-10 col-md-9 col-8 d-flex align-items-center justify-content-center ps-lg-2 ps-0">
                                 <div class="d-flex flex-column w-100 lh-1 ps-2">
                                     <input type="text" name="" id="" class="form-control shadow-none border-0 ps-0 pb-1 pt-0" value="Welcome to Todo!" readonly>
-                                    <small class="fw-bold fst-italic" id="timeline" style="font-size: 11.5px;">Timeline</small>
+                                    <small class="fst-italic" id="timeline" style="font-size: 11.5px;">Timeline</small>
                                 </div>
                             </div>
                             <div class="col-lg-1 col-2 d-flex align-items-center justify-content-center gap-2">
@@ -204,7 +208,7 @@
                 <div class="" id="insert">
                     <form action="/postList" method="post">
                         <div class="btn-group w-100 rounded-pill">
-                            <input type="text" name="create" id="create_list_bar" class="form-control shadow-none ps-4 pe-3" placeholder="Start Your Day..." autocomplete="off" onkeyup="createListInput(this)" autofocus style="border-top-right-radius: 0px; border-bottom-right-radius: 0px;">
+                            <input type="text" name="create" id="create_list_bar" class="form-control shadow-none ps-4 pe-3" placeholder="Start your day" autocomplete="off" onkeyup="createListInput(this)" autofocus style="border-top-right-radius: 0px; border-bottom-right-radius: 0px;">
                             <button type="submit" class="btn btn-success shadow-none px-4" disabled>
                                 <i class="mdi mdi-arrow-up-circle"></i>
                                 <div class="custom-loader d-none"></div>
