@@ -22,18 +22,19 @@ Todo is a todo list application that helps you manage your daily tasks easily an
 
 ## Application Display
 
-<img src="https://github.com/fyyqq/to-do/assets/93767398/97571e79-e671-4a83-8bbd-531d29a5ffd7" width="400">
-<img src="https://github.com/fyyqq/to-do/assets/93767398/3f4b300c-e9cd-4935-960e-17d44abbc661" width="400">
-<img src="https://github.com/fyyqq/to-do/assets/93767398/2163c437-9065-4098-a742-0643f83a8755" width="400">
-<img src="https://github.com/fyyqq/to-do/assets/93767398/a27db86d-d983-4368-95d8-54541b4f2f7c" width="400">
+<img src="https://github.com/fyyqq/to-do/assets/93767398/2ec9c8f6-88ee-43df-9398-f8b214d18de7" width="805">
+<img width="400" alt="image" src="https://github.com/fyyqq/to-do/assets/93767398/869c1384-2c1d-488e-9c3b-feea35bcccba">
+<img width="400" alt="image" src="https://github.com/fyyqq/to-do/assets/93767398/9fe234f3-37a8-461d-abf3-3ed4070409ea">
+<img width="400" alt="image" src="https://github.com/fyyqq/to-do/assets/93767398/8906d94e-de31-4049-8480-afa71554ef0e">
+<img width="400" alt="image" src="https://github.com/fyyqq/to-do/assets/93767398/af89fdd2-ff72-4e7c-b6f1-d78fe4032916">
 
 <br>
 <br>
 
-<img src="https://github.com/fyyqq/to-do/assets/93767398/064582a3-5887-4a12-b4e4-8675af98d534" width="600">
+<img src="https://github.com/fyyqq/to-do/assets/93767398/439bc9a6-48f9-451a-a2d0-a0100ff3efa3" width="600">
 &nbsp
 &nbsp
-<img src="https://github.com/fyyqq/to-do/assets/93767398/b4e42e8f-7369-4e1e-8163-6200ce0534b9" width="170">
+<img src="https://github.com/fyyqq/to-do/assets/93767398/538dac36-7085-42c1-925f-550fc9c375b1" width="170">
 
 ## Penggunaan
 
