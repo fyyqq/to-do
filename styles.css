@@ -818,11 +818,16 @@ body.mode-color #displayMode {
     user-select: none;
     border-top-left-radius: 6px;
     border-bottom-left-radius: 6px;
+    border-top: 1px solid rgb(208, 208, 208);
+    border-bottom: 1px solid rgb(208, 208, 208);
+    border-left: 1px solid rgb(208, 208, 208);
+    border-right: unset;
 }
 
 #displayMode .createTag {
     border-top-right-radius: 6px;
     border-bottom-right-radius: 6px;
+    border: 1px solid rgb(208, 208, 208);
 }
 
 #displayMode .darkModeApp, .createTag {
