@@ -459,14 +459,25 @@ function saveList(event) {
 }
 
 function delList(event) {
-    const recent_tag = document.getElementById('recent_tag').getAttribute('data-tag');
     const valueToDelete = $(event).parent().prev().children().children('input').val();
-    const lists = JSON.parse(localStorage.getItem('data'))[recent_tag][3];
+    const dataObj = JSON.parse(localStorage.getItem('data'));
+    const dataEntries = Object.entries(dataObj);
+    for (const item of dataEntries) {
+        if (item[1][4] === true) {
+            const lists = item[1][3];
 
-    let index = lists.indexOf(lists.find(item => item.list === valueToDelete));
-     
-    if (index !== -1) {
-        lists.pop(valueToDelete);
+            let index = lists.indexOf(lists.find(item => item.list === valueToDelete));
+             
+            if (index !== -1) {
+                for (let i = 0; i < lists.length; i++) {
+                    if (lists[i].list === valueToDelete) {
+                        lists.splice(i, 1);
+                        break;
+                    }
+                }
+                localStorage.setItem('data', JSON.stringify(dataObj));
+            }
+        }
     }
 
     const container = $(event).closest('.list');
