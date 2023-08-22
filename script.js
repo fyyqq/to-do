@@ -435,15 +435,20 @@ function editList(event) {
 }
 
 function saveList(event) {
-    const recent_tag = document.getElementById('recent_tag').getAttribute('data-tag');
     const valueToUpdate = $(event).parent().prev().children().children('input').val();
-    const lists = JSON.parse(localStorage.getItem('data'))[recent_tag][3];
-
-    let index = lists.indexOf(lists.find(item => item.list === inputValue));
-     
-    if (index !== -1) {
-        const dataValue = lists.find(item => item.list === inputValue);
-        dataValue.list = valueToUpdate;
+    const dataObj = JSON.parse(localStorage.getItem('data'));
+    const dataEntries = Object.entries(dataObj);
+    for (const item of dataEntries) {
+        if (item[1][4] === true) {
+            const lists = item[1][3];
+            let index = lists.indexOf(lists.find(item => item.list === inputValue));
+                
+            if (index !== -1) {
+                const dataValue = lists.find(item => item.list === inputValue);
+                dataValue.list = valueToUpdate;
+                localStorage.setItem('data', JSON.stringify(dataObj));
+            }
+        }
     }
 
     const input = $(event).parent().prev().children().children('input');
