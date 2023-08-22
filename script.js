@@ -280,6 +280,7 @@ function changeTag(tag) {
         clone_list.classList.remove('d-none');
         clone_list.children[1].querySelector('input').value = cList.list;
         clone_list.querySelector('#timeline').innerHTML = `Created: ${cList.timeline}`;
+        checkList(clone_list)
         listContainer.append(clone_list);
     });
     
@@ -292,6 +293,7 @@ function changeTag(tag) {
         clone_list.classList.remove('d-none');
         clone_list.children[1].querySelector('input').value = cList.list;
         clone_list.children[1].querySelector('#timeline').innerHTML = `Completed: ${cList.timeline}`;
+        checkList(clone_list)
         clone_list.querySelector('input').setAttribute('disabled', true);
         clone_list.querySelector('.checkmark').style.cursor = 'unset';
         clone_list.querySelector('.container-checkbox').setAttribute('title', 'Checked');
@@ -333,6 +335,8 @@ if (createList != null) {
                 clone_list.querySelector('.col-lg-10').querySelector('input').value = inputFilled.value;
                 clone_list.querySelector('#timeline').innerHTML = `Created: ${time}`;
     
+                checkList(clone_list)
+    
                 listContainer.append(clone_list);
                 input.value = '';
     
@@ -364,38 +368,38 @@ if (createList != null) {
     });
 }
 
-const element = listElement.cloneNode(true);
-const checkbox = element.querySelector('input');
-checkbox.addEventListener('click', event => {
-    if (event.target.checked) {
-        const element = $(event.target).closest('.list')[0];
-        const audio = new Audio();
-        audio.src = 'checked.mp3';
-        audio.play();
-        
-        createCompleteList(element)
+function checkList(element) {
+    const checkbox = element.querySelector('input');
+    checkbox.addEventListener('click', event => {
+        if (event.target.checked) {
+            const element = $(event.target).closest('.list')[0];
+            const audio = new Audio();
+            audio.src = 'checked.mp3';
+            audio.play();
+            
+            createCompleteList(element)
 
-        const dataTag = JSON.parse(localStorage.getItem('data'));
-        const valueToChecked = $(event.currentTarget).closest('.col-2').next().children().children('input').val();
-        const dataEntries = Object.entries(dataTag);
-        for (const item of dataEntries) {
-            if (item[1][4] === true) {
-                const lists = item[1][3];
+            const dataTag = JSON.parse(localStorage.getItem('data'));
+            const valueToChecked = $(event.currentTarget).closest('.col-2').next().children().children('input').val();
+            const dataEntries = Object.entries(dataTag);
+            for (const item of dataEntries) {
+                if (item[1][4] === true) {
+                    const lists = item[1][3];
 
-                let index = lists.indexOf(lists.find(item => item.list === valueToChecked));
+                    let index = lists.indexOf(lists.find(item => item.list === valueToChecked));
 
-                if (index !== -1) {
-                    const dataValue = lists.find(item => item.list === valueToChecked);
-                    dataValue.status = true;
-                    // localStorage.setItem('data', JSON.stringify(dataValue));
+                    if (index !== -1) {
+                        const dataValue = lists.find(item => item.list === valueToChecked);
+                        dataValue.status = true;
+                        localStorage.setItem('data', JSON.stringify(dataTag));
+                    }
+
                 }
-                console.log(index);
-
             }
+            element.remove();
         }
-        element.remove();
-    }
-});
+    });
+}
 
 function createCompleteList(element) {    
     const cloneElement = element.cloneNode(true);
@@ -620,7 +624,8 @@ if (storageData !== null) {
                 clone_list.classList.remove('d-none');
                 clone_list.querySelector('.col-lg-10').querySelector('input').value = unList.list;
                 clone_list.querySelector('#timeline').innerHTML = `Created: ${unList.timeline}`;
-                listContainer.prepend(clone_list);
+                checkList(clone_list)
+                listContainer.append(clone_list);
             });
             // Display checked List
             const filteringCheckedLists = dataLists.filter(dt => {
@@ -643,4 +648,3 @@ if (storageData !== null) {
         }
     }
 }
-
