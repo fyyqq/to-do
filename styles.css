@@ -59,14 +59,22 @@ body.mode-color .swal2-popup .swal2-html-container {
     background-color: var(--hover);
 }
 
+.container-checkbox.active .checkmark {
+    background-color: var(--hover);
+}
+
+.container-checkbox.active:hover input ~ .checkmark {
+    background-color: var(--hover);
+}
+
+.container-checkbox.active .checkmark:after {
+    display: block;
+}
+
 .container-checkbox .checkmark:after {
     content: "";
     position: absolute;
     display: none;
-}
-
-.container-checkbox .checkmark.active:after {
-    display: block;
 }
 
 .container-checkbox input:checked ~ .checkmark:after {
