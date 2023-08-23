@@ -516,24 +516,24 @@ function deleteTag(event) {
         cancelButtonColor: '#d33',
         confirmButtonColor: '#3085d6',
         confirmButtonText: 'Delete it!'
-      }).then((result) => {
-            if (result.isConfirmed) {
-                const data = JSON.parse(localStorage.getItem('data'))[tag];
-                delete data;
-                localStorage.setItem('data', JSON.stringify(data));
-                $(event).closest('#tag').remove();
-                $('#recent_tag').addClass('d-none');
-                $('#top').removeClass('justify-content-between');
-                $('#top').addClass('justify-content-end');
-                clearList();
-                $(insertForm).hide();
-                if (Object.keys(data).length < 1) {
-                    $(noTag).text('No tag exists!').show();
-                } else {
-                    $(noTag).text('No tag selected!').show();
-                }
+    }).then((result) => {
+        if (result.isConfirmed) {
+            const data = JSON.parse(localStorage.getItem('data'));
+            delete data[tag];
+            localStorage.setItem('data', JSON.stringify(data));
+            $(event).closest('#tag').remove();
+            $('#recent_tag').addClass('d-none');
+            $('#top').removeClass('justify-content-between');
+            $('#top').addClass('justify-content-end');
+            clearList();
+            $(insertForm).hide();
+            if (Object.keys(data).length < 1) {
+                $(noTag).text('No tag exists!').show();
+            } else {
+                $(noTag).text('No tag selected!').show();
             }
-      });
+        }
+    });
 }
 
 function findTag(event) {
