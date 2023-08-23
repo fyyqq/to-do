@@ -7,8 +7,6 @@ $(document).ready(() => {
         $(this).addClass('d-none');
         $(this).next().removeClass('d-none');
         $(this).next().addClass('d-flex');
-        let x = localStorage.getItem('data');
-        console.log(JSON.parse(x));
     });
     $('.lightModeApp').on('click', function(e) {
         e.preventDefault();
@@ -139,7 +137,7 @@ if (formEditTag != null) {
         const data = JSON.parse(localStorage.getItem('data'));
         const dataEntries = Object.entries(data);
         for (const item of dataEntries) {
-            if (item[1][4] === true) {
+            if (item[1][4] ) {
                 item[1][0] = title.value;
                 item[1][1] = category.value;
                 item[1][2] = description.value;
@@ -162,7 +160,7 @@ if (formEditTag != null) {
 
 function createTagSidebar(rand) {
     const tags_container = document.getElementById('tags');
-    $(tags_container).children('#icon').remove();
+    $(tags_container).children('#icon').addClass('d-none');
     tags_container.style.overflowY = 'scroll';
     const tag = document.getElementById('tag');
     const clone_tag = tag.cloneNode(true);
@@ -359,7 +357,7 @@ if (createList != null) {
             const dataObj = Object.entries(dataTaglist);
             for (const item of dataObj) {
                 const value = item[1][4];
-                if (value === true) {
+                if (value ) {
                     const dataId = item[0];
                     dataTaglist[dataId][3].push(data);
                     localStorage.setItem('data', JSON.stringify(dataTaglist));
@@ -387,7 +385,7 @@ function checkList(element) {
             const valueToChecked = $(event.currentTarget).closest('.col-2').next().children().children('input').val();
             const dataEntries = Object.entries(dataTag);
             for (const item of dataEntries) {
-                if (item[1][4] === true) {
+                if (item[1][4] ) {
                     const lists = item[1][3];
                     
                     let index = lists.indexOf(lists.find(item => item.list === valueToChecked));
@@ -444,7 +442,7 @@ function saveList(event) {
     const dataObj = JSON.parse(localStorage.getItem('data'));
     const dataEntries = Object.entries(dataObj);
     for (const item of dataEntries) {
-        if (item[1][4] === true) {
+        if (item[1][4] ) {
             const lists = item[1][3];
             let index = lists.indexOf(lists.find(item => item.list === inputValue));
                 
@@ -468,7 +466,7 @@ function delList(event) {
     const dataObj = JSON.parse(localStorage.getItem('data'));
     const dataEntries = Object.entries(dataObj);
     for (const item of dataEntries) {
-        if (item[1][4] === true) {
+        if (item[1][4] ) {
             const lists = item[1][3];
 
             let index = lists.indexOf(lists.find(item => item.list === valueToDelete));
@@ -529,6 +527,7 @@ function deleteTag(event) {
             $(insertForm).hide();
             if (Object.keys(data).length < 1) {
                 $(noTag).text('No tag exists!').show();
+                $('#icon').removeClass('d-none');
             } else {
                 $(noTag).text('No tag selected!').show();
             }
@@ -616,7 +615,7 @@ const storageData = localStorage.getItem('data')
 if (storageData !== null) {
     const dataTaglist = Object.entries(JSON.parse(storageData));
     if (dataTaglist.length > 0) {
-        $('#icon').remove();
+        $('#icon').addClass('d-none');
         $(noTag).hide();
         $(insertForm).show();
         $(recent).removeClass('d-none');
@@ -633,7 +632,7 @@ if (storageData !== null) {
     });
     for (const item of dataTaglist) {
         const activeTag = item[1][4];
-        if (activeTag === true) {
+        if (activeTag) {
             const dataLists = item[1][3];
             // Display Unchecked List
             const filteringUncheckedLists = dataLists.filter(dt => {
@@ -665,8 +664,6 @@ if (storageData !== null) {
             recent.setAttribute('data-tag', item[0]);
             recent.querySelector('#title').innerHTML = item[1][0];
             recent.querySelector('#category').innerHTML = item[1][1];
-        } else {
-            $(noTag).text('No tag selected!').show();            
         }
     }
 }
