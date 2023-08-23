@@ -665,6 +665,8 @@ if (storageData !== null) {
             recent.setAttribute('data-tag', item[0]);
             recent.querySelector('#title').innerHTML = item[1][0];
             recent.querySelector('#category').innerHTML = item[1][1];
+        } else {
+            $(noTag).text('No tag selected!').show();            
         }
     }
 }
