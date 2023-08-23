@@ -148,6 +148,10 @@ if (formEditTag != null) {
                 tag.querySelector('#title').innerHTML = title.value;
                 tag.querySelector('#category').innerHTML = category.value;
 
+                const recent_tag = document.getElementById('recent_tag');
+                recent_tag.querySelector('#title').innerHTML = title.value;
+                recent_tag.querySelector('#category').innerHTML = category.value;
+
                 localStorage.setItem('data', JSON.stringify(data));
             }
         }
@@ -476,12 +480,11 @@ function delList(event) {
                     }
                 }
                 localStorage.setItem('data', JSON.stringify(dataObj));
+                const container = $(event).closest('.list');
+                $(container).remove();
             }
         }
     }
-
-    const container = $(event).closest('.list');
-    $(container).remove();
 }
 
 function openSidebar() {
