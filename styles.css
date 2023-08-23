@@ -136,7 +136,7 @@ body.mode-color .swal2-popup .swal2-html-container {
 
 /* Navbar */
 .navbar {
-    z-index: 199;
+    z-index: 999;
     background-color: var(--light);
     transition: all .5s ease;
 }
