@@ -283,7 +283,7 @@ function changeTag(tag) {
         const clone_list = listElement.cloneNode(true);
         clone_list.classList.remove('d-none');
         clone_list.children[1].querySelector('input').value = cList.list;
-        clone_list.querySelector('#timeline').innerHTML = `Created: ${cList.timeline}`;
+        clone_list.querySelector('#timeline').innerHTML = `Created: ${cList.startTime}`;
         checkList(clone_list)
         listContainer.append(clone_list);
     });
@@ -296,7 +296,7 @@ function changeTag(tag) {
         const clone_list = listElement.cloneNode(true);
         clone_list.classList.remove('d-none');
         clone_list.children[1].querySelector('input').value = cList.list;
-        clone_list.children[1].querySelector('#timeline').innerHTML = `Completed: ${cList.timeline}`;
+        clone_list.children[1].querySelector('#timeline').innerHTML = `Completed: ${cList.startTime}`;
         checkList(clone_list)
         clone_list.querySelector('input').setAttribute('disabled', true);
         clone_list.querySelector('.checkmark').style.cursor = 'unset';
@@ -351,7 +351,8 @@ if (createList != null) {
             const data = {
                 list: inputFilled.value,
                 status: false,
-                timeline: time
+                startTime: time,
+                endTime: null
             }
             
             const dataTaglist = JSON.parse(localStorage.getItem('data'));
@@ -380,24 +381,25 @@ function checkList(element) {
             const audio = new Audio();
             audio.src = 'checked.mp3';
             audio.play();
+            const time = moment().calendar();
             
-            createCompleteList(element)
-
             const dataTag = JSON.parse(localStorage.getItem('data'));
             const valueToChecked = $(event.currentTarget).closest('.col-2').next().children().children('input').val();
             const dataEntries = Object.entries(dataTag);
             for (const item of dataEntries) {
                 if (item[1][4] === true) {
                     const lists = item[1][3];
-
+                    
                     let index = lists.indexOf(lists.find(item => item.list === valueToChecked));
-
+                    
                     if (index !== -1) {
                         const dataValue = lists.find(item => item.list === valueToChecked);
+                        dataValue.endTime = time;
                         dataValue.status = true;
                         localStorage.setItem('data', JSON.stringify(dataTag));
                     }
-
+                    const timeline = lists.find(item => item.list === valueToChecked).endTime;
+                    createCompleteList(element, timeline)
                 }
             }
             element.remove();
@@ -405,13 +407,12 @@ function checkList(element) {
     });
 }
 
-function createCompleteList(element) {    
+function createCompleteList(element, time) {
     const cloneElement = element.cloneNode(true);
     cloneElement.querySelector('input').setAttribute('disabled', true);
     cloneElement.querySelector('.checkmark').style.cursor = 'unset';
     cloneElement.querySelector('.container-checkbox').setAttribute('title', 'Checked');
     
-    const time = moment().calendar();
     cloneElement.querySelector('#timeline').innerHTML = `Completed: ${time}`;
 
     completeListContainer.prepend(cloneElement);
@@ -642,7 +643,7 @@ if (storageData !== null) {
                 const clone_list = listElement.cloneNode(true);
                 clone_list.classList.remove('d-none');
                 clone_list.querySelector('.col-lg-10').querySelector('input').value = unList.list;
-                clone_list.querySelector('#timeline').innerHTML = `Created: ${unList.timeline}`;
+                clone_list.querySelector('#timeline').innerHTML = `Created: ${unList.startTime}`;
                 checkList(clone_list)
                 listContainer.append(clone_list);
             });
@@ -654,7 +655,7 @@ if (storageData !== null) {
                 const clone_list = listElement.cloneNode(true);
                 clone_list.classList.remove('d-none');
                 clone_list.querySelector('.col-lg-10').querySelector('input').value = list.list;
-                clone_list.querySelector('#timeline').innerHTML = `Completed: ${list.timeline}`;
+                clone_list.querySelector('#timeline').innerHTML = `Completed: ${list.endTime}`;
                 clone_list.querySelector('.checkmark').style.cursor = 'unset';
                 clone_list.querySelector('.container-checkbox').setAttribute('title', 'Checked');
                 clone_list.querySelector('.container-checkbox').classList.add('active');
