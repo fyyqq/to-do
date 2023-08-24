@@ -294,7 +294,7 @@ function changeTag(tag) {
         const clone_list = listElement.cloneNode(true);
         clone_list.classList.remove('d-none');
         clone_list.children[1].querySelector('input').value = cList.list;
-        clone_list.children[1].querySelector('#timeline').innerHTML = `Completed: ${cList.startTime}`;
+        clone_list.children[1].querySelector('#timeline').innerHTML = `Completed: ${cList.endTime}`;
         checkList(clone_list)
         clone_list.querySelector('input').setAttribute('disabled', true);
         clone_list.querySelector('.checkmark').style.cursor = 'unset';
