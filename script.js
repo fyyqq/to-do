@@ -329,7 +329,7 @@ if (createList != null) {
             $(inputFilled).siblings().attr('disabled', true);
             $(postIcon).hide();
             $(loader).removeClass('d-none');
-            const time = moment().calendar();
+            const time = moment().format('lll');
             setTimeout(() => {
                 $(loader).addClass('d-none');
                 const clone_list = listElement.cloneNode(true);
@@ -379,7 +379,7 @@ function checkList(element) {
             const audio = new Audio();
             audio.src = 'checked.mp3';
             audio.play();
-            const time = moment().calendar();
+            const time = moment().format('lll');
             
             const dataTag = JSON.parse(localStorage.getItem('data'));
             const valueToChecked = $(event.currentTarget).closest('.col-2').next().children().children('input').val();
