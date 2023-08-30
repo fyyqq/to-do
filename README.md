@@ -36,27 +36,27 @@ Todo is a todo list application that helps you manage your daily tasks easily an
 &nbsp
 <img src="https://github.com/fyyqq/to-do/assets/93767398/538dac36-7085-42c1-925f-550fc9c375b1" width="170">
 
-## Penggunaan
+## Usage
 
-Berikan petunjuk singkat tentang cara menggunakan aplikasi Anda. Misalnya:
+Provide brief instructions on how to use your application. For example:
 
-1. Clone repositori ini ke perangkat Anda.
-2. Buka file `index.html` menggunakan browser favorit Anda.
-3. Mulai menjelajahi aplikasi dan mencoba fitur-fitur yang tersedia.
+1. Clone this repository to your device.
+2. Open the `index.html` file using your favorite browser.
+3. Start exploring the application and try the available features.
 
-## Kontribusi
+## Contribution
 
-Jika Anda ingin berkontribusi pada proyek ini, silakan ikuti langkah berikut:
+If you want to contribute to this project, please follow these steps:
 
-1. Fork repositori ini.
-2. Buat branch baru untuk fitur atau perbaikan yang ingin Anda tambahkan (`git checkout -b fitur-baru`).
-3. Lakukan perubahan yang diperlukan.
-4. Commit perubahan Anda (`git commit -m 'Menambahkan fitur baru'`).
-5. Push ke branch Anda di repositori fork (`git push origin fitur-baru`).
-6. Buat Pull Request ke branch `master` pada repositori ini.
+1. Fork this repository.
+2. Create a new branch for the feature or improvement you want to add (`git checkout -b new-feature`).
+3. Make the necessary changes.
+4. Commit your changes (`git commit -m 'Adding new features'`).
+5. Push to your branch in the fork repository (`git push origin new-feature`).
+6. Make a Pull Request to the `master` branch on this repository.
+   
+## License
 
-## Lisensi
-
-Tentukan jenis lisensi yang Anda gunakan untuk proyek ini. Misalnya:
+Specify the type of license you are using for this project. For example:
 
 Distributed under the MIT License. See [LICENSE](LICENSE) for more information.
